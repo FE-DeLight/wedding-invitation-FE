@@ -3,8 +3,7 @@
 import InvitationPhrases from '@/components/InvitationPhrases';
 import Priview from '@/components/priview';
 import SampleModal from '@/components/SampleModal';
-
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styled from '@emotion/styled';
 
 const InvitaLayout = styled.div`
@@ -17,7 +16,7 @@ export default function useLayout() {
     title: '',
     content: '',
   });
-
+  const test = useRef();
   const handleChange = (e) => {
     if (e.target.id === 'title') {
       setText({
@@ -33,14 +32,15 @@ export default function useLayout() {
 
     console.log('최종 안에 들어있는 값은?:', text);
   };
-
   const showSampleText = () => {
     setModal(!openModal);
   };
-
   const sandContent = (e) => {
-    console.log('sandCont', e.target.value);
     setModal(!openModal);
+    setText({
+      ...text,
+      content: e.target.innerHTML,
+    });
   };
 
   return (
@@ -48,7 +48,7 @@ export default function useLayout() {
       <InvitaLayout>
         <Priview text={text} />
         <div>
-          <InvitationPhrases handleChange={handleChange} showSampleText={showSampleText} />
+          <InvitationPhrases text={text} test={test} handleChange={handleChange} showSampleText={showSampleText} />
         </div>
       </InvitaLayout>
       <SampleModal openModal={openModal} showSampleText={showSampleText} sandContent={sandContent} />

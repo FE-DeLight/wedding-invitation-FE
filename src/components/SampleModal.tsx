@@ -1,3 +1,4 @@
+/* eslint-disable react/button-has-type */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled from '@emotion/styled';
@@ -29,6 +30,7 @@ const SelectSample = styled.div`
     background-color: #e5e5e5;
   }
 `;
+
 export default function SampleModal({ openModal, showSampleText, sandContent }) {
   return (
     openModal && (
