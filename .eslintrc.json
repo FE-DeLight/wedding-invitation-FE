@@ -10,5 +10,13 @@
   "parserOptions": {
     "project": "./tsconfig.json"
     // typescript parser
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ]
   }
 }
