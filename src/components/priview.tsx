@@ -3,6 +3,7 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 import GuestBookModal from './GuestBookModal';
+import PrivewCard from './PrivewCard';
 
 const BoxLayout = styled.div`
   display: flex;
@@ -20,6 +21,7 @@ const InvitationPhrasesLayout = styled.div`
 const GuestBookLayout = styled.div`
   width: 150px;
   height: 250px;
+  text-align: center;
   background-color: #f5f5f5;
 `;
 
@@ -32,12 +34,35 @@ type PriviewProps = {
 
 export default function usePriview({ text }: PriviewProps) {
   const [openGuestBookModal, setGuestModal] = useState(false);
+  const [cards, setCards] = useState({
+    // '1': {
+    //   id: '1',
+    //   name: 'Elin1',
+    //   content: '축하해요!',
+    //   password: '1111',
+    // },
+    // '2': {
+    //   id: '2',
+    //   name: 'Anna',
+    //   content: '축하합니다ㅏㅏㅏㅏ!',
+    //   password: '1111',
+    // },
+  });
 
   const addPost = () => {
     setGuestModal(!openGuestBookModal);
   };
 
   const handleVisibility = () => {
+    setGuestModal(!openGuestBookModal);
+  };
+
+  const addCard = (card) => {
+    setCards((cards) => {
+      const updated = { ...cards };
+      updated[card.id] = card; // key를 card.id로 두겠다!
+      return updated;
+    });
     setGuestModal(!openGuestBookModal);
   };
 
@@ -53,9 +78,9 @@ export default function usePriview({ text }: PriviewProps) {
       </InvitationPhrasesLayout>
       <GuestBookLayout>
         <h3>방명록</h3>
-        <span>축하 메시지를 남겨주세요 !</span>
+        <PrivewCard cards={cards} />
         <button onClick={addPost}>방명록 남기기</button>
-        <GuestBookModal openGuestBookModal={openGuestBookModal} handleVisibility={handleVisibility} />
+        <GuestBookModal openGuestBookModal={openGuestBookModal} handleVisibility={handleVisibility} addCard={addCard} />
       </GuestBookLayout>
     </BoxLayout>
   );

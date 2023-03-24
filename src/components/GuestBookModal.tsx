@@ -1,6 +1,7 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/button-has-type */
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from '@emotion/styled';
 
 const ModalLayout = styled.div`
@@ -58,7 +59,26 @@ const ModalBottom = styled.div`
   }
 `;
 
-export default function GuestBookModal({ openGuestBookModal, handleVisibility }) {
+export default function GuestBookModal({ openGuestBookModal, handleVisibility, addCard }) {
+  const formRef = useRef();
+  const nameRef = useRef();
+  const contentRef = useRef();
+  const passwordRef = useRef();
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+
+    // onSubmit 함수에서 유효성 체크 검사 해야될 것 같음!
+    const card = {
+      id: Date.now(), // uuid
+      name: nameRef.current.value || '',
+      content: contentRef.current.value || '',
+      password: passwordRef.current.value || '',
+    };
+    formRef.current.reset();
+    addCard(card);
+  };
+
   return (
     openGuestBookModal && (
       <ModalLayout>
@@ -67,23 +87,23 @@ export default function GuestBookModal({ openGuestBookModal, handleVisibility })
           <button onClick={handleVisibility}>닫기</button>
         </ModalHeader>
         <ModalWrap>
-          <ModalBody action="" method="post">
+          <ModalBody ref={formRef} action="" method="post">
             <SelectSample>
               <label>작성자</label>
-              <input type="text" placeholder="작성자" />
+              <input ref={nameRef} type="text" placeholder="작성자" />
             </SelectSample>
             <SelectSample>
               <label>내용</label>
-              <textarea placeholder="내용" />
+              <textarea ref={contentRef} placeholder="내용" />
             </SelectSample>
             <SelectSample>
               <label>비밀번호</label>
-              <input type="password" placeholder="비밀번호" />
+              <input ref={passwordRef} type="password" placeholder="비밀번호" />
             </SelectSample>
           </ModalBody>
           <ModalBottom>
             <button onClick={handleVisibility}>닫기</button>
-            <button>저장</button>
+            <button onClick={onSubmit}>저장</button>
           </ModalBottom>
         </ModalWrap>
       </ModalLayout>
