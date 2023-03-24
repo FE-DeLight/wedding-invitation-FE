@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 
 const Textarea = styled.textarea`
   width: 143px;
-  height: 300px;
+  height: 200px;
 `;
 export default function page({ text, test, handleChange, showSampleText }) {
   return (
@@ -14,7 +14,7 @@ export default function page({ text, test, handleChange, showSampleText }) {
       <input type="text" id="title" onChange={handleChange} />
       <br />
       <label htmlFor="contents">내용 : </label>
-      <Textarea type="text" id="contents" ref={test} onChange={handleChange} value={text.content} />
+      <Textarea id="contents" ref={test} onChange={handleChange} value={text.content} />
       <button onClick={showSampleText}>샘플 텍스트 보기</button>
     </>
   );
