@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/react-in-jsx-scope */
 import styled from '@emotion/styled';
@@ -15,7 +16,11 @@ const InvitationPhrasesLayout = styled.div`
   height: 250px;
   background-color: #f5f5f5;
   color: black;
+  text-align: center;
   margin-bottom: 10px;
+  p {
+    white-space: pre;
+  }
 `;
 
 const GuestBookLayout = styled.div`

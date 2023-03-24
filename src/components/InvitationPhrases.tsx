@@ -4,10 +4,12 @@
 import styled from '@emotion/styled';
 
 const Textarea = styled.textarea`
-  width: 143px;
+  width: 100%;
   height: 200px;
 `;
+
 export default function page({ text, test, handleChange, showSampleText }) {
+  console.log('invitationph:', text);
   return (
     <>
       <label htmlFor="title">제목 : </label>
