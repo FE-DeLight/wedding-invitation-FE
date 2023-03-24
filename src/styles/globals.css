@@ -78,6 +78,9 @@ label {
   color: #fff;
 }
 
+li {
+  list-style: none;
+}
 input,
 textarea {
   background-color: #f5f5f5;
