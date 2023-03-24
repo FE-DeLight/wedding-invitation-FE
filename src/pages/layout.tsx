@@ -5,11 +5,20 @@ import Priview from '@/components/priview';
 import SampleModal from '@/components/SampleModal';
 import React, { useRef, useState } from 'react';
 import styled from '@emotion/styled';
+import GuestBook from '@/components/GuestBook';
 
-const InvitaLayout = styled.div`
+const Container = styled.div`
   display: flex;
 `;
+const InvitaLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+`;
 
+const Division = styled.div`
+  margin-bottom: 48px;
+`;
 export default function useLayout() {
   const [openModal, setModal] = useState(false);
   const [text, setText] = useState({
@@ -45,12 +54,20 @@ export default function useLayout() {
 
   return (
     <>
-      <InvitaLayout>
+      <Container>
+        {/* 가장 왼쪽에서 따로 분리돼서 동작 */}
         <Priview text={text} />
-        <div>
-          <InvitationPhrases text={text} test={test} handleChange={handleChange} showSampleText={showSampleText} />
-        </div>
-      </InvitaLayout>
+
+        {/* 오른쪽에서 보여지는 기능's */}
+        <InvitaLayout>
+          <Division>
+            <InvitationPhrases text={text} test={test} handleChange={handleChange} showSampleText={showSampleText} />
+          </Division>
+          <Division>
+            <GuestBook />
+          </Division>
+        </InvitaLayout>
+      </Container>
       <SampleModal openModal={openModal} showSampleText={showSampleText} sandContent={sandContent} />
     </>
   );
