@@ -3,6 +3,7 @@
 /* eslint-disable react/button-has-type */
 import React, { useRef } from 'react';
 import styled from '@emotion/styled';
+import dayjs from 'dayjs';
 
 const ModalLayout = styled.div`
   position: fixed;
@@ -60,6 +61,18 @@ const ModalBottom = styled.div`
 `;
 
 export default function GuestBookModal({ openGuestBookModal, handleVisibility, addCard }) {
+  const now = dayjs();
+  const year = now.year();
+  const month = now.month();
+  const date = now.date();
+  const minute = now.minute(); // 분
+  // const second = now.second();
+  const stringYear = year.toString();
+  const stringMonth = month.toString();
+  const stringDate = date.toString();
+  const stringMinute = minute.toString();
+  const dateResult = [stringYear, stringMonth, stringDate, stringMinute].join('');
+
   const formRef = useRef();
   const nameRef = useRef();
   const contentRef = useRef();
@@ -67,14 +80,15 @@ export default function GuestBookModal({ openGuestBookModal, handleVisibility, a
 
   const onSubmit = (event) => {
     event.preventDefault();
-
     // onSubmit 함수에서 유효성 체크 검사 해야될 것 같음!
     const card = {
       id: Date.now(), // uuid
       name: nameRef.current.value || '',
+      time: dateResult, // 여기는 무조건 그 고정값을 가져와야돼!
       content: contentRef.current.value || '',
       password: passwordRef.current.value || '',
     };
+
     formRef.current.reset();
     addCard(card);
   };
