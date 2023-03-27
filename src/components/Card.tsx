@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/react-in-jsx-scope */
 import styled from '@emotion/styled';
+import GuestBookDelectModal from './GuestBookDelectModal';
 
 const Cardli = styled.li`
   padding: 16px;
@@ -24,21 +26,32 @@ type CardProp = {
   };
 };
 
-export default function Card({ card, deleteCard }: CardProp) {
+export default function Card({
+  card,
+  deleteCard,
+  setGuestDelectModal,
+  openGuestBookDelectModal,
+  HandleGBDelectVisibility,
+}: CardProp) {
   const { name, time, content } = card;
 
   const onSubmit = () => {
-    deleteCard(card);
+    setGuestDelectModal(!openGuestBookDelectModal);
   };
 
   return (
-    <Cardli>
-      <CardHeader>
-        <h4>{name}</h4>
-        <span>{time}</span>
-        <button onClick={onSubmit}>닫기</button>
-      </CardHeader>
-      <p>{content}</p>
-    </Cardli>
+    <>
+      <Cardli>
+        <CardHeader>
+          <h4>{name}</h4>
+          <span>{time}</span>
+          <button onClick={onSubmit}>닫기</button>
+        </CardHeader>
+        <p>{content}</p>
+      </Cardli>
+      {openGuestBookDelectModal && (
+        <GuestBookDelectModal HandleGBDelectVisibility={HandleGBDelectVisibility} deleteCard={deleteCard} />
+      )}
+    </>
   );
 }

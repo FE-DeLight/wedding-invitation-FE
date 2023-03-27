@@ -41,6 +41,7 @@ type PriviewProps = {
 
 export default function usePriview({ text }: PriviewProps) {
   const [openGuestBookModal, setGuestModal] = useState(false);
+  const [openGuestBookDelectModal, setGuestDelectModal] = useState(false);
   const [cards, setCards] = useState({
     // '1': {
     //   id: '1',
@@ -85,7 +86,7 @@ export default function usePriview({ text }: PriviewProps) {
     Object.keys(updated).forEach((item) => {
       // console.log('itemitemitemitemitemitem', item); // key를 가져옴
       // console.log('a[item]a[item]a[item]a[item]a[item]a[item].time:', a[item].time);
-      console.log('여기여기', updated[item].id, parseInt(updated[item].time));
+      // console.log('여기여기', updated[item].id, parseInt(updated[item].time));
 
       const now = dayjs();
       const year = now.year();
@@ -101,16 +102,12 @@ export default function usePriview({ text }: PriviewProps) {
       // 현재 time에서 계산된 값을 바로 업데이트 시켜준다.
       // 즉 만들어진 시간이랑 updated[item].time랑 - 해준다.
       console.log('dateResult', updated[item].time, dateResult);
-      const milliSeconds = parseInt(updated[item].time) - parseInt(dateResult);
-      // console.log('나 다음이야야ㅑㅑㅑㅑㅑㅑㅑ:', updated[item].id);
-      console.log('milliSecondsmilliSecondsmilliSecondsmilliSecondsmilliSeconds:', milliSeconds);
-      const seconds = milliSeconds / 1000;
-      console.log('secondssecondsseconds:', seconds);
-      // 위의 계산된 값을 setCards에 업데이트 해주면된다. -> 그 후 다시 랜더링되면서그려진다!
-      // console.log('updated[item].time = seconds', (updated[item].time = seconds));
 
-      // 저 계산된 seconds 값을 먼저 if문으로 한 후 updated[item].time에 넣어준다.
-      if (seconds < 0) setCards((updated[item].time = '방금 전'));
+      // const milliSeconds = parseInt(updated[item].time) - parseInt(dateResult);
+      // const seconds = milliSeconds / 1000;
+      // // 저 계산된 seconds 값을 먼저 if문으로 한 후 updated[item].time에 넣어준다.
+      // if (seconds < 0) setCards((updated[item].time = '방금 전'));
+
       // updated[item].time = seconds; // 전체적으로 카드를 만들면, 계산된 값으로 출력된다.
 
       // console.log('최종값최종값최종값최종값최종값최종값', updated, updated[item].time);
@@ -168,6 +165,10 @@ export default function usePriview({ text }: PriviewProps) {
     setGuestModal(!openGuestBookModal);
   };
 
+  const HandleGBDelectVisibility = () => {
+    setGuestDelectModal(!openGuestBookDelectModal);
+  };
+
   const addCard = (card) => {
     setCards((cards) => {
       const updated = { ...cards };
@@ -178,11 +179,18 @@ export default function usePriview({ text }: PriviewProps) {
     setGuestModal(!openGuestBookModal);
   };
 
-  const deleteCard = (card) => {
+  const deleteCard = (cardPassword) => {
+    console.log('deleteCard 함수에 들어온 cardPassWord : ', cardPassword);
     setCards((cards) => {
-      const updated = { ...cards };
-      delete updated[card.id];
-      return updated;
+      const updated = { ...cards }; // card를 받아온다.
+      // setCards를 해서 delete를 시켜줘야하는데,
+      // ✅ 우선 cardPassword 랑 cards를 다 가져와서,
+      console.log('...cards를 모두 받아왔냐? :', updated); // ok
+      // 해당 id의 저장되어있는 password랑 일치하는지 확인 후
+      // updated;
+      // 틀렸으면 아래 틀렸습니다라는 유효성 검사가 필요하다.
+      // delete updated[card.id];
+      // return updated;
     });
   };
 
@@ -198,7 +206,13 @@ export default function usePriview({ text }: PriviewProps) {
       </InvitationPhrasesLayout>
       <GuestBookLayout>
         <h3>방명록</h3>
-        <PrivewCard cards={cards} deleteCard={deleteCard} />
+        <PrivewCard
+          cards={cards}
+          setGuestDelectModal={setGuestDelectModal}
+          deleteCard={deleteCard}
+          openGuestBookDelectModal={openGuestBookDelectModal}
+          HandleGBDelectVisibility={HandleGBDelectVisibility}
+        />
         <button onClick={addPost}>방명록 남기기</button>
         <GuestBookModal openGuestBookModal={openGuestBookModal} handleVisibility={handleVisibility} addCard={addCard} />
       </GuestBookLayout>

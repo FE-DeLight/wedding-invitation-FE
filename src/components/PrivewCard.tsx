@@ -9,13 +9,28 @@ const PrivewCardSection = styled.section`
   padding: 32px 12px 16px;
   margin-bottom: 16px;
 `;
-export default function PrivewCard({ cards, deleteCard }) {
+export default function PrivewCard({
+  cards,
+  deleteCard,
+  openGuestBookDelectModal,
+  HandleGBDelectVisibility,
+  setGuestDelectModal,
+}) {
   return (
     <PrivewCardSection>
       <ul>
         {Object.keys(cards).length === 0
           ? '축하 메시지를 남겨주세요!'
-          : Object.keys(cards).map((key) => <Card key={key} card={cards[key]} deleteCard={deleteCard} />)}
+          : Object.keys(cards).map((key) => (
+              <Card
+                key={key}
+                card={cards[key]}
+                deleteCard={deleteCard}
+                openGuestBookDelectModal={openGuestBookDelectModal}
+                HandleGBDelectVisibility={HandleGBDelectVisibility}
+                setGuestDelectModal={setGuestDelectModal}
+              />
+            ))}
       </ul>
     </PrivewCardSection>
   );
