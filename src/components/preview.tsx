@@ -42,6 +42,7 @@ type PriviewProps = {
 export default function usePriview({ text }: PriviewProps) {
   const [openGuestBookModal, setGuestModal] = useState(false);
   const [openGuestBookDelectModal, setGuestDelectModal] = useState(false);
+  const [passwordValidation, setPasswordValidation] = useState('');
   const [cards, setCards] = useState({
     // '1': {
     //   id: '1',
@@ -165,7 +166,13 @@ export default function usePriview({ text }: PriviewProps) {
     setGuestModal(!openGuestBookModal);
   };
 
+  // passwordValidation
+  const handleValidation = () => {
+    setPasswordValidation('');
+  };
+
   const HandleGBDelectVisibility = () => {
+    handleValidation();
     setGuestDelectModal(!openGuestBookDelectModal);
   };
 
@@ -179,19 +186,22 @@ export default function usePriview({ text }: PriviewProps) {
     setGuestModal(!openGuestBookModal);
   };
 
-  const deleteCard = (cardPassword) => {
-    console.log('deleteCard 함수에 들어온 cardPassWord : ', cardPassword);
-    setCards((cards) => {
-      const updated = { ...cards }; // card를 받아온다.
-      // setCards를 해서 delete를 시켜줘야하는데,
-      // ✅ 우선 cardPassword 랑 cards를 다 가져와서,
-      console.log('...cards를 모두 받아왔냐? :', updated); // ok
-      // 해당 id의 저장되어있는 password랑 일치하는지 확인 후
-      // updated;
-      // 틀렸으면 아래 틀렸습니다라는 유효성 검사가 필요하다.
-      // delete updated[card.id];
-      // return updated;
-    });
+  const deleteCard = (cardPassword, id, password) => {
+    const updated = { ...cards }; // card를 받아온다.
+    if (updated[id].password === cardPassword) {
+      // 비밀번호가 알맞을시 수행됨.
+      setCards(() => {
+        delete updated[id];
+        return updated;
+      });
+      setGuestDelectModal(!openGuestBookDelectModal);
+    } else if (updated[id].password !== cardPassword) {
+      // 잘못입력 === 비밀번호가 틀렸습니다.
+      setPasswordValidation(!passwordValidation);
+    } else {
+      // 공백 && 포커스를 가져길을때 === 비밀번호를 입력해주세요.
+      //
+    }
   };
 
   return (
@@ -212,6 +222,8 @@ export default function usePriview({ text }: PriviewProps) {
           deleteCard={deleteCard}
           openGuestBookDelectModal={openGuestBookDelectModal}
           HandleGBDelectVisibility={HandleGBDelectVisibility}
+          passwordValidation={passwordValidation}
+          handleValidation={handleValidation}
         />
         <button onClick={addPost}>방명록 남기기</button>
         <GuestBookModal openGuestBookModal={openGuestBookModal} handleVisibility={handleVisibility} addCard={addCard} />

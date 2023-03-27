@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/button-has-type */
@@ -28,7 +29,9 @@ const ModalHeader = styled.div`
 const ModalBody = styled.form`
   //
 `;
-
+const Validation = styled.div`
+  color: red;
+`;
 const SelectSample = styled.div`
   display: flex;
   align-items: flex-start;
@@ -59,16 +62,30 @@ const ModalBottom = styled.div`
   }
 `;
 
-export default function GuestBookDelectModal({ HandleGBDelectVisibility, deleteCard }) {
+export default function GuestBookDelectModal({
+  id,
+  password,
+  HandleGBDelectVisibility,
+  deleteCard,
+  passwordValidation,
+  handleValidation,
+}) {
   const formRef = useRef();
-  const passwordRef = useRef();
+  const passwordRef = useRef(null);
+  const onChangeInput = (e) => {
+    if (e.target.value > 0) {
+      // 0 보다 크면서 값이 입력되어있으면 '비밀번호가 틀렸습니다'를 지워준다.
+      console.log('비밀번호가 틀렸습니다.');
+      handleValidation();
+    }
+  };
 
   const onSubmit = (event) => {
     event.preventDefault();
+    // 저장을 눌렀는데, 만약 비밀번호가 공백 이라면 '입력해주세요 띄우기'
     const passWord = passwordRef.current.value;
-    console.log(passWord);
-    deleteCard(passWord);
-    // formRef.current.reset();
+    deleteCard(passWord, id, password);
+    formRef.current.reset();
   };
 
   return (
@@ -81,8 +98,9 @@ export default function GuestBookDelectModal({ HandleGBDelectVisibility, deleteC
         <ModalBody ref={formRef} action="" method="post">
           <SelectSample>
             <label>비밀번호</label>
-            <input ref={passwordRef} type="password" placeholder="비밀번호" />
+            <input ref={passwordRef} autoFocus type="password" placeholder="비밀번호" onChange={onChangeInput} />
           </SelectSample>
+          {passwordValidation && <Validation>비밀번호가 틀렸습니다.</Validation>}
         </ModalBody>
         <ModalBottom>
           <button onClick={HandleGBDelectVisibility}>닫기</button>

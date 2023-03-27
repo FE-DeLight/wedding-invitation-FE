@@ -15,6 +15,8 @@ export default function PrivewCard({
   openGuestBookDelectModal,
   HandleGBDelectVisibility,
   setGuestDelectModal,
+  passwordValidation,
+  handleValidation,
 }) {
   return (
     <PrivewCardSection>
@@ -29,6 +31,8 @@ export default function PrivewCard({
                 openGuestBookDelectModal={openGuestBookDelectModal}
                 HandleGBDelectVisibility={HandleGBDelectVisibility}
                 setGuestDelectModal={setGuestDelectModal}
+                passwordValidation={passwordValidation}
+                handleValidation={handleValidation}
               />
             ))}
       </ul>

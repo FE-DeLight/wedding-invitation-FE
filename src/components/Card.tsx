@@ -32,8 +32,10 @@ export default function Card({
   setGuestDelectModal,
   openGuestBookDelectModal,
   HandleGBDelectVisibility,
+  passwordValidation,
+  handleValidation,
 }: CardProp) {
-  const { name, time, content } = card;
+  const { id, password, name, time, content } = card;
 
   const onSubmit = () => {
     setGuestDelectModal(!openGuestBookDelectModal);
@@ -50,7 +52,14 @@ export default function Card({
         <p>{content}</p>
       </Cardli>
       {openGuestBookDelectModal && (
-        <GuestBookDelectModal HandleGBDelectVisibility={HandleGBDelectVisibility} deleteCard={deleteCard} />
+        <GuestBookDelectModal
+          id={id}
+          password={password}
+          HandleGBDelectVisibility={HandleGBDelectVisibility}
+          deleteCard={deleteCard}
+          passwordValidation={passwordValidation}
+          handleValidation={handleValidation}
+        />
       )}
     </>
   );
