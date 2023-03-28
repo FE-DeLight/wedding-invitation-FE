@@ -1,20 +1,6 @@
-import { useRouter } from 'next/router';
+import PageTitleComponent from '@/components/units/pageTitle';
 import React from 'react';
 
 export default function BoardListPage() {
-  const router = useRouter();
-
-  const handleMove = () => {
-    router.push('/boards/write');
-  };
-
-  return (
-    <div>
-      <h1>목록 페이지</h1>
-
-      <button type="button" onClick={handleMove}>
-        만들기
-      </button>
-    </div>
-  );
+  return <PageTitleComponent>마이 페이지</PageTitleComponent>;
 }

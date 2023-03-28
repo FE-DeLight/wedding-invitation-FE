@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from '@/components/card';
+import Card from '@/components/units/card';
 import PageTitleComponent from '@/components/units/pageTitle';
 import * as S from './style';
 

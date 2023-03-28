@@ -4,8 +4,6 @@ export const Wrapper = styled.div`
   display: flex;
   gap: 40px;
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
 `;
 export const ContentLeft = styled.div`
   display: flex;
