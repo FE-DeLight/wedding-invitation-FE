@@ -78,6 +78,23 @@ button {
   color: inherit;
   cursor: pointer;
 }
+select {
+  width: 100%;
+  height: 40px;
+  margin: 0;
+  padding: 0 20px;
+}
+input[type='text'] {
+  width: 100%;
+  height: 40px;
+  margin: 0;
+  padding: 0 15px;
+}
+input[type='checkbox'],
+input[type='radio'] {
+  width: 20px;
+  height: 20px;
+}
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

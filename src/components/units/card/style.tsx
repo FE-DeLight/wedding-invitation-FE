@@ -7,6 +7,9 @@ export const Card = styled.div`
 `;
 
 export const Title = styled.div`
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid ${(props) => (props.color === 'white' ? '#333' : '#fff')};
   font-size: 24px;
   font-weight: 600;
 `;

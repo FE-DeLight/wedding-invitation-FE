@@ -1,7 +1,7 @@
 import React from 'react';
 
-function BoardDetail() {
+function BoardDetailPage() {
   return <div>BoardDetail</div>;
 }
 
-export default BoardDetail;
+export default BoardDetailPage;
