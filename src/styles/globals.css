@@ -52,6 +52,12 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
 }
 
 html,
@@ -66,6 +72,12 @@ body {
   height: 100%;
   overflow: auto;
   color: rgb(var(--foreground-rgb));
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 a {

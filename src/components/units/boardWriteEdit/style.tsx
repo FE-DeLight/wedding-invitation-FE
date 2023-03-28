@@ -9,12 +9,18 @@ export const ContentLeft = styled.div`
   display: flex;
   flex-direction: column;
   width: 350px;
+  height: calc(100vh - 100px);
+  margin: 80px 0;
+  overflow: auto;
 `;
 export const ContentRight = styled.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
   flex: 1;
+  height: calc(100vh - 100px);
+  margin: 80px 0;
+  overflow: auto;
   & > div {
     border-radius: 8px;
   }
