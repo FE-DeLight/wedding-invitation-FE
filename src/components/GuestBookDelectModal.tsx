@@ -98,7 +98,7 @@ export default function GuestBookDelectModal({
         <ModalBody ref={formRef} action="" method="post">
           <SelectSample>
             <label>비밀번호</label>
-            <input ref={passwordRef} autoFocus type="password" placeholder="비밀번호" onChange={onChangeInput} />
+            <input ref={passwordRef} type="password" placeholder="비밀번호" onChange={onChangeInput} />
           </SelectSample>
           {passwordValidation && <Validation>비밀번호가 틀렸습니다.</Validation>}
         </ModalBody>

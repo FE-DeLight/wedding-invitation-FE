@@ -11,6 +11,8 @@ import PrivewCard from './PrivewCard';
 const BoxLayout = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 20px 20px;
+  background-color: green;
 `;
 
 const InvitationPhrasesLayout = styled.div`
@@ -21,7 +23,7 @@ const InvitationPhrasesLayout = styled.div`
   text-align: center;
   margin-bottom: 10px;
   p {
-    white-space: pre;
+    white-space: pre-wrap;
   }
 `;
 
@@ -31,6 +33,8 @@ const GuestBookLayout = styled.div`
   text-align: center;
   background-color: #f5f5f5;
 `;
+
+const MoreOptionLayout = styled.div``;
 
 type PriviewProps = {
   text: {
@@ -82,13 +86,10 @@ export default function usePriview({ text }: PriviewProps) {
   // 1분이 지나면 time에 있는 시간과 계산해서 보여주는형식!
   const detailDate = (a) => {
     const updated = a;
-    console.log('Object.keys(updated)', Object.keys(updated));
-
     Object.keys(updated).forEach((item) => {
       // console.log('itemitemitemitemitemitem', item); // key를 가져옴
       // console.log('a[item]a[item]a[item]a[item]a[item]a[item].time:', a[item].time);
       // console.log('여기여기', updated[item].id, parseInt(updated[item].time));
-
       const now = dayjs();
       const year = now.year();
       const month = now.month();
@@ -106,7 +107,7 @@ export default function usePriview({ text }: PriviewProps) {
 
       // const milliSeconds = parseInt(updated[item].time) - parseInt(dateResult);
       // const seconds = milliSeconds / 1000;
-      // // 저 계산된 seconds 값을 먼저 if문으로 한 후 updated[item].time에 넣어준다.
+      // // // 저 계산된 seconds 값을 먼저 if문으로 한 후 updated[item].time에 넣어준다.
       // if (seconds < 0) setCards((updated[item].time = '방금 전'));
 
       // updated[item].time = seconds; // 전체적으로 카드를 만들면, 계산된 값으로 출력된다.
@@ -128,18 +129,6 @@ export default function usePriview({ text }: PriviewProps) {
 
     // 그리고 함수에서 실행되는 return 할때 card 바꾼 것을 바로 업데이트해준다.
 
-    // console.log(arr);
-
-    // const addCard = (card) => {
-    //   setCards((cards) => {
-    //     const updated = { ...cards };
-    //     console.log('updated[card.id] : ', updated, card.id); // 왜 1679805878395 지?
-    //     updated[card.id] = card; // key를 card.id로 두겠다!
-    //     return updated;
-    //   });
-    //   setGuestModal(!openGuestBookModal);
-    // };
-
     // const minutes = seconds / 60;
     // if (minutes < 60) return `${Math.floor(minutes)}분 전`;
     // const hours = minutes / 60;
@@ -156,7 +145,7 @@ export default function usePriview({ text }: PriviewProps) {
 
   // useEffect(() => {
   detailDate({ ...cards });
-  // });
+  // }, [detailDate]);
 
   const addPost = () => {
     setGuestModal(!openGuestBookModal);
@@ -187,6 +176,7 @@ export default function usePriview({ text }: PriviewProps) {
   };
 
   const deleteCard = (cardPassword, id, password) => {
+    console.log(password);
     const updated = { ...cards }; // card를 받아온다.
     if (updated[id].password === cardPassword) {
       // 비밀번호가 알맞을시 수행됨.
@@ -200,7 +190,6 @@ export default function usePriview({ text }: PriviewProps) {
       setPasswordValidation(!passwordValidation);
     } else {
       // 공백 && 포커스를 가져길을때 === 비밀번호를 입력해주세요.
-      //
     }
   };
 
@@ -228,6 +217,7 @@ export default function usePriview({ text }: PriviewProps) {
         <button onClick={addPost}>방명록 남기기</button>
         <GuestBookModal openGuestBookModal={openGuestBookModal} handleVisibility={handleVisibility} addCard={addCard} />
       </GuestBookLayout>
+      <MoreOptionLayout />
     </BoxLayout>
   );
 }
