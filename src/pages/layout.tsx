@@ -1,3 +1,5 @@
+/* eslint-disable consistent-return */
+/* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable @typescript-eslint/no-shadow */
 
 'use client';
@@ -9,6 +11,14 @@ import React, { useRef, useState } from 'react';
 import styled from '@emotion/styled';
 import GuestBook from '@/components/GuestBook';
 import MoreOption from '@/components/MoreOption';
+
+const GlobalStyle = styled.div`
+  background-color: green;
+  font-family: ${({ fontFamily }: any) => {
+    console.log('fontFamilyfontFamily :', fontFamily);
+    return fontFamily === '나눔명조' ? 'Noto Sans KR' : 'MaruBuri-Regular';
+  }};
+`;
 
 const Container = styled.div`
   display: flex;
@@ -30,6 +40,7 @@ const Division = styled.div`
 
 export default function useLayout() {
   const [openModal, setModal] = useState(false);
+
   // InvitationPhrases사용되는 State
   const [text, setText] = useState({
     title: '',
@@ -41,7 +52,7 @@ export default function useLayout() {
     background: '없음',
     famliy: '나눔명조',
     size: '보통',
-  }); // useState('디자인하우스');
+  });
 
   const test = useRef();
 
@@ -85,6 +96,7 @@ export default function useLayout() {
         return updated;
       });
     } else if (size) {
+      // handleFontSize(value.size);
       setOptionData((optionData) => {
         const updated = { ...optionData };
         updated.size = value.size;
@@ -99,14 +111,13 @@ export default function useLayout() {
     }
   };
 
-  // 각 설정에 맞는 value값 설정하기!
-  const getStyles = (value: any) => {};
-
   return (
     <>
       <Container>
         {/* 가장 왼쪽에서 따로 분리돼서 동작 */}
-        <Priview text={text} />
+        <GlobalStyle fontSize={optionData.size} fontFamily={optionData.famliy}>
+          <Priview text={text} />
+        </GlobalStyle>
         {/* 오른쪽에서 보여지는 기능's */}
         <InvitaLayout>
           <Division>

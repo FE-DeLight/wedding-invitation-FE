@@ -10,9 +10,9 @@ import PrivewCard from './PrivewCard';
 
 const BoxLayout = styled.div`
   display: flex;
+  height: 100vh;
   flex-direction: column;
   padding: 20px 20px;
-  background-color: green;
 `;
 
 const InvitationPhrasesLayout = styled.div`
