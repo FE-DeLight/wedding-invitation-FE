@@ -21,7 +21,7 @@ export default function LoginNaver() {
   const initializeNaverLogin = () => {
     const naverLogin = new window.naver.LoginWithNaverId({
       clientId: process.env.NEXT_PUBLIC_NAVER_CLIENT_ID,
-      callbackUrl: 'http://localhost:3000/mypage',
+      callbackUrl: 'http://localhost:3000',
       isPopup: false,
       loginButton: { color: 'green', type: 3, height: '45' },
     });
