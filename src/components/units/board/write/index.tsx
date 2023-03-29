@@ -1,15 +1,17 @@
 import React from 'react';
 import Card from '@/components/units/card';
-import * as S from '@/components/units/boardWriteEdit/style';
+import * as S from '@/components/units/board/write/style';
 
-function BoardWriteEdit() {
+export default function BoardWrite() {
   return (
     <S.Wrapper>
       <S.ContentLeft>
-        <Card color="white" title="제목1">
+        <Card color="white" type="preview">
           내용1
         </Card>
-        <Card title="제목2">내용2</Card>
+        <Card title="제목2" type="preview">
+          내용2
+        </Card>
       </S.ContentLeft>
       <S.ContentRight>
         <Card title="템플릿">
@@ -251,5 +253,3 @@ function BoardWriteEdit() {
     </S.Wrapper>
   );
 }
-
-export default BoardWriteEdit;
