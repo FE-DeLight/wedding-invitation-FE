@@ -1,11 +1,15 @@
 import React from 'react';
 import Card from '@/components/units/card';
-import * as S from '@/components/units/board/writeEdit/style';
+import * as S from '@/components/units/board/write/style';
 import { useRouter } from 'next/router';
 import Select from '@/components/commons/Select';
 import Button from '@/components/commons/Button';
 
-export default function BoardWriteEdit() {
+interface Props {
+  isEdit?: Boolean;
+}
+
+export default function BoardWrite(props: Props) {
   const router = useRouter();
 
   const select = ['a', 'b'];
@@ -14,6 +18,7 @@ export default function BoardWriteEdit() {
     router.push('/boards/');
   };
 
+  console.log('isEdit', props?.isEdit);
   return (
     <S.Wrapper>
       <S.ContentLeft>
