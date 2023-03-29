@@ -1,9 +1,6 @@
 /* eslint-disable consistent-return */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable @typescript-eslint/no-shadow */
-
-'use client';
-
 import InvitationPhrases from '@/components/InvitationPhrases';
 import Priview from '@/components/preview';
 import SampleModal from '@/components/SampleModal';
@@ -121,7 +118,7 @@ export default function useLayout() {
       <Container>
         {/* 가장 왼쪽에서 따로 분리돼서 동작 */}
         <GlobalStyle fontSize={optionData.size} fontWeight={optionData.size} fontFamily={optionData.famliy}>
-          <Priview text={text} />
+          <Priview text={text} backgroundImage={optionData.background} />
         </GlobalStyle>
         {/* 오른쪽에서 보여지는 기능's */}
         <InvitaLayout>

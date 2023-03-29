@@ -15,14 +15,19 @@ const BoxLayout = styled.div`
   overflow-y: scroll;
 `;
 
+// TODO : 공통으로 들어가는거는 같은 레이아웃으로 만들어주기
+// TODO : 1. 배경지가 들어가는 것들 골라내기 & 크기 점검
 const InvitationPhrasesLayout = styled.div`
   width: 270px;
   height: 250px;
-  background-color: #f5f5f5;
-  color: black;
-  text-align: center;
   margin-bottom: 10px;
-  overflow: hidden;
+  text-align: center;
+  color: black;
+  background-color: #f5f5f5;
+  background-image: ${({ backgroundImage }) => {
+    return backgroundImage === '없음' ? 'none' : "url('/assets/images/pattern_1.png')";
+  }};
+
   p {
     white-space: pre-wrap;
   }
@@ -32,26 +37,30 @@ const GuestBookLayout = styled.div`
   width: 270px;
   height: 250px;
   text-align: center;
-  background-color: #f5f5f5;
   margin-bottom: 10px;
+  background-color: #f5f5f5;
 `;
 
 const TestLayout = styled.div`
   width: 270px;
   height: 250px;
   text-align: center;
-  background-color: #f5f5f5;
   margin-bottom: 10px;
+  background-color: #f5f5f5;
+  background-image: ${({ backgroundImage }) => {
+    return backgroundImage === '없음' ? 'none' : "url('/assets/images/pattern_1.png')";
+  }};
 `;
 
-type PriviewProps = {
-  text: {
-    title: string;
-    content: string;
-  };
-};
+// type PriviewProps = {
+//   text: {
+//     title: string;
+//     content: string;
+//   };
+// };
 
-export default function usePriview({ text }: PriviewProps) {
+export default function usePriview({ text, backgroundImage }) {
+  // : PriviewProps) {
   const [openGuestBookModal, setGuestModal] = useState(false);
   const [openGuestBookDelectModal, setGuestDelectModal] = useState(false);
   const [passwordValidation, setPasswordValidation] = useState('');
@@ -202,7 +211,8 @@ export default function usePriview({ text }: PriviewProps) {
 
   return (
     <BoxLayout>
-      <InvitationPhrasesLayout>
+      {/* 청첩장 문구 */}
+      <InvitationPhrasesLayout backgroundImage={backgroundImage}>
         <div className="invitation-phrases">
           <p>{text.title}</p>
         </div>
@@ -210,6 +220,7 @@ export default function usePriview({ text }: PriviewProps) {
           <p>{text.content}</p>
         </div>
       </InvitationPhrasesLayout>
+      {/* 방명록 */}
       <GuestBookLayout>
         <h3>방명록</h3>
         <PrivewCard
@@ -224,7 +235,8 @@ export default function usePriview({ text }: PriviewProps) {
         <button onClick={addPost}>방명록 남기기</button>
         <GuestBookModal openGuestBookModal={openGuestBookModal} handleVisibility={handleVisibility} addCard={addCard} />
       </GuestBookLayout>
-      <TestLayout>
+      {/* 배경지를 위한 Test */}
+      <TestLayout backgroundImage={backgroundImage}>
         <h3>테스트</h3>
       </TestLayout>
     </BoxLayout>
