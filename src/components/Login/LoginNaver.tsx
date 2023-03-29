@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
 import styled from '@emotion/styled';
 import Image from 'next/image';
+import React, { useEffect } from 'react';
 
 const LoginButton = styled.div`
   cursor: pointer;
