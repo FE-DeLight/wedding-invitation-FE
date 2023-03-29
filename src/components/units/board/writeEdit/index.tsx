@@ -1,8 +1,8 @@
 import React from 'react';
 import Card from '@/components/units/card';
-import * as S from '@/components/units/board/write/style';
+import * as S from '@/components/units/board/writeEdit/style';
 
-export default function BoardWrite() {
+export default function BoardWriteEdit() {
   return (
     <S.Wrapper>
       <S.ContentLeft>

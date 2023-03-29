@@ -1,6 +1,6 @@
-import BoardWrite from '@/components/units/board/write';
 import React from 'react';
+import BoardWriteEdit from '@/components/units/board/writeEdit';
 
 export default function BoardWritePage() {
-  return <BoardWrite />;
+  return <BoardWriteEdit />;
 }
