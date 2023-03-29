@@ -82,7 +82,7 @@ export default function BoardWrite(props: Props) {
               </G.ColContent>
             </G.Row>
             <G.Row>
-              <G.ColTitle>체크박스</G.ColTitle>
+              <G.ColTitle>버튼ㄴ</G.ColTitle>
               <G.ColContent>
                 <Button>버튼</Button>
               </G.ColContent>

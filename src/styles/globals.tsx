@@ -17,7 +17,6 @@ export const ColContent = styled.div`
   display: flex;
   flex: 1;
 `;
-
 export const RadioGroup = styled.div`
   display: flex;
   gap: 20px;
@@ -42,5 +41,4 @@ export const InputCheckbox = styled.input`
 `;
 export const InputText = styled.input``;
 export const Textarea = styled.textarea``;
-
 export const Button = styled.button``;
