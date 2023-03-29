@@ -1,5 +1,6 @@
 import React from 'react';
-import '@/styles/globals.css';
+import '@/styles/globals.scss';
+import '@/styles/datePicker.scss';
 import type { AppProps } from 'next/app';
 import LayoutComponent from '@/components/Layout';
 
