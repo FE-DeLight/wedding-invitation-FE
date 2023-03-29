@@ -82,25 +82,7 @@ export default function BoardDetail() {
             </S.Row>
           </S.RowWrap>
         </Card>
-        <Card color="white" title="제목4">
-          <S.RowWrap>
-            <S.Row>
-              <S.ColTitle>스타일</S.ColTitle>
-              <S.ColContent>
-                <select>
-                  <option value="">심플</option>
-                  <option value="">직접 디자인하기</option>
-                </select>
-              </S.ColContent>
-            </S.Row>
-            <S.Row>
-              <S.ColTitle>색상</S.ColTitle>
-              <S.ColContent>
-                <S.InputText type="text" />
-              </S.ColContent>
-            </S.Row>
-          </S.RowWrap>
-        </Card>
+        <Card color="white" title="제목4" />
         <Card title="템플릿">
           <S.RowWrap>
             <S.Row>
@@ -135,120 +117,12 @@ export default function BoardDetail() {
             </S.Row>
           </S.RowWrap>
         </Card>
-        <Card color="white" title="제목4">
-          <S.RowWrap>
-            <S.Row>
-              <S.ColTitle>스타일</S.ColTitle>
-              <S.ColContent>
-                <select>
-                  <option value="">심플</option>
-                  <option value="">직접 디자인하기</option>
-                </select>
-              </S.ColContent>
-            </S.Row>
-            <S.Row>
-              <S.ColTitle>색상</S.ColTitle>
-              <S.ColContent>
-                <S.InputText type="text" />
-              </S.ColContent>
-            </S.Row>
-          </S.RowWrap>
-        </Card>
-        <Card color="white" title="제목4">
-          <S.RowWrap>
-            <S.Row>
-              <S.ColTitle>스타일</S.ColTitle>
-              <S.ColContent>
-                <select>
-                  <option value="">심플</option>
-                  <option value="">직접 디자인하기</option>
-                </select>
-              </S.ColContent>
-            </S.Row>
-            <S.Row>
-              <S.ColTitle>색상</S.ColTitle>
-              <S.ColContent>
-                <S.InputText type="text" />
-              </S.ColContent>
-            </S.Row>
-          </S.RowWrap>
-        </Card>
-        <Card color="white" title="제목4">
-          <S.RowWrap>
-            <S.Row>
-              <S.ColTitle>스타일</S.ColTitle>
-              <S.ColContent>
-                <select>
-                  <option value="">심플</option>
-                  <option value="">직접 디자인하기</option>
-                </select>
-              </S.ColContent>
-            </S.Row>
-            <S.Row>
-              <S.ColTitle>색상</S.ColTitle>
-              <S.ColContent>
-                <S.InputText type="text" />
-              </S.ColContent>
-            </S.Row>
-          </S.RowWrap>
-        </Card>
-        <Card color="white" title="제목4">
-          <S.RowWrap>
-            <S.Row>
-              <S.ColTitle>스타일</S.ColTitle>
-              <S.ColContent>
-                <select>
-                  <option value="">심플</option>
-                  <option value="">직접 디자인하기</option>
-                </select>
-              </S.ColContent>
-            </S.Row>
-            <S.Row>
-              <S.ColTitle>색상</S.ColTitle>
-              <S.ColContent>
-                <S.InputText type="text" />
-              </S.ColContent>
-            </S.Row>
-          </S.RowWrap>
-        </Card>
-        <Card color="white" title="제목4">
-          <S.RowWrap>
-            <S.Row>
-              <S.ColTitle>스타일</S.ColTitle>
-              <S.ColContent>
-                <select>
-                  <option value="">심플</option>
-                  <option value="">직접 디자인하기</option>
-                </select>
-              </S.ColContent>
-            </S.Row>
-            <S.Row>
-              <S.ColTitle>색상</S.ColTitle>
-              <S.ColContent>
-                <S.InputText type="text" />
-              </S.ColContent>
-            </S.Row>
-          </S.RowWrap>
-        </Card>
-        <Card color="white" title="제목4">
-          <S.RowWrap>
-            <S.Row>
-              <S.ColTitle>스타일</S.ColTitle>
-              <S.ColContent>
-                <select>
-                  <option value="">심플</option>
-                  <option value="">직접 디자인하기</option>
-                </select>
-              </S.ColContent>
-            </S.Row>
-            <S.Row>
-              <S.ColTitle>색상</S.ColTitle>
-              <S.ColContent>
-                <S.InputText type="text" />
-              </S.ColContent>
-            </S.Row>
-          </S.RowWrap>
-        </Card>
+        <Card color="white" title="제목4" />
+        <Card color="white" title="제목4" />
+        <Card color="white" title="제목4" />
+        <Card color="white" title="제목4" />
+        <Card color="white" title="제목4" />
+        <Card color="white" title="제목4" />
       </S.ContentRight>
     </S.Wrapper>
   );

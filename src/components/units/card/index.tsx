@@ -5,7 +5,7 @@ interface Props {
   type?: string;
   color?: string;
   title?: string;
-  children: any;
+  children?: any;
 }
 
 export default function Card(props: Props) {

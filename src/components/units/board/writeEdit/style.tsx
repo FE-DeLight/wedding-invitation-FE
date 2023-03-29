@@ -75,4 +75,18 @@ export const LabelRadio = styled.label`
 export const InputRadio = styled.input`
   margin-left: 10px;
 `;
+export const CheckboxGroup = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+export const LabelCheckbox = styled.label`
+  display: flex;
+  align-items: center;
+`;
+export const InputCheckbox = styled.input`
+  margin-left: 10px;
+`;
 export const InputText = styled.input``;
+export const Textarea = styled.textarea``;
+
+export const Button = styled.button``;
