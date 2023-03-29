@@ -19,10 +19,12 @@ const BoxLayout = styled.div`
 // TODO : 1. 배경지가 들어가는 것들 골라내기 & 크기 점검
 const InvitationPhrasesLayout = styled.div`
   width: 270px;
-  height: 250px;
+  height: 300px;
   margin-bottom: 10px;
   text-align: center;
   color: black;
+  overflow: hidden; //나눔명조 적용시, 크기가 ...
+  overflow-y: auto;
   background-color: #f5f5f5;
   background-image: ${({ backgroundImage }) => {
     return backgroundImage === '없음' ? 'none' : "url('/assets/images/pattern_1.png')";
@@ -35,7 +37,7 @@ const InvitationPhrasesLayout = styled.div`
 
 const GuestBookLayout = styled.div`
   width: 270px;
-  height: 250px;
+  height: 300px;
   text-align: center;
   margin-bottom: 10px;
   background-color: #f5f5f5;
@@ -43,7 +45,7 @@ const GuestBookLayout = styled.div`
 
 const TestLayout = styled.div`
   width: 270px;
-  height: 250px;
+  height: 300px;
   text-align: center;
   margin-bottom: 10px;
   background-color: #f5f5f5;
