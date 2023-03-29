@@ -6,8 +6,13 @@ import Card from './Card.tsx';
 
 const PrivewCardSection = styled.section`
   background-color: #9d9898;
-  padding: 32px 12px 16px;
+  padding: 12px 12px;
   margin-bottom: 16px;
+`;
+
+const CardUl = styled.div`
+  overflow-y: auto;
+  max-height: 150px;
 `;
 export default function PrivewCard({
   cards,
@@ -20,7 +25,7 @@ export default function PrivewCard({
 }) {
   return (
     <PrivewCardSection>
-      <ul>
+      <CardUl>
         {Object.keys(cards).length === 0
           ? '축하 메시지를 남겨주세요!'
           : Object.keys(cards).map((key) => (
@@ -35,7 +40,7 @@ export default function PrivewCard({
                 handleValidation={handleValidation}
               />
             ))}
-      </ul>
+      </CardUl>
     </PrivewCardSection>
   );
 }

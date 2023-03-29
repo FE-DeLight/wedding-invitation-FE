@@ -11,6 +11,9 @@ const Cardli = styled.li`
   p {
     text-align: start;
   }
+  &:last-child {
+    margin-bottom: 0;
+  }
 `;
 
 const CardHeader = styled.div`

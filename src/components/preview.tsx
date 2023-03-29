@@ -4,37 +4,45 @@
 /* eslint-disable react/react-in-jsx-scope */
 import styled from '@emotion/styled';
 import dayjs from 'dayjs';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import GuestBookModal from './GuestBookModal';
 import PrivewCard from './PrivewCard';
 
 const BoxLayout = styled.div`
-  display: flex;
-  height: 100vh;
-  flex-direction: column;
+  flex-shrink: 0;
+  max-height: 621px;
   padding: 20px 20px;
+  overflow-y: scroll;
 `;
 
 const InvitationPhrasesLayout = styled.div`
-  width: 150px;
+  width: 270px;
   height: 250px;
   background-color: #f5f5f5;
   color: black;
   text-align: center;
   margin-bottom: 10px;
+  overflow: hidden;
   p {
     white-space: pre-wrap;
   }
 `;
 
 const GuestBookLayout = styled.div`
-  width: 150px;
+  width: 270px;
   height: 250px;
   text-align: center;
   background-color: #f5f5f5;
+  margin-bottom: 10px;
 `;
 
-const MoreOptionLayout = styled.div``;
+const TestLayout = styled.div`
+  width: 270px;
+  height: 250px;
+  text-align: center;
+  background-color: #f5f5f5;
+  margin-bottom: 10px;
+`;
 
 type PriviewProps = {
   text: {
@@ -168,7 +176,6 @@ export default function usePriview({ text }: PriviewProps) {
   const addCard = (card) => {
     setCards((cards) => {
       const updated = { ...cards };
-      console.log('updated[card.id] : ', updated, card.id); // 왜 1679805878395 지?
       updated[card.id] = card; // key를 card.id로 두겠다!
       return updated;
     });
@@ -217,40 +224,42 @@ export default function usePriview({ text }: PriviewProps) {
         <button onClick={addPost}>방명록 남기기</button>
         <GuestBookModal openGuestBookModal={openGuestBookModal} handleVisibility={handleVisibility} addCard={addCard} />
       </GuestBookLayout>
-      <MoreOptionLayout />
+      <TestLayout>
+        <h3>테스트</h3>
+      </TestLayout>
     </BoxLayout>
   );
 }
 
-export const useTimeStamp = (timestamp) => {
-  console.log('들어옴');
-  const [timeAgo, setTimeAgo] = useState('');
+// export const useTimeStamp = (timestamp) => {
+//   console.log('들어옴');
+//   const [timeAgo, setTimeAgo] = useState('');
 
-  const updateTimeStamp = () => {
-    // 경과한 시간 계산 (1초 = 1000)
-    const timeElapsed = Math.floor((new Date() - new Date(timestamp)) / 1000);
+//   const updateTimeStamp = () => {
+//     // 경과한 시간 계산 (1초 = 1000)
+//     const timeElapsed = Math.floor((new Date() - new Date(timestamp)) / 1000);
 
-    if (timeElapsed < 60) {
-      setTimeAgo(`방금 전`);
-    } else if (timeElapsed < 60 * 60) {
-      const minutes = Math.floor(timeElapsed / 60);
-      setTimeAgo(`${minutes}분 전`);
-    } else if (timeElapsed < 60 * 60 * 24) {
-      const hours = Math.floor(timeElapsed / (60 * 60));
-      setTimeAgo(`${hours}시간 전`);
-    } else if (timeElapsed < 60 * 60 * 24 * 7) {
-      const days = Math.floor(timeElapsed / (60 * 60 * 24));
-      setTimeAgo(`${days}일 전`);
-    } else {
-      // 일주일 이상 지난 아이템에 대해서는 YYYY-MM-DD로 표기
-      const date = new Date(timestamp).toISOString().slice(0, 10);
-      setTimeAgo(date);
-    }
-  };
+//     if (timeElapsed < 60) {
+//       setTimeAgo(`방금 전`);
+//     } else if (timeElapsed < 60 * 60) {
+//       const minutes = Math.floor(timeElapsed / 60);
+//       setTimeAgo(`${minutes}분 전`);
+//     } else if (timeElapsed < 60 * 60 * 24) {
+//       const hours = Math.floor(timeElapsed / (60 * 60));
+//       setTimeAgo(`${hours}시간 전`);
+//     } else if (timeElapsed < 60 * 60 * 24 * 7) {
+//       const days = Math.floor(timeElapsed / (60 * 60 * 24));
+//       setTimeAgo(`${days}일 전`);
+//     } else {
+//       // 일주일 이상 지난 아이템에 대해서는 YYYY-MM-DD로 표기
+//       const date = new Date(timestamp).toISOString().slice(0, 10);
+//       setTimeAgo(date);
+//     }
+//   };
 
-  useEffect(() => {
-    updateTimeStamp();
-  }, [timestamp]);
+//   useEffect(() => {
+//     updateTimeStamp();
+//   }, [timestamp]);
 
-  return timeAgo;
-};
+//   return timeAgo;
+// };
