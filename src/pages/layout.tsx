@@ -14,9 +14,14 @@ import MoreOption from '@/components/MoreOption';
 
 const GlobalStyle = styled.div`
   background-color: green;
+  font-size: ${({ fontSize }: any) => {
+    return fontSize === '작게' ? '13px' : '18px'; // TODO : 차이 보기 위해 임시적으로 해놓음
+  }};
+  font-weight: ${({ fontWeight }: any) => {
+    return fontWeight === '작게' ? '300' : '700'; // TODO : 400도 있음 -> 차이 보기 위해 임시적으로 해놓음
+  }};
   font-family: ${({ fontFamily }: any) => {
-    console.log('fontFamilyfontFamily :', fontFamily);
-    return fontFamily === '나눔명조' ? 'Noto Sans KR' : 'MaruBuri-Regular';
+    return fontFamily === '나눔명조' ? 'Noto Sans KR' : 'Dongle'; // TODO : 나중에 font 추가 시키기 그리고 상의해보기
   }};
 `;
 
@@ -51,7 +56,7 @@ export default function useLayout() {
   const [optionData, setOptionData] = useState({
     background: '없음',
     famliy: '나눔명조',
-    size: '보통',
+    size: '작게',
   });
 
   const test = useRef();
@@ -115,7 +120,7 @@ export default function useLayout() {
     <>
       <Container>
         {/* 가장 왼쪽에서 따로 분리돼서 동작 */}
-        <GlobalStyle fontSize={optionData.size} fontFamily={optionData.famliy}>
+        <GlobalStyle fontSize={optionData.size} fontWeight={optionData.size} fontFamily={optionData.famliy}>
           <Priview text={text} />
         </GlobalStyle>
         {/* 오른쪽에서 보여지는 기능's */}
