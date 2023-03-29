@@ -1,8 +1,8 @@
 import React from 'react';
 import * as G from '@/styles/globals';
-import Select from '@/components/commons/Select';
-import InputRadio from '@/components/commons/Radio';
-import InputCheckbox from '@/components/commons/CheckBox';
+import Select from '@/components/Select';
+import InputRadio from '@/components/Radio';
+import InputCheckbox from '@/components/CheckBox';
 
 const select = ['심플', '직접디자이하기'];
 const type = ['A타입', 'B타입', 'C타입'];

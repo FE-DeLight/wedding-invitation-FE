@@ -1,6 +1,6 @@
 import React from 'react';
-import Card from '@/components/units/card';
-import * as S from '@/components/units/board/detail/style';
+import Card from '@/components/Card';
+import * as S from '@/components/Board/Detail/style';
 
 export default function BoardDetail() {
   return (

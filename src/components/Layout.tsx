@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import FooterComponent from './units/footer';
-import HeaderComponent from './units/header';
+import FooterComponent from './Footer';
+import HeaderComponent from './Header';
 
 interface LayoutProps {
   children: React.ReactNode;

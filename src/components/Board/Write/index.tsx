@@ -1,12 +1,12 @@
 import React from 'react';
-import Card from '@/components/units/card';
-import * as S from '@/components/units/board/write/style';
+import Card from '@/components/Card';
+import * as S from '@/components/Board/Write/style';
 import { useRouter } from 'next/router';
-import Select from '@/components/commons/Select';
-import Button from '@/components/commons/Button';
+import Select from '@/components/Select';
+import Button from '@/components/Button';
 import * as G from '@/styles/globals';
-import TemplateWrite from '../../template/write';
-import TemplatePreview from '../../template/preview';
+import TemplateWrite from '@/components/WeddingTemplate/Write';
+import TemplatePreview from '@/components/WeddingTemplate/Preview';
 
 interface Props {
   isEdit?: Boolean;

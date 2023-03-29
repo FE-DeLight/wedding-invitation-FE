@@ -1,5 +1,5 @@
 import React from 'react';
-import BoardWrite from '@/components/units/board/write';
+import BoardWrite from '@/components/Board/Write';
 
 export default function BoardEditPage() {
   return <BoardWrite isEdit />;

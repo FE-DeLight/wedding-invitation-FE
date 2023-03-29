@@ -11,7 +11,7 @@ export default function InputRadio(props: Props) {
     <G.RadioGroup>
       {props?.data.map((item: any, index) => {
         return (
-          <G.LabelRadio htmlFor={`${props?.name}_${index}`}>
+          <G.LabelRadio htmlFor={`${props?.name}_${index}`} key={item}>
             {item}
             <G.InputRadio type="radio" id={`${props?.name}_${index}`} name={props?.name} />
           </G.LabelRadio>

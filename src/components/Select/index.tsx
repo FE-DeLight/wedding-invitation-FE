@@ -10,7 +10,11 @@ export default function Select(props: Props) {
     <S.SelectWrap>
       <S.Select>
         {props?.options.map((item: any) => {
-          return <option value="">{item}</option>;
+          return (
+            <option value="" key={item}>
+              {item}
+            </option>
+          );
         })}
       </S.Select>
     </S.SelectWrap>

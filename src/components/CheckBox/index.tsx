@@ -11,7 +11,7 @@ export default function InputCheckbox(props: Props) {
     <G.CheckboxGroup>
       {props?.data.map((item: any, index) => {
         return (
-          <G.LabelCheckbox htmlFor={`${props?.name}_${index}`}>
+          <G.LabelCheckbox htmlFor={`${props?.name}_${index}`} key={item}>
             {item}
             <G.InputCheckbox type="checkbox" id={`${props?.name}_${index}`} name={props?.name} />
           </G.LabelCheckbox>
