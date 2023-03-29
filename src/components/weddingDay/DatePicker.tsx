@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/esm/locale';
-import { getMonth, getDate, getDay, subDays } from 'date-fns';
+import { getYear, getMonth, getDate, getDay, format } from 'date-fns';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -34,9 +34,7 @@ const CustomDatePicker = styled(DatePicker)`
   flex: 1 1 0;
 `;
 
-export default function DatePickerComponent() {
-  const [startDate, setStartDate] = useState(new Date());
-  const [selectedDate, setSelectedDate] = useState();
+export default function DatePickerComponent({ startDate, setStartDate, setSelectedDate }) {
   const handleDateChange = (date) => {
     setStartDate(date);
     selectTime();
@@ -44,11 +42,15 @@ export default function DatePickerComponent() {
 
   function selectTime() {
     let Days = ['일', '월', '화', '수', '목', '금', '토'];
+    let Year = getYear(startDate);
     let Month = getMonth(startDate) + 1;
     let Date = getDate(startDate);
     let Day = Days[getDay(startDate)];
-    setSelectedDate(String(Month + '.' + Date + ' (' + Day + ')'));
-    console.log(selectedDate);
+    let Time = format(startDate, 'a') === 'AM' ? '오전' : '오후';
+    let Hour = format(startDate, 'hh');
+    let Min = format(startDate, 'ss');
+
+    setSelectedDate(String(Year + '년 ' + Month + '월 ' + Date + '일 ' + Day + '요일 '));
   }
 
   return (
