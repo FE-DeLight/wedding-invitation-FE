@@ -8,18 +8,17 @@ import * as G from '@/styles/globals';
 import TemplateWrite from '@/components/WeddingTemplate/Write';
 import TemplatePreview from '@/components/WeddingTemplate/Preview';
 
-interface Props {
-  isEdit?: Boolean;
-}
+// interface Props {
+//   isEdit?: Boolean;
+// }
 
-export default function BoardWrite(props: Props) {
+export default function BoardWrite() {
   const router = useRouter();
 
   const handleSave = () => {
     router.push('/boards/');
   };
 
-  console.log('isEdit', props?.isEdit);
   return (
     <S.Wrapper>
       <S.ContentLeft>
