@@ -3,6 +3,7 @@ import Card from '@/components/units/card';
 import * as S from '@/components/units/board/writeEdit/style';
 import { useRouter } from 'next/router';
 import Select from '@/components/commons/Select';
+import Button from '@/components/commons/Button';
 
 export default function BoardWriteEdit() {
   const router = useRouter();
@@ -77,7 +78,7 @@ export default function BoardWriteEdit() {
             <S.Row>
               <S.ColTitle>체크박스</S.ColTitle>
               <S.ColContent>
-                <S.Button>버튼</S.Button>
+                <Button>버튼</Button>
               </S.ColContent>
             </S.Row>
           </S.RowWrap>
