@@ -6,6 +6,7 @@ import Select from '@/components/commons/Select';
 import Button from '@/components/commons/Button';
 import * as G from '@/styles/globals';
 import TemplateWrite from '../../template/write';
+import TemplatePreview from '../../template/preview';
 
 interface Props {
   isEdit?: Boolean;
@@ -23,7 +24,7 @@ export default function BoardWrite(props: Props) {
     <S.Wrapper>
       <S.ContentLeft>
         <Card color="white" type="preview">
-          내용1
+          <TemplatePreview />
         </Card>
         <Card title="제목2" type="preview">
           내용2
