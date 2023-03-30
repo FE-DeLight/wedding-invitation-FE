@@ -60,7 +60,7 @@ export default function Login() {
       window.localStorage.setItem('token', window.location.href.split('=')[1].split('&')[0] ?? 'none');
       router.push('/mypage');
     }
-  }, []);
+  }, [router]);
 
   return (
     <Container>
