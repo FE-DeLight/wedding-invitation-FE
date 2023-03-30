@@ -65,7 +65,6 @@ export default function Login() {
 
   return (
     <>
-      <Script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" strategy="beforeInteractive" />
       <Container>
         <Wrapper>
           <Title>MOINVI</Title>
