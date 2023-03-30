@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from '@/components/Card';
 import * as S from '@/components/Board/Write/style';
 import { useRouter } from 'next/router';
@@ -9,8 +9,31 @@ import TemplatePreview from '@/components/WeddingTemplate/Preview';
 //   isEdit?: Boolean;
 // }
 
+// 템플릿
+
+const templateStyleData = [
+  { id: 1, value: '심플' },
+  { id: 2, value: '직접디자이하기' },
+];
+const templateTypeData = [
+  { id: 1, value: 'A', check: false },
+  { id: 2, value: 'B', check: false },
+  { id: 3, value: 'C', check: false },
+];
+const templateColorData = [
+  { id: 1, value: '검정색', check: false },
+  { id: 2, value: '빨강색', check: false },
+  { id: 3, value: '흰색', check: false },
+];
+
+// 템플릿
+
 export default function BoardWrite() {
   const router = useRouter();
+
+  const [templateColor, setTemplateColor] = useState(templateColorData);
+  const [templateType, setTemplateType] = useState(templateTypeData);
+  const [templateStyle, setTemplateStyle] = useState(templateStyleData);
 
   const handleSave = () => {
     router.push('/boards/');
@@ -28,7 +51,14 @@ export default function BoardWrite() {
       </S.ContentLeft>
       <S.ContentRight>
         <Card title="템플릿">
-          <TemplateWrite />
+          <TemplateWrite
+            color={templateColor}
+            colorChange={setTemplateColor}
+            type={templateType}
+            typeChange={setTemplateType}
+            style={templateStyle}
+            styleChange={setTemplateStyle}
+          />
         </Card>
         <Card title="예식일" />
         <Card color="white" title="첫 화면" />
