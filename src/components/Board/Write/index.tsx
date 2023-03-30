@@ -2,9 +2,6 @@ import React from 'react';
 import Card from '@/components/Card';
 import * as S from '@/components/Board/Write/style';
 import { useRouter } from 'next/router';
-import Select from '@/components/Select';
-import Button from '@/components/Button';
-import * as G from '@/styles/globals';
 import TemplateWrite from '@/components/WeddingTemplate/Write';
 import TemplatePreview from '@/components/WeddingTemplate/Preview';
 
@@ -30,64 +27,6 @@ export default function BoardWrite() {
         </Card>
       </S.ContentLeft>
       <S.ContentRight>
-        <Card title="템플릿">
-          <G.RowWrap>
-            <G.Row>
-              <G.ColTitle>셀렉트</G.ColTitle>
-              <G.ColContent>
-                <Select options={['a', 'b']} />
-              </G.ColContent>
-            </G.Row>
-            <G.Row>
-              <G.ColTitle>텍스트</G.ColTitle>
-              <G.ColContent>
-                <G.InputText type="text" />
-              </G.ColContent>
-            </G.Row>
-            <G.Row>
-              <G.ColTitle>라디오</G.ColTitle>
-              <G.ColContent>
-                <G.RadioGroup>
-                  <G.LabelRadio htmlFor="radiotext01_1">
-                    Black
-                    <G.InputRadio type="radio" id="radiotext01_1" name="radiotext01" />
-                  </G.LabelRadio>
-                  <G.LabelRadio htmlFor="radiotext01_2">
-                    White
-                    <G.InputRadio type="radio" id="radiotext01_2" name="radiotext01" />
-                  </G.LabelRadio>
-                </G.RadioGroup>
-              </G.ColContent>
-            </G.Row>
-            <G.Row>
-              <G.ColTitle>체크박스</G.ColTitle>
-              <G.ColContent>
-                <G.CheckboxGroup>
-                  <G.LabelCheckbox htmlFor="checkboxtest01_1">
-                    Black
-                    <G.InputCheckbox type="checkbox" id="checkboxtest01_1" name="checkboxtest01" />
-                  </G.LabelCheckbox>
-                  <G.LabelCheckbox htmlFor="checkboxtest01_2">
-                    White
-                    <G.InputCheckbox type="checkbox" id="checkboxtest01_2" name="checkboxtest01" />
-                  </G.LabelCheckbox>
-                </G.CheckboxGroup>
-              </G.ColContent>
-            </G.Row>
-            <G.Row>
-              <G.ColTitle>텍스트박스</G.ColTitle>
-              <G.ColContent>
-                <G.Textarea />
-              </G.ColContent>
-            </G.Row>
-            <G.Row>
-              <G.ColTitle>버튼ㄴ</G.ColTitle>
-              <G.ColContent>
-                <Button>버튼</Button>
-              </G.ColContent>
-            </G.Row>
-          </G.RowWrap>
-        </Card>
         <Card title="템플릿">
           <TemplateWrite />
         </Card>

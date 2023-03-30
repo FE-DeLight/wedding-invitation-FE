@@ -1,22 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as G from '@/styles/globals';
 
-interface Props {
-  data: Array<string>;
+type Props = {
+  options: Array<object>;
   name: string;
-}
+};
 
-export default function InputCheckbox(props: Props) {
+function CheckboxInput(props: Props) {
+  const numCheckboxes = props?.options.length;
+  const [checkboxes, setCheckboxes] = useState<Array<boolean>>(new Array(numCheckboxes).fill(false));
+
+  const handleCheckboxChange = (index: number) => {
+    const newCheckboxes = [...checkboxes];
+    newCheckboxes[index] = !newCheckboxes[index];
+    setCheckboxes(newCheckboxes);
+  };
+
   return (
     <G.CheckboxGroup>
-      {props?.data.map((item: any, index) => {
-        return (
-          <G.LabelCheckbox htmlFor={`${props?.name}_${index}`} key={item}>
-            {item}
-            <G.InputCheckbox type="checkbox" id={`${props?.name}_${index}`} name={props?.name} />
-          </G.LabelCheckbox>
-        );
-      })}
+      {props?.options.map((option: any, index: any) => (
+        <G.RadioLabel htmlFor={`${props?.name}-${index}`} key={`${props?.name}-${option.id}`}>
+          <G.CheckboxInput
+            id={`${props?.name}-${index}`}
+            type="checkbox"
+            name="checkboxGroup"
+            checked={checkboxes[index]}
+            onChange={() => handleCheckboxChange(index)}
+          />
+          {option.value}
+        </G.RadioLabel>
+      ))}
     </G.CheckboxGroup>
   );
 }
+
+export default CheckboxInput;

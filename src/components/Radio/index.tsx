@@ -1,22 +1,35 @@
-import React from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import * as G from '@/styles/globals';
 
-interface Props {
-  data: Array<string>;
+type Props = {
+  options: Array<object>;
   name: string;
-}
+};
 
-export default function InputRadio(props: Props) {
+function RadioInput(props: Props) {
+  const [selectedValue, setSelectedValue] = useState<string>('');
+
+  const handleOptionChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSelectedValue(event.target.value);
+  };
+
   return (
     <G.RadioGroup>
-      {props?.data.map((item: any, index) => {
-        return (
-          <G.LabelRadio htmlFor={`${props?.name}_${index}`} key={item}>
-            {item}
-            <G.InputRadio type="radio" id={`${props?.name}_${index}`} name={props?.name} />
-          </G.LabelRadio>
-        );
-      })}
+      {props?.options.map((option: any, index: any) => (
+        <G.RadioLabel htmlFor={`${props?.name}-${index}`} key={`${props?.name}-${option.id}`}>
+          <G.RadioInput
+            type="radio"
+            id={`${props?.name}-${index}`}
+            name={`radio-group${props?.name}`}
+            value={option.value}
+            checked={selectedValue === option.value}
+            onChange={handleOptionChange}
+          />
+          {option.value}
+        </G.RadioLabel>
+      ))}
     </G.RadioGroup>
   );
 }
+
+export default RadioInput;

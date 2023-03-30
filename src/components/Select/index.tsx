@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './style';
 
 interface Props {
-  options: Array<string>;
+  options: Array<object>;
 }
 
 export default function Select(props: Props) {
@@ -11,8 +11,8 @@ export default function Select(props: Props) {
       <S.Select>
         {props?.options.map((item: any) => {
           return (
-            <option value="" key={item}>
-              {item}
+            <option value="" key={item.id}>
+              {item.value}
             </option>
           );
         })}
