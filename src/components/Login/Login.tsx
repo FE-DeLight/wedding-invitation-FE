@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import React, { useEffect } from 'react';
 import LoginNaver from '@/components/Login/LoginNaver';
 import { useRouter } from 'next/router';
-import Script from 'next/script';
+// import Script from 'next/script';
 
 const Container = styled.div`
   height: 100vh;
@@ -64,16 +64,14 @@ export default function Login() {
   });
 
   return (
-    <>
-      <Container>
-        <Wrapper>
-          <Title>MOINVI</Title>
-          <Text>네이버계정으로 간편하게 가입하고</Text>
-          <Text>쉽게 모바일 청첩장을 제작하세요</Text>
-          <Bar />
-          <LoginNaver />
-        </Wrapper>
-      </Container>
-    </>
+    <Container>
+      <Wrapper>
+        <Title>MOINVI</Title>
+        <Text>네이버계정으로 간편하게 가입하고</Text>
+        <Text>쉽게 모바일 청첩장을 제작하세요</Text>
+        <Bar />
+        <LoginNaver />
+      </Wrapper>
+    </Container>
   );
 }
