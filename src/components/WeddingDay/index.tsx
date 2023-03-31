@@ -1,7 +1,7 @@
 import React from 'react';
 import * as G from '@/styles/globals';
 import styled from '@emotion/styled';
-import { getYear, getMonth, getDate, getDay } from 'date-fns';
+// import { getYear, getMonth, getDate, getDay } from 'date-fns';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker, { registerLocale } from 'react-datepicker';
@@ -22,18 +22,10 @@ const CustomDatePicker = styled(DatePicker)`
   flex: 1 1 0;
 `;
 
-export default function WeddingDay({ startDate, setStartDate, setSelectedDate }: any) {
-  const selectTime = () => {
-    const Days = ['일', '월', '화', '수', '목', '금', '토'];
-    const Year = getYear(startDate);
-    const Month = getMonth(startDate) + 1;
-    const Date = getDate(startDate);
-    const Day = Days[getDay(startDate)];
-    // const Time = format(startDate, 'a') === 'AM' ? '오전' : '오후';
-    // const Hour = format(startDate, 'hh');
-    // const Min = format(startDate, 'ss');
-
-    setSelectedDate(String(`${Year}년 ${Month}월 ${Date}일 ${Day}요일`));
+// [Todo] : 선택한 데이터 그냥 보내고 보여주는 곳에서 날짜 포맷해서 보여주기, moment.js 같은거 사용
+export default function WeddingDay({ weddingDay, setWeddingDay }: any) {
+  const onChange = (date: any) => {
+    setWeddingDay(date);
   };
 
   return (
@@ -41,14 +33,11 @@ export default function WeddingDay({ startDate, setStartDate, setSelectedDate }:
       <G.ColTitle>날짜</G.ColTitle>
       <G.ColContent>
         <CustomDatePicker
-          selected={startDate}
+          selected={weddingDay}
           popperPlacement="bottom-start"
           locale="ko"
           minDate={new Date()}
-          onChange={(date: any) => {
-            setStartDate(date);
-            selectTime();
-          }}
+          onChange={onChange}
           peekNextMonth
           showMonthDropdown
           showYearDropdown
