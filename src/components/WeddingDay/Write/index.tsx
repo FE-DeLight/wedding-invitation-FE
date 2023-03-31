@@ -1,7 +1,6 @@
 import React from 'react';
 import * as G from '@/styles/globals';
 import styled from '@emotion/styled';
-// import { getYear, getMonth, getDate, getDay } from 'date-fns';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker, { registerLocale } from 'react-datepicker';
@@ -22,8 +21,7 @@ const CustomDatePicker = styled(DatePicker)`
   flex: 1 1 0;
 `;
 
-// [Todo] : 선택한 데이터 그냥 보내고 보여주는 곳에서 날짜 포맷해서 보여주기, moment.js 같은거 사용
-export default function WeddingDay({ weddingDay, setWeddingDay }: any) {
+export default function WeddingDayWrite({ weddingDay, setWeddingDay }: any) {
   const onChange = (date: any) => {
     setWeddingDay(date);
   };

@@ -7,7 +7,8 @@ import Button from '@/components/Button';
 import * as G from '@/styles/globals';
 import TemplateWrite from '@/components/WeddingTemplate/Write';
 import TemplatePreview from '@/components/WeddingTemplate/Preview';
-import WeddingDay from '@/components/WeddingDay';
+import WeddingDayWrite from '@/components/WeddingDay/Write';
+import WeddingDayPreview from '@/components/WeddingDay/Preview';
 import { formatDate, formatTime } from '@/utils/dateUtils';
 
 // interface Props {
@@ -18,7 +19,9 @@ export default function BoardWrite() {
   const router = useRouter();
 
   const [weddingDay, setWeddingDay] = useState<Date>(new Date());
-  const formattedDate = formatDate(weddingDay, 'YYYY-MM-DD');
+  const formattedDate = formatDate(weddingDay, 'M월 D일');
+  console.log('formattedDate', formattedDate);
+  const formattedFullDate = formatDate(weddingDay, 'YYYY년 M월 D일');
   const formattedTime = formatTime(weddingDay);
 
   const handleSave = () => {
@@ -34,10 +37,11 @@ export default function BoardWrite() {
         <Card title="제목2" type="preview">
           내용2
         </Card>
-        <Card title={formattedDate} type="preview" color="white">
-          {formattedDate} {formattedTime}
+        <Card title="예식일" type="preview" color="white">
+          <WeddingDayPreview formattedFullDate={formattedFullDate} formattedTime={formattedTime} />
         </Card>
       </S.ContentLeft>
+
       <S.ContentRight>
         <Card title="템플릿">
           <G.RowWrap>
@@ -101,7 +105,7 @@ export default function BoardWrite() {
           <TemplateWrite />
         </Card>
         <Card title="예식일">
-          <WeddingDay weddingDay={weddingDay} setWeddingDay={setWeddingDay} />
+          <WeddingDayWrite weddingDay={weddingDay} setWeddingDay={setWeddingDay} />
         </Card>
         <Card color="white" title="첫 화면" />
         <Card title="청첩장 문구" />
