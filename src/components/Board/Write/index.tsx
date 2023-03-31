@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from '@/components/Card';
 import * as S from '@/components/Board/Write/style';
 import { useRouter } from 'next/router';
@@ -13,16 +13,16 @@ type TemplateType = {
 
 // 템플릿
 
-const templateColor = [
+const templateStyle = [
   { id: 1, value: '심플' },
-  { id: 2, value: '직접디자이하기' },
+  { id: 2, value: '직접 디자인 하기' },
 ];
 const templateType: TemplateType[] = [
   { id: 1, value: 'A', check: false },
   { id: 2, value: 'B', check: false },
   { id: 3, value: 'C', check: false },
 ];
-const templateStyle = [
+const templateColor = [
   { id: 1, value: '검정색', check: false },
   { id: 2, value: '빨강색', check: false },
   { id: 3, value: '흰색', check: false },
@@ -32,6 +32,7 @@ const templateStyle = [
 
 export default function BoardWrite() {
   const router = useRouter();
+  const [templateTypeSelect, setTemplateTypeSelect] = useState('');
 
   const handleSave = () => {
     router.push('/boards/');
@@ -40,8 +41,8 @@ export default function BoardWrite() {
   return (
     <S.Wrapper>
       <S.ContentLeft>
-        <Card color="white" type="preview">
-          <TemplatePreview />
+        <Card type="preview">
+          <TemplatePreview templateTypeSelect={templateTypeSelect} />
         </Card>
         <Card title="제목2" type="preview">
           내용2
@@ -49,17 +50,22 @@ export default function BoardWrite() {
       </S.ContentLeft>
       <S.ContentRight>
         <Card title="템플릿">
-          <TemplateWrite color={templateColor} type={templateType} style={templateStyle} />
+          <TemplateWrite
+            color={templateColor}
+            type={templateType}
+            setTemplateTypeSelect={setTemplateTypeSelect}
+            style={templateStyle}
+          />
         </Card>
         <Card title="예식일" />
-        <Card color="white" title="첫 화면" />
+        <Card title="첫 화면" />
         <Card title="청첩장 문구" />
-        <Card color="white" title="보내는 사람" />
-        <Card color="white" title="캘린더 스타일" />
-        <Card color="white" title="갤러리" />
-        <Card color="white" title="예식장 정보" />
-        <Card color="white" title="길 안내" />
-        <Card color="white" title="계좌 정보" />
+        <Card title="보내는 사람" />
+        <Card title="캘린더 스타일" />
+        <Card title="갤러리" />
+        <Card title="예식장 정보" />
+        <Card title="길 안내" />
+        <Card title="계좌 정보" />
         <Card title="연락처 정보" />
         <Card title="식전 영상" />
         <Card title="안내사항" />

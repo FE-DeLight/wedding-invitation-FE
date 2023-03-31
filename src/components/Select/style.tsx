@@ -10,7 +10,7 @@ export const SelectWrap = styled.div`
     right: 17px;
     width: 10px;
     height: 2px;
-    background-color: #fff;
+    background-color: #333;
     content: '';
   }
   &::before {
@@ -20,7 +20,7 @@ export const SelectWrap = styled.div`
     transform: translateY(-50%) rotate(45deg);
     width: 10px;
     height: 2px;
-    background-color: #fff;
+    background-color: #333;
     content: '';
   }
 `;

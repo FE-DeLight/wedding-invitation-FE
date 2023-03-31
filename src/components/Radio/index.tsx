@@ -11,7 +11,7 @@ function RadioInput(props: Props) {
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
-    console.log(event.target.value);
+    // console.log(event.target.value);
   };
 
   return (
