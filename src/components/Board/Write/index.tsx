@@ -16,8 +16,8 @@ import WeddingDay from '@/components/WeddingDay';
 export default function BoardWrite() {
   const router = useRouter();
 
-  const [startDate, setStartDate] = useState();
-  const [selectedDate, setSelectedDate] = useState();
+  const [startDate, setStartDate] = useState<Date>();
+  const [selectedDate, setSelectedDate] = useState<string>();
 
   const handleSave = () => {
     router.push('/boards/');
@@ -32,7 +32,7 @@ export default function BoardWrite() {
         <Card title="제목2" type="preview">
           내용2
         </Card>
-        <Card title="제목2" type="preview">
+        <Card title={selectedDate} type="preview" color="white">
           {selectedDate}
         </Card>
       </S.ContentLeft>

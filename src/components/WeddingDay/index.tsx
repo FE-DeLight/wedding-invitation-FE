@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as G from '@/styles/globals';
 import styled from '@emotion/styled';
 import { getYear, getMonth, getDate, getDay } from 'date-fns';
@@ -36,11 +36,6 @@ export default function WeddingDay({ startDate, setStartDate, setSelectedDate }:
     setSelectedDate(String(`${Year}년 ${Month}월 ${Date}일 ${Day}요일`));
   }
 
-  const handleDateChange = (date: any) => {
-    setStartDate(date);
-    selectTime();
-  };
-
   return (
     <G.Row>
       <G.ColTitle>날짜</G.ColTitle>
@@ -50,7 +45,10 @@ export default function WeddingDay({ startDate, setStartDate, setSelectedDate }:
           popperPlacement="bottom-start"
           locale="ko"
           minDate={new Date()}
-          onChange={handleDateChange}
+          onChange={(date) => {
+            setStartDate(date);
+            selectTime();
+          }}
           peekNextMonth
           showMonthDropdown
           showYearDropdown
