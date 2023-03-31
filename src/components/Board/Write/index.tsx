@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Card from '@/components/Card';
 import * as S from '@/components/Board/Write/style';
 import { useRouter } from 'next/router';
@@ -7,6 +7,7 @@ import Button from '@/components/Button';
 import * as G from '@/styles/globals';
 import TemplateWrite from '@/components/WeddingTemplate/Write';
 import TemplatePreview from '@/components/WeddingTemplate/Preview';
+import WeddingDay from '@/components/WeddingDay';
 
 // interface Props {
 //   isEdit?: Boolean;
@@ -14,6 +15,9 @@ import TemplatePreview from '@/components/WeddingTemplate/Preview';
 
 export default function BoardWrite() {
   const router = useRouter();
+
+  const [startDate, setStartDate] = useState<Date>();
+  const [selectedDate, setSelectedDate] = useState<string>();
 
   const handleSave = () => {
     router.push('/boards/');
@@ -27,6 +31,9 @@ export default function BoardWrite() {
         </Card>
         <Card title="제목2" type="preview">
           내용2
+        </Card>
+        <Card title={selectedDate} type="preview" color="white">
+          {selectedDate}
         </Card>
       </S.ContentLeft>
       <S.ContentRight>
@@ -91,7 +98,9 @@ export default function BoardWrite() {
         <Card title="템플릿">
           <TemplateWrite />
         </Card>
-        <Card title="예식일" />
+        <Card title="예식일">
+          <WeddingDay startDate={startDate} setStartDate={setStartDate} setSelectedDate={setSelectedDate} />
+        </Card>
         <Card color="white" title="첫 화면" />
         <Card title="청첩장 문구" />
         <Card color="white" title="보내는 사람" />
