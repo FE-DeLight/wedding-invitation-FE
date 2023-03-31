@@ -42,3 +42,8 @@ export const InputCheckbox = styled.input`
 export const InputText = styled.input``;
 export const Textarea = styled.textarea``;
 export const Button = styled.button``;
+export const Text = styled.div`
+  font-size: 12px;
+  text-align: right;
+  text-decoration: underline;
+`;

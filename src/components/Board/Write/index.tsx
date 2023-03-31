@@ -93,7 +93,23 @@ export default function BoardWrite() {
         </Card>
         <Card title="예식일" />
         <Card color="white" title="첫 화면" />
-        <Card title="청첩장 문구" />
+        <Card title="청첩장 문구">
+          <G.RowWrap>
+            <G.Row>
+              <G.ColTitle>제목</G.ColTitle>
+              <G.ColContent>
+                <G.InputText type="text" />
+              </G.ColContent>
+            </G.Row>
+            <G.Row>
+              <G.ColTitle>텍스트박스</G.ColTitle>
+              <G.ColContent>
+                <G.Textarea />
+              </G.ColContent>
+            </G.Row>
+            <G.Text>샘플 텍스트 보기</G.Text>
+          </G.RowWrap>
+        </Card>
         <Card color="white" title="보내는 사람" />
         <Card color="white" title="캘린더 스타일" />
         <Card color="white" title="갤러리" />
