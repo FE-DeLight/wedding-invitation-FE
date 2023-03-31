@@ -107,7 +107,9 @@ export default function BoardWrite() {
                 <G.Textarea />
               </G.ColContent>
             </G.Row>
-            <G.Text>샘플 텍스트 보기</G.Text>
+            <G.TextButton>
+              <span>샘플 텍스트 보기</span>
+            </G.TextButton>
           </G.RowWrap>
         </Card>
         <Card color="white" title="보내는 사람" />
