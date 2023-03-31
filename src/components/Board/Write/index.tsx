@@ -51,14 +51,7 @@ export default function BoardWrite() {
       </S.ContentLeft>
       <S.ContentRight>
         <Card title="템플릿">
-          <TemplateWrite
-            color={templateColor}
-            colorChange={setTemplateColor}
-            type={templateType}
-            typeChange={setTemplateType}
-            style={templateStyle}
-            styleChange={setTemplateStyle}
-          />
+          <TemplateWrite color={templateColor} type={templateType} style={templateStyle} />
         </Card>
         <Card title="예식일" />
         <Card color="white" title="첫 화면" />

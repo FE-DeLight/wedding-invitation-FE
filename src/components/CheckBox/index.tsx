@@ -10,7 +10,7 @@ function CheckboxInput(props: Props) {
   const numCheckboxes = props?.options.length;
   const [checkboxes, setCheckboxes] = useState<Array<boolean>>(new Array(numCheckboxes).fill(false));
 
-  const handleCheckboxChange = (index: number) => {
+  const handleChange = (index: number) => {
     const newCheckboxes = [...checkboxes];
     newCheckboxes[index] = !newCheckboxes[index];
     setCheckboxes(newCheckboxes);
@@ -23,9 +23,10 @@ function CheckboxInput(props: Props) {
           <G.CheckboxInput
             id={`${props?.name}-${index}`}
             type="checkbox"
-            name="checkboxGroup"
+            name={`checkbox-group-${props?.name}`}
+            value={option.value}
             checked={checkboxes[index]}
-            onChange={() => handleCheckboxChange(index)}
+            onChange={() => handleChange(index)}
           />
           {option.value}
         </G.RadioLabel>

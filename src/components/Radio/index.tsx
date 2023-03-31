@@ -9,8 +9,9 @@ type Props = {
 function RadioInput(props: Props) {
   const [selectedValue, setSelectedValue] = useState<string>('');
 
-  const handleOptionChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
+    console.log(event.target.value);
   };
 
   return (
@@ -20,10 +21,10 @@ function RadioInput(props: Props) {
           <G.RadioInput
             type="radio"
             id={`${props?.name}-${index}`}
-            name={`radio-group${props?.name}`}
+            name={`radio-group-${props?.name}`}
             value={option.value}
             checked={selectedValue === option.value}
-            onChange={handleOptionChange}
+            onChange={handleChange}
           />
           {option.value}
         </G.RadioLabel>

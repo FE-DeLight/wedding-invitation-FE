@@ -2,15 +2,12 @@ import React from 'react';
 import * as G from '@/styles/globals';
 import Select from '@/components/Select';
 import RadioInput from '@/components/Radio';
-import CheckboxInput from '@/components/CheckBox';
+import Image from 'next/image';
 
 type Props = {
   style: Array<object>;
-  styleChange: any;
   type: Array<object>;
-  typeChange: any;
   color: Array<object>;
-  colorChange: any;
 };
 
 export default function TemplateWrite(props: Props) {
@@ -25,13 +22,19 @@ export default function TemplateWrite(props: Props) {
       <G.Row>
         <G.ColTitle>타입</G.ColTitle>
         <G.ColContent>
-          <RadioInput options={props?.type} name="templateType" />
+          {/* <RadioInput options={props?.type} name="templateType" /> */}
+          <div className="typeContent">
+            <div>
+              {/* <Image src="/img/theme_sample_00.png" alt="Vercel Logo" layout="fill" priority /> */}
+              <span>A</span>
+            </div>
+          </div>
         </G.ColContent>
       </G.Row>
       <G.Row>
         <G.ColTitle>색상</G.ColTitle>
         <G.ColContent>
-          <CheckboxInput options={props?.color} name="templatecolor" />
+          <RadioInput options={props?.color} name="templatecolor" />
         </G.ColContent>
       </G.Row>
     </G.RowWrap>
