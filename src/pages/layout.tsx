@@ -1,13 +1,14 @@
 /* eslint-disable consistent-return */
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable @typescript-eslint/no-shadow */
-import InvitationPhrases from '@/components/InvitationPhrases';
 import Priview from '@/components/preview';
-import SampleModal from '@/components/SampleModal';
+import EditForm from '@/components/EditForm';
+import SampleModal from '@/Modal/SampleModal';
 import React, { useRef, useState } from 'react';
 import styled from '@emotion/styled';
-import GuestBook from '@/components/GuestBook';
-import MoreOption from '@/components/MoreOption';
+
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
 const GlobalStyle = styled.div`
   background-color: green;
@@ -34,10 +35,6 @@ const InvitaLayout = styled.div`
   max-height: 621px;
   padding: 20px 20px;
   background-color: tomato;
-`;
-
-const Division = styled.div`
-  margin-bottom: 48px;
 `;
 
 export default function useLayout() {
@@ -113,26 +110,70 @@ export default function useLayout() {
     }
   };
 
+  // card의 순서를 넘겨줘야 될 것 같아.
+  const [components, setComponents] = useState({
+    '1': {
+      id: '1',
+      text: 'Writeacool',
+    },
+    '2': {
+      id: '2',
+      text: 'Make',
+    },
+    '3': {
+      id: '3',
+      text: 'Write',
+    },
+    '4': {
+      id: '4',
+      text: 'Create',
+    },
+    '5': {
+      id: '5',
+      text: 'Spam',
+    },
+  });
+  // '1': {
+  //   id: '1',
+  //   name: 'Elin1',
+  //   time: '방금 전, 1분, 2분 / ',12132424
+  //   content: '축하해요!',
+  //   password: '1111',
+  // },
+  // '2': {
+  //   id: '2',
+  //   time: '20분',
+  //   name: 'Anna',
+  //   content: '축하합니다ㅏㅏㅏㅏ!',
+  //   password: '1111',
+  // },
+  const HandleAllLayout = () => {
+    setComponents();
+  };
   return (
     <>
-      <Container>
-        {/* 가장 왼쪽에서 따로 분리돼서 동작 */}
-        <GlobalStyle fontSize={optionData.size} fontWeight={optionData.size} fontFamily={optionData.famliy}>
-          <Priview text={text} backgroundImage={optionData.background} />
-        </GlobalStyle>
-        {/* 오른쪽에서 보여지는 기능's */}
-        <InvitaLayout>
-          <Division>
-            <InvitationPhrases text={text} test={test} handleChange={handleChange} showSampleText={showSampleText} />
-          </Division>
-          <Division>
-            <GuestBook />
-          </Division>
-          <Division>
-            <MoreOption optionData={optionData} handleMoreOption={handleMoreOption} />
-          </Division>
-        </InvitaLayout>
-      </Container>
+      <DndProvider backend={HTML5Backend}>
+        <Container>
+          {/* 가장 왼쪽에서 따로 분리돼서 동작 */}
+          <GlobalStyle fontSize={optionData.size} fontWeight={optionData.size} fontFamily={optionData.famliy}>
+            <Priview text={text} backgroundImage={optionData.background} components={components} />
+          </GlobalStyle>
+          {/* 오른쪽에서 보여지는 기능's */}
+          <InvitaLayout>
+            <EditForm
+              text={text}
+              test={test}
+              handleChange={handleChange}
+              showSampleText={showSampleText}
+              optionData={optionData}
+              handleMoreOption={handleMoreOption}
+              setComponents={setComponents}
+              HandleAllLayout={HandleAllLayout}
+              components={components}
+            />
+          </InvitaLayout>
+        </Container>
+      </DndProvider>
       <SampleModal openModal={openModal} showSampleText={showSampleText} sandContent={sandContent} />
     </>
   );

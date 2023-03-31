@@ -2,7 +2,7 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/react-in-jsx-scope */
 import styled from '@emotion/styled';
-import GuestBookDelectModal from './GuestBookDelectModal';
+import GuestBookDelectModal from '../../Modal/GuestBookDelectModal';
 
 const Cardli = styled.li`
   padding: 16px;
@@ -39,7 +39,6 @@ export default function Card({
   handleValidation,
 }: CardProp) {
   const { id, password, name, time, content } = card;
-
   const onSubmit = () => {
     setGuestDelectModal(!openGuestBookDelectModal);
   };

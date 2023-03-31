@@ -33,7 +33,7 @@ const GuestBookBody = styled.div`
   }
 `;
 const handleClose = () => {
-  console.log('나들어옴');
+  // console.log('나들어옴');
 };
 
 export default function GuestBook() {

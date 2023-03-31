@@ -21,14 +21,18 @@ export default function BoardWrite() {
 
   return (
     <S.Wrapper>
+      {/* Left */}
       <S.ContentLeft>
         <Card color="white" type="preview">
           <TemplatePreview />
         </Card>
         <Card title="제목2" type="preview">
-          내용2
+          {/* 청첩장 문구 */}
+          <TemplatePreview />
         </Card>
       </S.ContentLeft>
+
+      {/* Right */}
       <S.ContentRight>
         <Card title="템플릿">
           <G.RowWrap>
@@ -124,7 +128,16 @@ export default function BoardWrite() {
         <Card title="썸네일" />
         <Card title="애니메이션 효과" />
         <Card title="배경 음악" />
-        <Card title="방명록" />
+        <Card title="방명록">
+          <G.RowWrap>
+            <G.Row>
+              <G.ColTitle>비밀번호</G.ColTitle>
+              <G.ColContent>
+                <G.InputText type="text" />
+              </G.ColContent>
+            </G.Row>
+          </G.RowWrap>
+        </Card>
         <Card title="추가 옵션" />
       </S.ContentRight>
       <S.ContentBottom>

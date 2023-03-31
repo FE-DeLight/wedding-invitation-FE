@@ -1,8 +1,10 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable react/prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable react/button-has-type */
 import styled from '@emotion/styled';
+// import SortCard from '@/components/SortCard';
 
 const MoreOptionContainer = styled.div`
   padding: 20px;
@@ -47,6 +49,9 @@ const SelectWrap = styled.div`
     /* line-height: 5rem; */
     flex-shrink: 0;
   }
+  div {
+    width: 100%;
+  }
 `;
 
 const Select = styled.select`
@@ -74,22 +79,19 @@ const Divider = styled.div`
 `;
 
 const handleClose = () => {
-  console.log('나들어옴');
+  // console.log('나들어옴');
 };
 
 export default function MoreOption({ optionData, handleMoreOption }: any) {
   const { background, famliy, size } = optionData;
-  console.log('background, famliy, size  :', background, famliy, size);
 
   const changeBackground = (e) => {
-    console.log('changeBackground에 들어온 e.target.value :', e.target.value);
     const result = { background: e.target.value };
-    console.log('result:', result);
     handleMoreOption(result);
   };
 
   const changeTarget = (e) => {
-    console.log('changeTarget에 들어온 e.target.value :', e.target.value);
+    // console.log('changeTarget에 들어온 e.target.value :', e.target.value);
     // switch (e.target.value) {
     //   case '나눔명조':
     //     return console.log('나눔명조');
@@ -105,7 +107,7 @@ export default function MoreOption({ optionData, handleMoreOption }: any) {
   };
 
   const changeSize = (e) => {
-    console.log('changeSize에 들어온 e.target.value :', e.target.value);
+    // console.log('changeSize에 들어온 e.target.value :', e.target.value);
     // switch (e.target.value) {
     //   case '작게':
     //     return console.log('작게');
@@ -130,11 +132,13 @@ export default function MoreOption({ optionData, handleMoreOption }: any) {
         <MoreOptionBody>
           <SelectWrap>
             <label htmlFor="pet-select">배경지</label>
-            <Select name="fon-family" id="pet-select01" defaultValue={background} onChange={changeBackground}>
-              <option value="없음">없음</option>
-              <option value="배경지 A">배경지 A</option>
-              <option value="배경지 B">배경지 B</option>
-            </Select>
+            <div>
+              <Select name="fon-family" id="pet-select01" defaultValue={background} onChange={changeBackground}>
+                <option value="없음">없음</option>
+                <option value="배경지 A">배경지 A</option>
+                <option value="배경지 B">배경지 B</option>
+              </Select>
+            </div>
           </SelectWrap>
           <Divider>
             <hr />
@@ -157,7 +161,18 @@ export default function MoreOption({ optionData, handleMoreOption }: any) {
           <Divider>
             <hr />
           </Divider>
-          {/* 슬라이드 사용해서 작업하기! JS작업하기! */}
+          <SelectWrap>
+            <label htmlFor="pet-select">배경지</label>
+            <div>
+              {/* <SortCard components={components} setComponents={setComponents} HandleAllLayout={HandleAllLayout} /> */}
+              {/* 
+                <SortCard componentArray={componentArray[1]} HandleAllLayout={HandleAllLayout} />
+                <SortCard componentArray={componentArray[2]} HandleAllLayout={HandleAllLayout} />
+                <SortCard componentArray={componentArray[3]} HandleAllLayout={HandleAllLayout} />
+                <SortCard componentArray={componentArray[5]} HandleAllLayout={HandleAllLayout} /> 
+              */}
+            </div>
+          </SelectWrap>
         </MoreOptionBody>
       </BodyWrap>
     </MoreOptionContainer>

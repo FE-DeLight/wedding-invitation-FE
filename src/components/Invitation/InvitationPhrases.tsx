@@ -9,7 +9,7 @@ const Textarea = styled.textarea`
 `;
 
 export default function page({ text, test, handleChange, showSampleText }) {
-  console.log('invitationph:', text);
+  // console.log('invitationph:', text);
   return (
     <>
       <label htmlFor="title">제목 : </label>

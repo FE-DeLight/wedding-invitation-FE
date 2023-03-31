@@ -5,8 +5,8 @@
 import styled from '@emotion/styled';
 import dayjs from 'dayjs';
 import { useState } from 'react';
-import GuestBookModal from './GuestBookModal';
-import PrivewCard from './PrivewCard';
+import GuestBookModal from '../Modal/GuestBookModal';
+import PrivewCard from './GuestBook/PrivewCard';
 
 const BoxLayout = styled.div`
   flex-shrink: 0;
@@ -122,12 +122,13 @@ export default function usePriview({ text, backgroundImage }) {
       const dateResult = [stringYear, stringMonth, stringDate, stringMinute].join('');
       // 현재 time에서 계산된 값을 바로 업데이트 시켜준다.
       // 즉 만들어진 시간이랑 updated[item].time랑 - 해준다.
-      console.log('dateResult', updated[item].time, dateResult);
+      // console.log('dateResult', updated[item].time, dateResult);
 
-      // const milliSeconds = parseInt(updated[item].time) - parseInt(dateResult);
-      // const seconds = milliSeconds / 1000;
+      const milliSeconds = dateResult;
+      // 위의 333 로 바꾸기 -> parseInt(updated[item].time,10) - parseInt(dateResult,10);
+      const seconds = milliSeconds / 1000;
       // // // 저 계산된 seconds 값을 먼저 if문으로 한 후 updated[item].time에 넣어준다.
-      // if (seconds < 0) setCards((updated[item].time = '방금 전'));
+      if (seconds < 0) setCards((updated[item].time = '방금 전'));
 
       // updated[item].time = seconds; // 전체적으로 카드를 만들면, 계산된 값으로 출력된다.
 
@@ -193,8 +194,9 @@ export default function usePriview({ text, backgroundImage }) {
     setGuestModal(!openGuestBookModal);
   };
 
-  const deleteCard = (cardPassword, id, password) => {
-    console.log(password);
+  const deleteCard = (cardPassword, id) => {
+    // password) => {
+    // console.log(password);
     const updated = { ...cards }; // card를 받아온다.
     if (updated[id].password === cardPassword) {
       // 비밀번호가 알맞을시 수행됨.
