@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import Card from '@/components/Card';
 import * as S from '@/components/Board/Write/style';
 import { useRouter } from 'next/router';
@@ -7,23 +7,50 @@ import Button from '@/components/Button';
 import * as G from '@/styles/globals';
 import TemplateWrite from '@/components/WeddingTemplate/Write';
 import TemplatePreview from '@/components/WeddingTemplate/Preview';
-import SampleModal from '@/Modal/SampleModal';
-import Invitation from '@/components/Preview/Invitation';
+import SampleModal from '@/components/Modal/SampleModal';
+import Invitation from '@/components/Invitation/Write/Invitation';
 
 // interface Props {
 //   isEdit?: Boolean;
 // }
 
-export default function BoardWrite({
-  openModal,
-  text,
-  setText,
-  handleChange,
-  showSampleText,
-  sandContent,
-  textAreaRef,
-}: any) {
-  console.log(text);
+export default function BoardWrite() {
+  // 청첩장 문구 관련 State, Function
+  const [openModal, setModal] = useState(false);
+  const textAreaRef = useRef();
+  const [text, setText] = useState({
+    title: '확인',
+    content: '확인',
+  });
+
+  const sandContent = (e) => {
+    const content = e.target.innerHTML;
+    const replaceSpace = content.replace(/(<br>|<br\/>|<br \/>)/g, '\r\n');
+    setModal(!openModal);
+    setText({
+      ...text,
+      content: replaceSpace,
+    });
+  };
+
+  const handleChange = (e) => {
+    if (e.target.id === 'title') {
+      setText({
+        ...text,
+        title: e.target.value,
+      });
+    } else {
+      setText({
+        ...text,
+        content: e.target.value,
+      });
+    }
+  };
+
+  const showSampleText = () => {
+    setModal(!openModal);
+  };
+
   const router = useRouter();
 
   const handleSave = () => {
@@ -40,7 +67,12 @@ export default function BoardWrite({
           </Card>
           <Card title="제목2" type="preview">
             {/* 청첩장 문구 */}
-            <Invitation textAreaRef={textAreaRef} text={text} setText={setText} handleChange={handleChange} />
+            <div className="invitation-phrases">
+              <p>{text.title}</p>
+            </div>
+            <div>
+              <p>{text.content}</p>
+            </div>
           </Card>
         </S.ContentLeft>
 
@@ -110,23 +142,12 @@ export default function BoardWrite({
           <Card title="예식일" />
           <Card color="white" title="첫 화면" />
           <Card title="청첩장 문구">
-            <G.RowWrap>
-              <G.Row>
-                <G.ColTitle>제목</G.ColTitle>
-                <G.ColContent>
-                  <G.InputText type="text" />
-                </G.ColContent>
-              </G.Row>
-              <G.Row>
-                <G.ColTitle>텍스트박스</G.ColTitle>
-                <G.ColContent>
-                  <G.Textarea />
-                </G.ColContent>
-              </G.Row>
-              <G.TextButton>
-                <span>샘플 텍스트 보기</span>
-              </G.TextButton>
-            </G.RowWrap>
+            <Invitation
+              text={text}
+              textAreaRef={textAreaRef}
+              handleChange={handleChange}
+              showSampleText={showSampleText}
+            />
           </Card>
           <Card color="white" title="보내는 사람" />
           <Card color="white" title="캘린더 스타일" />
