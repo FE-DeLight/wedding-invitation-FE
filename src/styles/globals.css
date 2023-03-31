@@ -89,10 +89,6 @@ a {
   cursor: pointer;
 }
 button {
-  height: 40px;
-  padding: 0 20px;
-  border-radius: 4px;
-  background-color: #666;
   border: none;
   color: inherit;
   cursor: pointer;

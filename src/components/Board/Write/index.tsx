@@ -1,26 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Card from '@/components/Card';
 import * as S from '@/components/Board/Write/style';
 import { useRouter } from 'next/router';
 import TemplateWrite from '@/components/WeddingTemplate/Write';
 import TemplatePreview from '@/components/WeddingTemplate/Preview';
 
-// interface Props {
-//   isEdit?: Boolean;
-// }
+type TemplateType = {
+  id: number;
+  value: string;
+  check: boolean;
+};
 
 // 템플릿
 
-const templateStyleData = [
+const templateColor = [
   { id: 1, value: '심플' },
   { id: 2, value: '직접디자이하기' },
 ];
-const templateTypeData = [
+const templateType: TemplateType[] = [
   { id: 1, value: 'A', check: false },
   { id: 2, value: 'B', check: false },
   { id: 3, value: 'C', check: false },
 ];
-const templateColorData = [
+const templateStyle = [
   { id: 1, value: '검정색', check: false },
   { id: 2, value: '빨강색', check: false },
   { id: 3, value: '흰색', check: false },
@@ -30,10 +32,6 @@ const templateColorData = [
 
 export default function BoardWrite() {
   const router = useRouter();
-
-  const [templateColor, setTemplateColor] = useState(templateColorData);
-  const [templateType, setTemplateType] = useState(templateTypeData);
-  const [templateStyle, setTemplateStyle] = useState(templateStyleData);
 
   const handleSave = () => {
     router.push('/boards/');
