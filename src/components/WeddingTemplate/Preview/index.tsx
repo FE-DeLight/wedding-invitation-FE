@@ -66,6 +66,7 @@ const ImgArea = styled.div`
   inset: 0;
   transition: all 0.3s;
   background-color: #eee;
+  text-align: center;
   &:before {
     position: absolute;
     inset: 10px;
@@ -84,12 +85,25 @@ export default function TemplatePreview(props: Props) {
     <>
       <TypeWrap>
         <Type className={`type${props?.templateTypeSelect}`}>
-          <Title className="title">
-            <Name>신랑 이름</Name>
-            <span>&</span>
-            <Name>신부 이름</Name>
-          </Title>
-          <ImgArea className="imgArea">[첫화면]에서 이미지를 넣어주세요.</ImgArea>
+          {props?.templateTypeSelect !== '이미지' ? (
+            <Title className="title">
+              <Name>신랑 이름</Name>
+              <span>&</span>
+              <Name>신부 이름</Name>
+            </Title>
+          ) : (
+            ''
+          )}
+          <ImgArea className="imgArea">
+            {props?.templateTypeSelect !== '이미지' ? (
+              '[첫화면]에서 이미지를 넣어주세요.'
+            ) : (
+              <>
+                [첫화면]에서 이미지를 넣어주세요.
+                <br /> (1:1.7 비율을 권장합니다.)
+              </>
+            )}
+          </ImgArea>
         </Type>
       </TypeWrap>
       <div>dsa</div>

@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import * as G from '@/styles/globals';
-import Select from '@/components/Select';
-import RadioInput from '@/components/Radio';
 import Image from 'next/image';
 import styled from '@emotion/styled';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 type Props = {
-  style: Array<object>;
   // type: Array<object>;
   type: any;
   color: Array<object>;
@@ -16,16 +14,17 @@ type Props = {
 const TypeContents = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 15px;
   width: 100%;
 `;
 const TypeButton = styled.button`
   max-width: 200px;
   width: 100%;
-  padding: 15px;
-  border-radius: 4px;
+  padding: 10px;
+  border-radius: 10px;
   border: 1px solid #ddd;
   background-color: #fff;
-  opacity: 0.5;
+  opacity: 0.4;
   transition: all 0.3s;
   &.active {
     opacity: 1;
@@ -33,17 +32,19 @@ const TypeButton = styled.button`
   img {
     width: 100%;
     height: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   }
   span {
     display: flex;
     justify-content: center;
-    margin-top: 15px;
+    padding: 15px 0 0 0;
     color: #333;
   }
 `;
+const ColorContents = styled.div``;
 
 export default function TemplateWrite(props: Props) {
-  const [activeButton, setActiveButton] = useState();
+  const [activeButton, setActiveButton] = useState(0);
 
   const handleClick = (index: any, value: string) => {
     setActiveButton(index);
@@ -51,12 +52,6 @@ export default function TemplateWrite(props: Props) {
   };
   return (
     <G.RowWrap>
-      <G.Row>
-        <G.ColTitle>스타일</G.ColTitle>
-        <G.ColContent>
-          <Select options={props?.style} />
-        </G.ColContent>
-      </G.Row>
       <G.Row>
         <G.ColTitle>타입</G.ColTitle>
         <G.ColContent>
@@ -86,7 +81,19 @@ export default function TemplateWrite(props: Props) {
       <G.Row>
         <G.ColTitle>색상</G.ColTitle>
         <G.ColContent>
-          <RadioInput options={props?.color} name="templatecolor" />
+          <ColorContents>
+            <Swiper slidesPerView={3} spaceBetween={30} className="mySwiper">
+              <SwiperSlide>Slide 1</SwiperSlide>
+              <SwiperSlide>Slide 2</SwiperSlide>
+              <SwiperSlide>Slide 3</SwiperSlide>
+              <SwiperSlide>Slide 4</SwiperSlide>
+              <SwiperSlide>Slide 5</SwiperSlide>
+              <SwiperSlide>Slide 6</SwiperSlide>
+              <SwiperSlide>Slide 7</SwiperSlide>
+              <SwiperSlide>Slide 8</SwiperSlide>
+              <SwiperSlide>Slide 9</SwiperSlide>
+            </Swiper>
+          </ColorContents>
         </G.ColContent>
       </G.Row>
     </G.RowWrap>

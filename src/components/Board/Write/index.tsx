@@ -8,24 +8,20 @@ import TemplatePreview from '@/components/WeddingTemplate/Preview';
 type TemplateType = {
   id: number;
   value: string;
-  check: boolean;
 };
 
 // 템플릿
 
-const templateStyle = [
-  { id: 1, value: '심플' },
-  { id: 2, value: '직접 디자인 하기' },
-];
 const templateType: TemplateType[] = [
-  { id: 1, value: 'A', check: false },
-  { id: 2, value: 'B', check: false },
-  { id: 3, value: 'C', check: false },
+  { id: 1, value: 'A' },
+  { id: 2, value: 'B' },
+  { id: 3, value: 'C' },
+  { id: 4, value: '이미지' },
 ];
 const templateColor = [
-  { id: 1, value: '검정색', check: false },
-  { id: 2, value: '빨강색', check: false },
-  { id: 3, value: '흰색', check: false },
+  { id: 1, value: '검정색' },
+  { id: 2, value: '빨강색' },
+  { id: 3, value: '흰색' },
 ];
 
 // 템플릿
@@ -50,12 +46,7 @@ export default function BoardWrite() {
       </S.ContentLeft>
       <S.ContentRight>
         <Card title="템플릿">
-          <TemplateWrite
-            color={templateColor}
-            type={templateType}
-            setTemplateTypeSelect={setTemplateTypeSelect}
-            style={templateStyle}
-          />
+          <TemplateWrite color={templateColor} type={templateType} setTemplateTypeSelect={setTemplateTypeSelect} />
         </Card>
         <Card title="예식일" />
         <Card title="첫 화면" />
