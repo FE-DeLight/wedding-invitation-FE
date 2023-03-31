@@ -12,18 +12,41 @@
         &--select{
           .react-datepicker__month-dropdown-container, .react-datepicker__year-dropdown-container{
             margin: 0 2px;
+            position: relative;
+
+            &::before {
+              position: absolute;
+              top: 50%;
+              right: 23px;
+              transform: translateY(-50%) rotate(45deg);
+              width: 10px;
+              height: 2px;
+              background-color: black;
+              content: "";
+            }
+            &::after {
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%) rotate(-45deg);
+              right: 17px;
+              width: 10px;
+              height: 2px;
+              background-color: black;
+              content: "";
+            }
 
             .react-datepicker__month-select, .react-datepicker__year-select{
               width: 80px;
               padding: 4px 8px;
-              margin: 16px 0px;
+              margin: 16px 0;
               background-color: #fff;
               border-color: #737373;
               border-width: 1px;
-              border-radius: 0px;
+              border-radius: 0;
               font-size: 14px;
               line-height: 1.5rem;
               color: black;
+              position: relative;
 
             }
           }
@@ -50,6 +73,7 @@
   }
 
   &__time-container {
+    overflow-y: scroll;
     .react-datepicker__header {
       .react-datepicker-time__header {
         font-size: 15px;
