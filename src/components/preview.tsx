@@ -5,7 +5,7 @@
 import styled from '@emotion/styled';
 import dayjs from 'dayjs';
 import { useState } from 'react';
-import GuestBookModal from '../Modal/GuestBookModal';
+import GuestBookModal from './Modal/GuestBookModal';
 import PrivewCard from './GuestBook/PrivewCard';
 
 const BoxLayout = styled.div`

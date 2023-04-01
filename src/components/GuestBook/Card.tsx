@@ -2,7 +2,7 @@
 /* eslint-disable react/button-has-type */
 /* eslint-disable react/react-in-jsx-scope */
 import styled from '@emotion/styled';
-import GuestBookDelectModal from '../../Modal/GuestBookDelectModal';
+import GuestBookDelectModal from '../Modal/GuestBookDelectModal';
 
 const Cardli = styled.li`
   padding: 16px;

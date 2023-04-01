@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 import Priview from '@/components/preview';
 import EditForm from '@/components/EditForm';
-import SampleModal from '@/Modal/SampleModal';
+import SampleModal from '@/components/Modal/SampleModal';
 import React, { useRef, useState } from 'react';
 import styled from '@emotion/styled';
 
