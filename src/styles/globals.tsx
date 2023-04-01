@@ -15,7 +15,7 @@ export const ColTitle = styled.div`
 `;
 export const ColContent = styled.div`
   display: flex;
-  flex: 1;
+  width: calc(100% - 100px);
 `;
 export const RadioGroup = styled.div`
   display: flex;

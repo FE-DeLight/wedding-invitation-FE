@@ -3,12 +3,14 @@ import * as G from '@/styles/globals';
 import Image from 'next/image';
 import styled from '@emotion/styled';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
 type Props = {
   // type: Array<object>;
   type: any;
   color: Array<object>;
   setTemplateTypeSelect: any;
+  setTemplateColorSelect: any;
 };
 
 const TypeContents = styled.div`
@@ -41,14 +43,55 @@ const TypeButton = styled.button`
     color: #333;
   }
 `;
-const ColorContents = styled.div``;
+const ColorContents = styled.div`
+  width: 100%;
+  .colorSwiper {
+    .swiper-slide {
+      width: 100px;
+      text-align: center;
+      opacity: 0.5;
+      cursor: pointer;
+      &.active {
+        opacity: 1;
+        .colorBox {
+          &:after: {
+          }
+        }
+      }
+      .colorBox {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        margin: 0 auto;
+        border-radius: 50%;
+        border: 1px solid #ddd;
+        &::after {
+          position: absolute;
+          z-index: 1;
+          inset: 1px;
+          border: 2px solid #fff;
+          border-radius: 50%;
+          content: '';
+        }
+      }
+      .text {
+        margin-top: 10px;
+      }
+    }
+  }
+`;
 
 export default function TemplateWrite(props: Props) {
-  const [activeButton, setActiveButton] = useState(0);
-
-  const handleClick = (index: any, value: string) => {
-    setActiveButton(index);
+  const [activeType, setActiveType] = useState(0);
+  const handleTypeActive = (index: any, value: string) => {
+    setActiveType(index);
     props?.setTemplateTypeSelect(value);
+  };
+
+  const [activeColor, setActiveColor] = useState(0);
+  const handleColorActive = (index: any, color: string) => {
+    setActiveColor(index);
+    props?.setTemplateColorSelect(color);
   };
   return (
     <G.RowWrap>
@@ -61,8 +104,8 @@ export default function TemplateWrite(props: Props) {
                 <TypeButton
                   type="button"
                   key={`templateType-${item.id}`}
-                  onClick={() => handleClick(index, item.value)}
-                  className={index === activeButton ? 'active' : ''}
+                  onClick={() => handleTypeActive(index, item.value)}
+                  className={index === activeType ? 'active' : ''}
                 >
                   <Image
                     src={`/img/theme_sample_0${index}.png`}
@@ -82,16 +125,18 @@ export default function TemplateWrite(props: Props) {
         <G.ColTitle>색상</G.ColTitle>
         <G.ColContent>
           <ColorContents>
-            <Swiper slidesPerView={3} spaceBetween={30} className="mySwiper">
-              <SwiperSlide>Slide 1</SwiperSlide>
-              <SwiperSlide>Slide 2</SwiperSlide>
-              <SwiperSlide>Slide 3</SwiperSlide>
-              <SwiperSlide>Slide 4</SwiperSlide>
-              <SwiperSlide>Slide 5</SwiperSlide>
-              <SwiperSlide>Slide 6</SwiperSlide>
-              <SwiperSlide>Slide 7</SwiperSlide>
-              <SwiperSlide>Slide 8</SwiperSlide>
-              <SwiperSlide>Slide 9</SwiperSlide>
+            <Swiper slidesPerView={'auto'} spaceBetween={10} className="colorSwiper">
+              {props?.color.map((item: any, index: number) => {
+                return (
+                  <SwiperSlide
+                    className={index === activeColor ? 'active' : ''}
+                    onClick={() => handleColorActive(index, item.color)}
+                  >
+                    <div className="colorBox" style={{ background: item.color }}></div>
+                    <div className="text">{item.value}</div>
+                  </SwiperSlide>
+                );
+              })}
             </Swiper>
           </ColorContents>
         </G.ColContent>

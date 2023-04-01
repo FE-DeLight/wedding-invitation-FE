@@ -19,9 +19,14 @@ const templateType: TemplateType[] = [
   { id: 4, value: '이미지' },
 ];
 const templateColor = [
-  { id: 1, value: '검정색' },
-  { id: 2, value: '빨강색' },
-  { id: 3, value: '흰색' },
+  { id: 1, value: 'Ink Black', color: 'rgb(6, 8, 15)' },
+  { id: 2, value: 'Sour Cream', color: 'rgb(255, 253, 247)' },
+  { id: 3, value: 'Misty Rose', color: 'rgb(245, 230, 227)' },
+  { id: 4, value: 'Dusty Ash', color: 'rgb(92, 107, 100)' },
+  { id: 5, value: 'Misty Rose', color: 'rgb(105, 94, 78)' },
+  { id: 6, value: 'Wenge', color: 'rgb(105, 94, 78)' },
+  { id: 7, value: 'Purple Violet', color: 'rgb(65, 53, 77)' },
+  { id: 8, value: 'Deep Blue', color: 'rgb(8, 17, 59)' },
 ];
 
 // 템플릿
@@ -29,6 +34,7 @@ const templateColor = [
 export default function BoardWrite() {
   const router = useRouter();
   const [templateTypeSelect, setTemplateTypeSelect] = useState('');
+  const [templateColorSelect, setTemplateColorSelect] = useState('');
 
   const handleSave = () => {
     router.push('/boards/');
@@ -38,7 +44,7 @@ export default function BoardWrite() {
     <S.Wrapper>
       <S.ContentLeft>
         <Card type="preview">
-          <TemplatePreview templateTypeSelect={templateTypeSelect} />
+          <TemplatePreview templateTypeSelect={templateTypeSelect} templateColorSelect={templateColorSelect} />
         </Card>
         <Card title="제목2" type="preview">
           내용2
@@ -46,7 +52,12 @@ export default function BoardWrite() {
       </S.ContentLeft>
       <S.ContentRight>
         <Card title="템플릿">
-          <TemplateWrite color={templateColor} type={templateType} setTemplateTypeSelect={setTemplateTypeSelect} />
+          <TemplateWrite
+            color={templateColor}
+            type={templateType}
+            setTemplateTypeSelect={setTemplateTypeSelect}
+            setTemplateColorSelect={setTemplateColorSelect}
+          />
         </Card>
         <Card title="예식일" />
         <Card title="첫 화면" />
