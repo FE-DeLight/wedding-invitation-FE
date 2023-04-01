@@ -9,7 +9,6 @@ import TemplateWrite from '@/components/WeddingTemplate/Write';
 import TemplatePreview from '@/components/WeddingTemplate/Preview';
 import WeddingDayWrite from '@/components/WeddingDay/Write';
 import WeddingDayPreview from '@/components/WeddingDay/Preview';
-import { formatDate, formatTime } from '@/utils/dateUtils';
 
 // interface Props {
 //   isEdit?: Boolean;
@@ -17,12 +16,7 @@ import { formatDate, formatTime } from '@/utils/dateUtils';
 
 export default function BoardWrite() {
   const router = useRouter();
-
   const [weddingDay, setWeddingDay] = useState<Date>(new Date());
-  const formattedDate = formatDate(weddingDay, 'M월 D일');
-  console.log('formattedDate', formattedDate);
-  const formattedFullDate = formatDate(weddingDay, 'YYYY년 M월 D일');
-  const formattedTime = formatTime(weddingDay);
 
   const handleSave = () => {
     router.push('/boards/');
@@ -38,7 +32,7 @@ export default function BoardWrite() {
           내용2
         </Card>
         <Card title="예식일" type="preview" color="white">
-          <WeddingDayPreview formattedFullDate={formattedFullDate} formattedTime={formattedTime} />
+          <WeddingDayPreview weddingDay={weddingDay} />
         </Card>
       </S.ContentLeft>
 
