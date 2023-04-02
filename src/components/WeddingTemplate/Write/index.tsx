@@ -131,6 +131,27 @@ const Dropdown = styled.div`
       width: 100%;
     }
   }
+  .MuiInputBase-root {
+    height: 30px;
+    padding: 0;
+  }
+  .MuiColorInput-Button {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+  input[type='text'] {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+    color: #fff;
+    text-shadow: 0 0 2px #333;
+    text-align: center;
+  }
 `;
 
 export default function TemplateWrite({ color, type }: Props) {

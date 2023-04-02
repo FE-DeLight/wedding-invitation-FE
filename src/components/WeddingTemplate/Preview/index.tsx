@@ -86,16 +86,25 @@ const ImgArea = styled.div`
   }
 `;
 export default function TemplatePreview() {
-  const templateColorSelect = useSelector((state: any) => {
-    return state.template.color;
+  // const templateColorSelect = useSelector((state: any) => {
+  //   return state.template.color;
+  // });
+  const templateTextColorSelect = useSelector((state: any) => {
+    return state.template.textColor;
   });
+  const templateBorderColorSelect = useSelector((state: any) => {
+    return state.template.BorderColor;
+  });
+  // const templateThemeColorSelect = useSelector((state: any) => {
+  //   return state.template.themeColor;
+  // });
   const templateTypeSelect = useSelector((state: any) => {
     return state.template.type;
   });
   return (
     <>
       <TypeWrap>
-        <Type className={`type${templateTypeSelect}`} color={templateColorSelect}>
+        <Type className={`type${templateTypeSelect}`} color={templateTextColorSelect}>
           {templateTypeSelect !== 'Img' ? (
             <Title className="title">
               <Name>신랑 이름</Name>
@@ -105,7 +114,7 @@ export default function TemplatePreview() {
           ) : (
             ''
           )}
-          <ImgArea className="imgArea" color={templateColorSelect}>
+          <ImgArea className="imgArea" color={templateBorderColorSelect}>
             {templateTypeSelect !== 'Img' ? (
               '[첫화면]에서 이미지를 넣어주세요.'
             ) : (
