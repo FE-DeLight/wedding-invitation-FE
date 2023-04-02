@@ -23,10 +23,9 @@ const templateColor = [
   { id: 2, value: 'Sour Cream', color: 'rgb(255, 253, 247)' },
   { id: 3, value: 'Misty Rose', color: 'rgb(245, 230, 227)' },
   { id: 4, value: 'Dusty Ash', color: 'rgb(92, 107, 100)' },
-  { id: 5, value: 'Misty Rose', color: 'rgb(105, 94, 78)' },
-  { id: 6, value: 'Wenge', color: 'rgb(105, 94, 78)' },
-  { id: 7, value: 'Purple Violet', color: 'rgb(65, 53, 77)' },
-  { id: 8, value: 'Deep Blue', color: 'rgb(8, 17, 59)' },
+  { id: 5, value: 'Wenge', color: 'rgb(105, 94, 78)' },
+  { id: 6, value: 'Purple Violet', color: 'rgb(65, 53, 77)' },
+  { id: 7, value: 'Deep Blue', color: 'rgb(8, 17, 59)' },
 ];
 
 // 템플릿

@@ -40,6 +40,14 @@ const Type = styled.div`
       padding-top: 10px;
     }
   }
+  &.typeImg {
+    .imgArea {
+      &:before,
+      &:after {
+        display: none;
+      }
+    }
+  }
 `;
 const Title = styled.div`
   display: flex;
@@ -75,12 +83,6 @@ const ImgArea = styled.div`
     inset: 14px;
     border: 1px solid ${(props) => props.color};
     content: '';
-  }
-  &.imgArea {
-    &:before,
-    &:after {
-      display: none;
-    }
   }
 `;
 export default function TemplatePreview() {
