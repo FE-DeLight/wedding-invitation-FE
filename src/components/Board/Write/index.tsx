@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Card from '@/components/Card';
 import * as S from '@/components/Board/Write/style';
 import { useRouter } from 'next/router';
@@ -16,7 +16,7 @@ const templateType: TemplateType[] = [
   { id: 1, value: 'A' },
   { id: 2, value: 'B' },
   { id: 3, value: 'C' },
-  { id: 4, value: '이미지' },
+  { id: 4, value: 'Img' },
 ];
 const templateColor = [
   { id: 1, value: 'Ink Black', color: 'rgb(6, 8, 15)' },
@@ -33,8 +33,6 @@ const templateColor = [
 
 export default function BoardWrite() {
   const router = useRouter();
-  const [templateTypeSelect, setTemplateTypeSelect] = useState('');
-  const [templateColorSelect, setTemplateColorSelect] = useState('');
 
   const handleSave = () => {
     router.push('/boards/');
@@ -44,7 +42,7 @@ export default function BoardWrite() {
     <S.Wrapper>
       <S.ContentLeft>
         <Card type="preview">
-          <TemplatePreview templateTypeSelect={templateTypeSelect} templateColorSelect={templateColorSelect} />
+          <TemplatePreview />
         </Card>
         <Card title="제목2" type="preview">
           내용2
@@ -52,12 +50,7 @@ export default function BoardWrite() {
       </S.ContentLeft>
       <S.ContentRight>
         <Card title="템플릿">
-          <TemplateWrite
-            color={templateColor}
-            type={templateType}
-            setTemplateTypeSelect={setTemplateTypeSelect}
-            setTemplateColorSelect={setTemplateColorSelect}
-          />
+          <TemplateWrite color={templateColor} type={templateType} />
         </Card>
         <Card title="예식일" />
         <Card title="첫 화면" />

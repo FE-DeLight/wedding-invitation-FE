@@ -1,10 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-
-type Props = {
-  templateTypeSelect: any;
-  templateColorSelect: any;
-};
+import { useSelector } from 'react-redux';
 
 const TypeWrap = styled.div`
   position: relative;
@@ -59,7 +55,6 @@ const Title = styled.div`
 const Name = styled.span`
   font-size: 20px;
 `;
-
 const ImgArea = styled.div`
   display: flex;
   align-items: center;
@@ -81,15 +76,26 @@ const ImgArea = styled.div`
     border: 1px solid ${(props) => props.color};
     content: '';
   }
+  &.imgArea {
+    &:before,
+    &:after {
+      display: none;
+    }
+  }
 `;
-export default function TemplatePreview(props: Props) {
+export default function TemplatePreview() {
+  const templateColorSelect = useSelector((state: any) => {
+    return state.template.color;
+  });
+  const templateTypeSelect = useSelector((state: any) => {
+    return state.template.type;
+  });
   return (
     <>
       <TypeWrap>
-        <Type className={`type${props?.templateTypeSelect}`} color={props?.templateColorSelect}>
-          {props?.templateTypeSelect !== '이미지' ? (
+        <Type className={`type${templateTypeSelect}`} color={templateColorSelect}>
+          {templateTypeSelect !== 'Img' ? (
             <Title className="title">
-              {props?.templateColorSelect.color}
               <Name>신랑 이름</Name>
               <span>&</span>
               <Name>신부 이름</Name>
@@ -97,8 +103,8 @@ export default function TemplatePreview(props: Props) {
           ) : (
             ''
           )}
-          <ImgArea className="imgArea" color={props?.templateColorSelect}>
-            {props?.templateTypeSelect !== '이미지' ? (
+          <ImgArea className="imgArea" color={templateColorSelect}>
+            {templateTypeSelect !== 'Img' ? (
               '[첫화면]에서 이미지를 넣어주세요.'
             ) : (
               <>

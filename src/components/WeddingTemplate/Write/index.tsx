@@ -4,13 +4,13 @@ import Image from 'next/image';
 import styled from '@emotion/styled';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import { useDispatch } from 'react-redux';
+import { colorChange, typeChange } from '@/store/templateSlice';
 
 type Props = {
   // type: Array<object>;
   type: any;
   color: Array<object>;
-  setTemplateTypeSelect: any;
-  setTemplateColorSelect: any;
 };
 
 const TypeContents = styled.div`
@@ -47,7 +47,7 @@ const ColorContents = styled.div`
   width: 100%;
   .colorSwiper {
     .swiper-slide {
-      width: 100px;
+      width: 90px;
       text-align: center;
       opacity: 0.5;
       cursor: pointer;
@@ -82,17 +82,20 @@ const ColorContents = styled.div`
 `;
 
 export default function TemplateWrite(props: Props) {
+  const dispatch = useDispatch();
+
   const [activeType, setActiveType] = useState(0);
   const handleTypeActive = (index: any, value: string) => {
     setActiveType(index);
-    props?.setTemplateTypeSelect(value);
+    dispatch(typeChange({ type: value }));
   };
 
   const [activeColor, setActiveColor] = useState(0);
   const handleColorActive = (index: any, color: string) => {
     setActiveColor(index);
-    props?.setTemplateColorSelect(color);
+    dispatch(colorChange({ color }));
   };
+
   return (
     <G.RowWrap>
       <G.Row>
@@ -125,14 +128,15 @@ export default function TemplateWrite(props: Props) {
         <G.ColTitle>색상</G.ColTitle>
         <G.ColContent>
           <ColorContents>
-            <Swiper slidesPerView={'auto'} spaceBetween={10} className="colorSwiper">
+            <Swiper slidesPerView="auto" spaceBetween={10} className="colorSwiper">
               {props?.color.map((item: any, index: number) => {
                 return (
                   <SwiperSlide
                     className={index === activeColor ? 'active' : ''}
                     onClick={() => handleColorActive(index, item.color)}
+                    key={item.id}
                   >
-                    <div className="colorBox" style={{ background: item.color }}></div>
+                    <div className="colorBox" style={{ background: item.color }} />
                     <div className="text">{item.value}</div>
                   </SwiperSlide>
                 );
