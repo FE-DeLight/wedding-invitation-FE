@@ -40,8 +40,8 @@ export default function Card({
   handleValidation,
 }: CardProp) {
   const { id, password, name, time, content } = card;
-
   const onSubmit = () => {
+    console.log('들어왔다');
     setGuestDelectModal(!openGuestBookDelectModal);
   };
 
@@ -55,14 +55,16 @@ export default function Card({
         </CardHeader>
         <p>{content}</p>
       </Cardli>
-      <GuestBookDelectModal
-        id={id}
-        password={password}
-        HandleGBDelectVisibility={HandleGBDelectVisibility}
-        deleteCard={deleteCard}
-        passwordValidation={passwordValidation}
-        handleValidation={handleValidation}
-      />
+      {openGuestBookDelectModal && (
+        <GuestBookDelectModal
+          id={id}
+          password={password}
+          HandleGBDelectVisibility={HandleGBDelectVisibility}
+          deleteCard={deleteCard}
+          passwordValidation={passwordValidation}
+          handleValidation={handleValidation}
+        />
+      )}
     </>
   );
 }
