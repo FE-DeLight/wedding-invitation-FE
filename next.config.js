@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
+const path = require('path');
+
 const nextConfig = {
   experimental: {
     appDir: false,
@@ -29,6 +31,9 @@ const nextConfig = {
         }),
       ],
     };
+  },
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
   },
 };
 

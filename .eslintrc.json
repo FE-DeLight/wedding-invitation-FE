@@ -18,6 +18,12 @@
       {
         "endOfLine": "auto"
       }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        // "projectDependencies": false
+      }
     ]
   }
 }
