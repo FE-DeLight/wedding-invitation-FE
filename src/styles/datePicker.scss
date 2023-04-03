@@ -1,4 +1,4 @@
-/*date-picker 커스텀*/
+/*Write date-picker 커스텀*/
 .react-datepicker{
   border-radius: 5px;
 
@@ -85,31 +85,75 @@
   }
 }
 
-
+/* Preview date-picker 커스텀*/
 .preview-react-datepicker.react-datepicker{
   border: none;
   border-radius: 0;
   background-color: transparent;
   font-size: 14px;
-
-
-  &__day--sun {
-    color: red;
-  }
+  width: 100%;
+  padding-top: 20px;
 
   .react-datepicker__navigation{
     display: none;
   }
 
   .react-datepicker__month-container{
+    width: 100%;
     .react-datepicker__header{
       border-top-right-radius: 0;
       background-color: transparent;
       border-bottom: 0;
       border-top-left-radius: 0;
+      .react-datepicker__current-month{
+        display: none;
+      }
+      .react-datepicker__day-names{
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 10px;
+        border-bottom: 1px dotted rgba(229, 229, 229);
+       .react-datepicker__day-name:first-child{
+         color: #f87171;
+       }
+      }
     }
-    .react-datepicker__current-month{
-      display: none;
+    .react-datepicker__month{
+      margin: 0;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px dotted rgba(229, 229, 229);
+      .react-datepicker__week{
+        width: 100%;
+        justify-content: space-between;
+        display: flex;
+        .react-datepicker__day{
+          cursor: default;
+          width: 30px;
+          height: 30px;
+          line-height: 30px;
+          &:hover{
+             background-color: unset;
+          }
+          &--today{
+            font-weight: normal;
+          }
+          &--sun {
+            color: #f87171;
+          }
+          &--keyboard-selected{
+             background-color: unset;
+          }
+        }
+        .react-datepicker__day--selected{
+          background-color: rgba(6, 8, 15, 0.44);
+           border-radius: 9999px;
+
+          &:hover{
+            background-color: rgba(6, 8, 15, 0.44);;
+          }
+          }
+      }
     }
   }
 }

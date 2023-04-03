@@ -4,6 +4,7 @@ import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import ko from 'date-fns/locale/ko';
+import * as S from '@/components/WeddingDay/Preview/style';
 
 export default function WeddingDayWrite({ weddingDay }: any) {
   registerLocale('ko', ko);
@@ -21,26 +22,33 @@ export default function WeddingDayWrite({ weddingDay }: any) {
 
   return (
     <>
-      <div>{formattedDate}</div>
+      <S.Title>{formattedDate}</S.Title>
       <DatePicker
         selected={weddingDay}
         locale={ko}
         inline
-        dayClassName={
-          (date: Date) => (date.getDay() === 0 ? 'preview-react-datepicker__day--sun' : null) // 일요일 빨간색 설정
-        }
+        dayClassName={(date: Date) => {
+          const isOutsideMonth = date.getMonth() !== weddingDay.getMonth();
+          const isSunday = date.getDay() === 0;
+          return isOutsideMonth
+            ? 'react-datepicker__day--disabled react-datepicker__day--outside-month'
+            : isSunday
+            ? 'react-datepicker__day--sun'
+            : null;
+        }}
         calendarClassName="preview-react-datepicker"
-        shouldCloseOnSelect={false}
       />
-      <div>
-        {formattedFullDate} {formattedTime}
-      </div>
-      <div>
-        <span> ♥ </span>
-        <span> 의 결혼식이</span>
-        <span> {dateDiff}일 </span>
-        <span>남았습니다.</span>
-      </div>
+      <S.Wrapper>
+        <S.Date>
+          {formattedFullDate} {formattedTime}
+        </S.Date>
+        <S.Dday>
+          <span className="red"> ♥ </span>
+          <span> 의 결혼식이</span>
+          <span className="red"> {dateDiff}일 </span>
+          <span>남았습니다.</span>
+        </S.Dday>
+      </S.Wrapper>
     </>
   );
 }
