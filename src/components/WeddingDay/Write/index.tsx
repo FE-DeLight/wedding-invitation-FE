@@ -44,7 +44,7 @@ export default function WeddingDayWrite({ weddingDay, setWeddingDay }: any) {
           showTimeSelect
           timeFormat="HH:mm"
           timeIntervals={10}
-          dateFormat="yyyy년 MM월 d일 (dddd), aa h시 mm분"
+          dateFormat="yyyy년 MM월 d일 E요일, aa h시 mm분"
           placeholderText="클릭하여 날짜를 변경하세요."
         />
       </G.ColContent>

@@ -20,8 +20,9 @@
               transform: translateY(-50%) rotate(45deg);
               width: 10px;
               height: 2px;
-              background-color: black;
+              background-color: grey;
               content: "";
+              z-index: 1;
             }
             &::after {
               position: absolute;
@@ -30,7 +31,7 @@
               right: 17px;
               width: 10px;
               height: 2px;
-              background-color: black;
+              background-color: grey;
               content: "";
             }
 
