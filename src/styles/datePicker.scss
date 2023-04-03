@@ -141,6 +141,9 @@
           }
           &--sun {
             color: #f87171;
+            &.react-datepicker__day--selected{
+              color: #fff;
+            }
           }
           &--keyboard-selected{
              background-color: unset;
