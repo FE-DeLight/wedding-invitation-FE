@@ -29,7 +29,7 @@ export const Dday = styled.div`
   font-family: 'Nanum Myeongjo', serif;
   font-size: 12px;
   color: #171717;
-  margin-top: 10px;
+  margin-top: 15px;
 
   > span.red {
     color: #f87171;

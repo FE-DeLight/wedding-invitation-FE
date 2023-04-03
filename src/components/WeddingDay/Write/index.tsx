@@ -7,8 +7,6 @@ import DatePicker from 'react-datepicker';
 import ko from 'date-fns/locale/ko';
 import 'moment/locale/ko';
 
-// registerLocale('ko', ko);
-
 const CustomDatePicker = styled(DatePicker)`
   width: 100%;
   height: 40px;
