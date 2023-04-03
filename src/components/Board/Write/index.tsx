@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Card from '@/components/Card';
 import * as S from '@/components/Board/Write/style';
 import { useRouter } from 'next/router';
@@ -45,7 +45,7 @@ export default function BoardWrite() {
     content: '확인',
   });
 
-  const sandContent = (e) => {
+  const sandContent = (e:any) => {
     const content = e.target.innerHTML;
     const replaceSpace = content.replace(/(<br>|<br\/>|<br \/>)/g, '\r\n');
     setModal(!openModal);
@@ -55,7 +55,7 @@ export default function BoardWrite() {
     });
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e:any) => {
     if (e.target.id === 'title') {
       setText({
         ...text,
@@ -84,6 +84,7 @@ export default function BoardWrite() {
   const [openGuestBookModal, setGuestModal] = useState(false);
   const [openGuestBookDelectModal, setGuestDelectModal] = useState(false);
   const [passwordValidation, setPasswordValidation] = useState('');
+  const [weddingDay, setWeddingDay] = useState<Date>(new Date());
   const addPost = () => {
     setGuestModal(!openGuestBookModal);
   };
@@ -101,17 +102,17 @@ export default function BoardWrite() {
     setGuestDelectModal(!openGuestBookDelectModal);
   };
 
-  const addCard = (card) => {
+  const addCard = (card:any) => {
     setCards((cards) => {
-      const updated = { ...cards };
+      const updated:any = { ...cards };
       updated[card.id] = card;
       return updated;
     });
     setGuestModal(!openGuestBookModal);
   };
 
-  const deleteCard = (cardPassword, id) => {
-    const updated = { ...cards }; // card를 받아온다.
+  const deleteCard = (cardPassword:any, id:any) => {
+    const updated:any = { ...cards }; // card를 받아온다.
     if (updated[id].password === cardPassword) {
       setCards(() => {
         delete updated[id];
@@ -119,7 +120,7 @@ export default function BoardWrite() {
       });
       setGuestDelectModal(!openGuestBookDelectModal);
     } else if (updated[id].password !== cardPassword) {
-      setPasswordValidation(!passwordValidation);
+      // setPasswordValidation(!passwordValidation); error 발생
     } else {
       // 공백 && 포커스를 가져길을때 === 비밀번호를 입력해주세요.
     }
