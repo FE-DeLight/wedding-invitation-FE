@@ -110,11 +110,16 @@ const UserEditColor = styled.div`
 const Dropdown = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 15px;
+  padding: 30px 20px;
   .item {
     margin-top: 15px;
     padding-top: 15px;
     border-top: 1px solid #eee;
+    &:first-child {
+      margin-top: 0;
+      padding-top: 0;
+      border-top: none;
+    }
     .text {
       display: flex;
       align-items: center;
