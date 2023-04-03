@@ -22,6 +22,7 @@ export default function MyPage() {
       window.localStorage.removeItem('token');
       router.push('/');
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error(error);
     }
   };
@@ -39,6 +40,7 @@ export default function MyPage() {
           setUserInfo(res.data.response);
         })
         .catch((err) => {
+          // eslint-disable-next-line no-console
           console.error(err);
         });
     }
@@ -56,6 +58,7 @@ export default function MyPage() {
           <p>사용자 정보를 불러오는 중입니다...</p>
         )}
       </div>
+      {/* eslint-disable-next-line react/button-has-type */}
       <button onClick={handleLogout}>로그아웃</button>
     </Wrapper>
   );
