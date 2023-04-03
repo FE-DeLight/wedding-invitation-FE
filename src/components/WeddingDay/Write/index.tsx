@@ -3,10 +3,11 @@ import * as G from '@/styles/globals';
 import styled from '@emotion/styled';
 
 import 'react-datepicker/dist/react-datepicker.css';
-import DatePicker, { registerLocale } from 'react-datepicker';
+import DatePicker from 'react-datepicker';
 import ko from 'date-fns/locale/ko';
+import 'moment/locale/ko';
 
-registerLocale('ko', ko);
+// registerLocale('ko', ko);
 
 const CustomDatePicker = styled(DatePicker)`
   width: 100%;
@@ -33,7 +34,7 @@ export default function WeddingDayWrite({ weddingDay, setWeddingDay }: any) {
         <CustomDatePicker
           selected={weddingDay}
           popperPlacement="bottom-start"
-          locale="ko"
+          locale={ko}
           minDate={new Date()}
           onChange={onChange}
           peekNextMonth
@@ -43,7 +44,7 @@ export default function WeddingDayWrite({ weddingDay, setWeddingDay }: any) {
           showTimeSelect
           timeFormat="HH:mm"
           timeIntervals={10}
-          dateFormat="yyyy년 MM월 d일, aa h시 mm분"
+          dateFormat="yyyy년 MM월 d일 (dddd), aa h시 mm분"
           placeholderText="클릭하여 날짜를 변경하세요."
         />
       </G.ColContent>

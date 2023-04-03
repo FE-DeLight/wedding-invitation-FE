@@ -10,12 +10,13 @@ export default function WeddingDayWrite({ weddingDay }: any) {
   registerLocale('ko', ko);
 
   const formattedDate = formatDate(weddingDay, 'M월 D일');
-  const formattedFullDate = formatDate(weddingDay, 'YYYY년 M월 D일');
+  const formattedFullDate = formatDate(weddingDay, 'YYYY년 M월 D일 dddd');
   const formattedTime = formatTime(weddingDay);
 
   const getDateDiffFromToday = (date: Date): number => {
-    const today = moment();
-    const targetDate = moment(date);
+    const today = moment().startOf('day');
+    const targetDate = moment(date).startOf('day');
+
     return targetDate.diff(today, 'days');
   };
   const dateDiff = getDateDiffFromToday(weddingDay);
@@ -30,11 +31,16 @@ export default function WeddingDayWrite({ weddingDay }: any) {
         dayClassName={(date: Date) => {
           const isOutsideMonth = date.getMonth() !== weddingDay.getMonth();
           const isSunday = date.getDay() === 0;
-          return isOutsideMonth
-            ? 'react-datepicker__day--disabled react-datepicker__day--outside-month'
-            : isSunday
-            ? 'react-datepicker__day--sun'
-            : null;
+
+          if (isOutsideMonth) {
+            return 'react-datepicker__day--disabled react-datepicker__day--outside-month';
+          }
+
+          if (isSunday) {
+            return 'react-datepicker__day--sun';
+          }
+
+          return null;
         }}
         calendarClassName="preview-react-datepicker"
       />
