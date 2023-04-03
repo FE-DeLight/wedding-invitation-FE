@@ -92,6 +92,7 @@
   background-color: transparent;
   font-size: 14px;
 
+
   &__day--sun {
     color: red;
   }
@@ -106,7 +107,9 @@
       background-color: transparent;
       border-bottom: 0;
       border-top-left-radius: 0;
-
+    }
+    .react-datepicker__current-month{
+      display: none;
     }
   }
 }
