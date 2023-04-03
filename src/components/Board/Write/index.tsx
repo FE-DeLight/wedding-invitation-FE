@@ -2,17 +2,35 @@ import React, { useState } from 'react';
 import Card from '@/components/Card';
 import * as S from '@/components/Board/Write/style';
 import { useRouter } from 'next/router';
-import Select from '@/components/Select';
-import Button from '@/components/Button';
-import * as G from '@/styles/globals';
 import TemplateWrite from '@/components/WeddingTemplate/Write';
 import TemplatePreview from '@/components/WeddingTemplate/Preview';
 import WeddingDayWrite from '@/components/WeddingDay/Write';
 import WeddingDayPreview from '@/components/WeddingDay/Preview';
 
-// interface Props {
-//   isEdit?: Boolean;
-// }
+type TemplateType = {
+  id: number;
+  value: string;
+};
+
+// 템플릿
+
+const templateType: TemplateType[] = [
+  { id: 1, value: 'A' },
+  { id: 2, value: 'B' },
+  { id: 3, value: 'C' },
+  { id: 4, value: 'Img' },
+];
+const templateColor = [
+  { id: 1, value: 'Ink Black', color: 'rgb(6, 8, 15)' },
+  { id: 2, value: 'Sour Cream', color: 'rgb(255, 253, 247)' },
+  { id: 3, value: 'Misty Rose', color: 'rgb(245, 230, 227)' },
+  { id: 4, value: 'Dusty Ash', color: 'rgb(92, 107, 100)' },
+  { id: 5, value: 'Wenge', color: 'rgb(105, 94, 78)' },
+  { id: 6, value: 'Purple Violet', color: 'rgb(65, 53, 77)' },
+  { id: 7, value: 'Deep Blue', color: 'rgb(8, 17, 59)' },
+];
+
+// 템플릿
 
 export default function BoardWrite() {
   const router = useRouter();
@@ -25,7 +43,7 @@ export default function BoardWrite() {
   return (
     <S.Wrapper>
       <S.ContentLeft>
-        <Card color="white" type="preview">
+        <Card type="preview">
           <TemplatePreview />
         </Card>
         <Card title="제목2" type="preview">
@@ -38,77 +56,21 @@ export default function BoardWrite() {
 
       <S.ContentRight>
         <Card title="템플릿">
-          <G.RowWrap>
-            <G.Row>
-              <G.ColTitle>셀렉트</G.ColTitle>
-              <G.ColContent>
-                <Select options={['a', 'b']} />
-              </G.ColContent>
-            </G.Row>
-            <G.Row>
-              <G.ColTitle>텍스트</G.ColTitle>
-              <G.ColContent>
-                <G.InputText type="text" />
-              </G.ColContent>
-            </G.Row>
-            <G.Row>
-              <G.ColTitle>라디오</G.ColTitle>
-              <G.ColContent>
-                <G.RadioGroup>
-                  <G.LabelRadio htmlFor="radiotext01_1">
-                    Black
-                    <G.InputRadio type="radio" id="radiotext01_1" name="radiotext01" />
-                  </G.LabelRadio>
-                  <G.LabelRadio htmlFor="radiotext01_2">
-                    White
-                    <G.InputRadio type="radio" id="radiotext01_2" name="radiotext01" />
-                  </G.LabelRadio>
-                </G.RadioGroup>
-              </G.ColContent>
-            </G.Row>
-            <G.Row>
-              <G.ColTitle>체크박스</G.ColTitle>
-              <G.ColContent>
-                <G.CheckboxGroup>
-                  <G.LabelCheckbox htmlFor="checkboxtest01_1">
-                    Black
-                    <G.InputCheckbox type="checkbox" id="checkboxtest01_1" name="checkboxtest01" />
-                  </G.LabelCheckbox>
-                  <G.LabelCheckbox htmlFor="checkboxtest01_2">
-                    White
-                    <G.InputCheckbox type="checkbox" id="checkboxtest01_2" name="checkboxtest01" />
-                  </G.LabelCheckbox>
-                </G.CheckboxGroup>
-              </G.ColContent>
-            </G.Row>
-            <G.Row>
-              <G.ColTitle>텍스트박스</G.ColTitle>
-              <G.ColContent>
-                <G.Textarea />
-              </G.ColContent>
-            </G.Row>
-            <G.Row>
-              <G.ColTitle>버튼ㄴ</G.ColTitle>
-              <G.ColContent>
-                <Button>버튼</Button>
-              </G.ColContent>
-            </G.Row>
-          </G.RowWrap>
+          <TemplateWrite color={templateColor} type={templateType} />
         </Card>
-        <Card title="템플릿">
-          <TemplateWrite />
-        </Card>
+        <Card title="예식일" />
+        <Card title="첫 화면" />
         <Card title="예식일">
           <WeddingDayWrite weddingDay={weddingDay} setWeddingDay={setWeddingDay} />
         </Card>
         <Card color="white" title="첫 화면" />
         <Card title="청첩장 문구" />
-        <Card color="white" title="보내는 사람" />
-        <Card color="white" title="캘린더 스타일" />
-        <Card color="white" title="갤러리" />
-        <Card color="white" title="예식장 정보" />
-        <Card color="white" title="길 안내" />
-        <Card color="white" title="계좌 정보" />
+        <Card title="보내는 사람" />
+        <Card title="캘린더 스타일" />
+        <Card title="갤러리" />
+        <Card title="예식장 정보" />
+        <Card title="길 안내" />
+        <Card title="계좌 정보" />
         <Card title="연락처 정보" />
         <Card title="식전 영상" />
         <Card title="안내사항" />

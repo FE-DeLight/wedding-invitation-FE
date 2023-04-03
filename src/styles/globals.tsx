@@ -15,29 +15,31 @@ export const ColTitle = styled.div`
 `;
 export const ColContent = styled.div`
   display: flex;
-  flex: 1;
+  width: calc(100% - 100px);
 `;
 export const RadioGroup = styled.div`
   display: flex;
   gap: 20px;
 `;
-export const LabelRadio = styled.label`
+export const RadioLabel = styled.label`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
-export const InputRadio = styled.input`
-  margin-left: 10px;
+export const RadioInput = styled.input`
+  margin-right: 10px;
 `;
 export const CheckboxGroup = styled.div`
   display: flex;
   gap: 20px;
 `;
-export const LabelCheckbox = styled.label`
+export const CheckboxLabel = styled.label`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
-export const InputCheckbox = styled.input`
-  margin-left: 10px;
+export const CheckboxInput = styled.input`
+  margin-right: 10px;
 `;
 export const InputText = styled.input``;
 export const Textarea = styled.textarea``;
