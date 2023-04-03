@@ -19,10 +19,10 @@ export const ContentLeft = styled.div`
     padding: 0;
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
-    &:first-child {
+    :first-of-type {
       border-top: 1px solid #ddd;
     }
-    &:last-child {
+    :last-of-type {
       border-bottom: 1px solid #ddd;
     }
   }

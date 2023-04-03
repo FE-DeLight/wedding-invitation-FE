@@ -116,7 +116,7 @@ const Dropdown = styled.div`
     margin-top: 15px;
     padding-top: 15px;
     border-top: 1px solid #eee;
-    &:first-child {
+    :first-of-type {
       margin-top: 0;
       padding-top: 0;
       border-top: none;
