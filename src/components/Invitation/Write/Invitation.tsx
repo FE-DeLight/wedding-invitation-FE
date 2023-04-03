@@ -9,13 +9,13 @@ export default function Invitation({ text, textAreaRef, handleChange, showSample
       <G.Row>
         <G.ColTitle>제목</G.ColTitle>
         <G.ColContent>
-          <G.InputText id="title" type="text" onChange={handleChange} />
+          <G.InputText id="title" type="text" value={text.title} onChange={handleChange} />
         </G.ColContent>
       </G.Row>
       <G.Row>
         <G.ColTitle>텍스트박스</G.ColTitle>
         <G.ColContent>
-          <G.Textarea id="contents" ref={textAreaRef} onChange={handleChange} value={text.content} />
+          <G.Textarea id="contents" ref={textAreaRef} onChange={handleChange} />
         </G.ColContent>
       </G.Row>
       <G.TextButton onClick={showSampleText}>

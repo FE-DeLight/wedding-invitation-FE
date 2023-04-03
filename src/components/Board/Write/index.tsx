@@ -19,8 +19,8 @@ export default function BoardWrite() {
   const [openModal, setModal] = useState(false);
   const textAreaRef = useRef();
   const [text, setText] = useState({
-    title: '확인',
-    content: '확인',
+    title: '초대합니다.',
+    content: '[청첩장 문구]에 내용을 입력해 주세요.',
   });
 
   const sandContent = (e) => {
