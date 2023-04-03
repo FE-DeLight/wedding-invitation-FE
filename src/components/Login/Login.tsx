@@ -57,7 +57,7 @@ export default function Login() {
 
   useEffect(() => {
     if (window.location.href.includes('access_token')) {
-      // window.localStorage.setItem('token', window.location.href.split('=')[1].split('&')[0] ?? 'none');
+      window.localStorage.setItem('token', window.location.href.split('=')[1].split('&')[0] ?? 'none');
       router.push('/mypage');
     }
   }, [router]);
