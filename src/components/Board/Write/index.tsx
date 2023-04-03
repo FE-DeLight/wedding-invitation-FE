@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 import React, { useRef, useState } from 'react';
 import Card from '@/components/Card';
 import * as S from '@/components/Board/Write/style';
@@ -9,10 +10,8 @@ import TemplateWrite from '@/components/WeddingTemplate/Write';
 import TemplatePreview from '@/components/WeddingTemplate/Preview';
 import SampleModal from '@/components/Modal/SampleModal';
 import Invitation from '@/components/Invitation/Write/Invitation';
-
-// interface Props {
-//   isEdit?: Boolean;
-// }
+import PrivewCard from '@/components/GuestBook/PrivewCard';
+import GuestBookModal from '@/components/Modal/GuestBookModal';
 
 export default function BoardWrite() {
   // 청첩장 문구 관련 State, Function
@@ -57,6 +56,52 @@ export default function BoardWrite() {
     router.push('/boards/');
   };
 
+  // 방명록 관련 State, Function
+  const [cards, setCards] = useState({});
+  const [openGuestBookModal, setGuestModal] = useState(false);
+  const [openGuestBookDelectModal, setGuestDelectModal] = useState(false);
+  const [passwordValidation, setPasswordValidation] = useState('');
+  const addPost = () => {
+    setGuestModal(!openGuestBookModal);
+  };
+  const handleVisibility = () => {
+    setGuestModal(!openGuestBookModal);
+  };
+
+  const handleValidation = () => {
+    setPasswordValidation('');
+  };
+
+  const HandleGBDelectVisibility = () => {
+    console.log(' 왜  닫기야 안되니? ');
+    handleValidation();
+    setGuestDelectModal(!openGuestBookDelectModal);
+  };
+
+  const addCard = (card) => {
+    setCards((cards) => {
+      const updated = { ...cards };
+      updated[card.id] = card;
+      return updated;
+    });
+    setGuestModal(!openGuestBookModal);
+  };
+
+  const deleteCard = (cardPassword, id) => {
+    const updated = { ...cards }; // card를 받아온다.
+    if (updated[id].password === cardPassword) {
+      setCards(() => {
+        delete updated[id];
+        return updated;
+      });
+      setGuestDelectModal(!openGuestBookDelectModal);
+    } else if (updated[id].password !== cardPassword) {
+      setPasswordValidation(!passwordValidation);
+    } else {
+      // 공백 && 포커스를 가져길을때 === 비밀번호를 입력해주세요.
+    }
+  };
+
   return (
     <>
       <S.Wrapper>
@@ -73,6 +118,27 @@ export default function BoardWrite() {
             <div>
               <p>{text.content}</p>
             </div>
+          </Card>
+          {/* 방명록 */}
+          <Card title="" type="preview">
+            <h3 className="invitation-phrases">
+              <p>방명록</p>
+            </h3>
+            <PrivewCard
+              cards={cards}
+              setGuestDelectModal={setGuestDelectModal}
+              deleteCard={deleteCard}
+              openGuestBookDelectModal={openGuestBookDelectModal}
+              HandleGBDelectVisibility={HandleGBDelectVisibility}
+              passwordValidation={passwordValidation}
+              handleValidation={handleValidation}
+            />
+            <S.GuestBookAddButton onClick={addPost}>방명록 남기기</S.GuestBookAddButton>
+            <GuestBookModal
+              openGuestBookModal={openGuestBookModal}
+              handleVisibility={handleVisibility}
+              addCard={addCard}
+            />
           </Card>
         </S.ContentLeft>
 
@@ -168,6 +234,10 @@ export default function BoardWrite() {
                 <G.ColContent>
                   <G.InputText type="text" />
                 </G.ColContent>
+              </G.Row>
+              <G.Row>
+                <G.ColTitle />
+                <G.ColContent>※ 방명록을 삭제할 때 필요한 비밀번호입니다.</G.ColContent>
               </G.Row>
             </G.RowWrap>
           </Card>

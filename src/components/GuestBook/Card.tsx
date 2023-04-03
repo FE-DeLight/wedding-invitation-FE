@@ -6,6 +6,7 @@ import GuestBookDelectModal from '../Modal/GuestBookDelectModal';
 
 const Cardli = styled.li`
   padding: 16px;
+  border-radius: 10px;
   margin-bottom: 8px;
   background-color: #fff;
   p {
@@ -39,6 +40,7 @@ export default function Card({
   handleValidation,
 }: CardProp) {
   const { id, password, name, time, content } = card;
+
   const onSubmit = () => {
     setGuestDelectModal(!openGuestBookDelectModal);
   };
@@ -53,16 +55,14 @@ export default function Card({
         </CardHeader>
         <p>{content}</p>
       </Cardli>
-      {openGuestBookDelectModal && (
-        <GuestBookDelectModal
-          id={id}
-          password={password}
-          HandleGBDelectVisibility={HandleGBDelectVisibility}
-          deleteCard={deleteCard}
-          passwordValidation={passwordValidation}
-          handleValidation={handleValidation}
-        />
-      )}
+      <GuestBookDelectModal
+        id={id}
+        password={password}
+        HandleGBDelectVisibility={HandleGBDelectVisibility}
+        deleteCard={deleteCard}
+        passwordValidation={passwordValidation}
+        handleValidation={handleValidation}
+      />
     </>
   );
 }

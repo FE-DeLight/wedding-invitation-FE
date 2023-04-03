@@ -9,6 +9,7 @@ export const Wrapper = styled.div`
 export const ContentLeft = styled.div`
   display: flex;
   flex-direction: column;
+  text-align: center;
   width: 350px;
   height: calc(100vh - 140px);
   margin: 80px 0 110px;
@@ -46,3 +47,10 @@ export const SubmitButton = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 `;
 export const Content = styled.div``;
+
+// 방명록
+
+export const GuestBookAddButton = styled.button`
+  border-radius: 20px;
+  text-align: center;
+`;

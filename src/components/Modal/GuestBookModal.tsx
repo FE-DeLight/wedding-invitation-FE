@@ -7,10 +7,11 @@ import dayjs from 'dayjs';
 
 const ModalLayout = styled.div`
   position: fixed;
+  z-index: 1;
   top: 50%;
   left: 50%;
-  width: 300px;
-  height: 300px;
+  width: 510px;
+  max-height: 600px;
   background-color: white;
   transform: translate(-50%, -50%);
 `;
@@ -22,8 +23,13 @@ const ModalWrap = styled.div`
 const ModalHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 5px 10px;
+  padding: 16px 24px;
   background-color: #e5e5e5;
+`;
+
+const IconButton = styled.button`
+  height: 0;
+  color: black;
 `;
 
 const ModalBody = styled.form`
@@ -98,7 +104,7 @@ export default function GuestBookModal({ openGuestBookModal, handleVisibility, a
       <ModalLayout>
         <ModalHeader>
           <header>방명록</header>
-          <button onClick={handleVisibility}>닫기</button>
+          <IconButton onClick={handleVisibility}>닫기</IconButton>
         </ModalHeader>
         <ModalWrap>
           <ModalBody ref={formRef} action="" method="post">

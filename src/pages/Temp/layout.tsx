@@ -2,13 +2,13 @@
 /* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable @typescript-eslint/no-shadow */
 import Priview from '@/components/preview';
-import EditForm from '@/components/EditForm';
 import SampleModal from '@/components/Modal/SampleModal';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+// import EditForm from '@/components/EditForm';
 
 const GlobalStyle = styled.div`
   background-color: green;
@@ -47,28 +47,28 @@ export default function useLayout() {
   });
 
   // 추가옵션 State
-  const [optionData, setOptionData] = useState({
-    background: '없음',
-    famliy: '나눔명조',
-    size: '작게',
-  });
+  // const [optionData, setOptionData] = useState({
+  //   background: '없음',
+  //   famliy: '나눔명조',
+  //   size: '작게',
+  // });
 
-  const test = useRef();
+  // const test = useRef();
 
   // InvitationPhrases 컴포넌트 사용되는 함수
-  const handleChange = (e) => {
-    if (e.target.id === 'title') {
-      setText({
-        ...text,
-        title: e.target.value,
-      });
-    } else {
-      setText({
-        ...text,
-        content: e.target.value,
-      });
-    }
-  };
+  // const handleChange = (e) => {
+  //   if (e.target.id === 'title') {
+  //     setText({
+  //       ...text,
+  //       title: e.target.value,
+  //     });
+  //   } else {
+  //     setText({
+  //       ...text,
+  //       content: e.target.value,
+  //     });
+  //   }
+  // };
 
   const showSampleText = () => {
     setModal(!openModal);
@@ -85,71 +85,55 @@ export default function useLayout() {
   };
 
   // MoreOption컴포넌트로부터 온 value
-  const handleMoreOption = (value: any) => {
-    const family = Object.keys(value).includes('famliy');
-    const size = Object.keys(value).includes('size');
-    if (family) {
-      setOptionData((optionData) => {
-        const updated = { ...optionData };
-        updated.famliy = value.famliy;
-        return updated;
-      });
-    } else if (size) {
-      // handleFontSize(value.size);
-      setOptionData((optionData) => {
-        const updated = { ...optionData };
-        updated.size = value.size;
-        return updated;
-      });
-    } else {
-      setOptionData((optionData) => {
-        const updated = { ...optionData };
-        updated.background = value.background;
-        return updated;
-      });
-    }
-  };
+  // const handleMoreOption = (value: any) => {
+  //   const family = Object.keys(value).includes('famliy');
+  //   const size = Object.keys(value).includes('size');
+  //   if (family) {
+  //     setOptionData((optionData) => {
+  //       const updated = { ...optionData };
+  //       updated.famliy = value.famliy;
+  //       return updated;
+  //     });
+  //   } else if (size) {
+  //     // handleFontSize(value.size);
+  //     setOptionData((optionData) => {
+  //       const updated = { ...optionData };
+  //       updated.size = value.size;
+  //       return updated;
+  //     });
+  //   } else {
+  //     setOptionData((optionData) => {
+  //       const updated = { ...optionData };
+  //       updated.background = value.background;
+  //       return updated;
+  //     });
+  //   }
+  // };
 
   // card의 순서를 넘겨줘야 될 것 같아.
-  const [components, setComponents] = useState({
-    '1': {
-      id: '1',
-      text: 'Writeacool',
-    },
-    '2': {
-      id: '2',
-      text: 'Make',
-    },
-    '3': {
-      id: '3',
-      text: 'Write',
-    },
-    '4': {
-      id: '4',
-      text: 'Create',
-    },
-    '5': {
-      id: '5',
-      text: 'Spam',
-    },
-  });
-  // '1': {
-  //   id: '1',
-  //   name: 'Elin1',
-  //   time: '방금 전, 1분, 2분 / ',12132424
-  //   content: '축하해요!',
-  //   password: '1111',
-  // },
-  // '2': {
-  //   id: '2',
-  //   time: '20분',
-  //   name: 'Anna',
-  //   content: '축하합니다ㅏㅏㅏㅏ!',
-  //   password: '1111',
-  // },
-  const HandleAllLayout = () => {
-    setComponents();
-  };
+  // const [components, setComponents] = useState({
+  //   '1': {
+  //     id: '1',
+  //     text: 'Writeacool',
+  //   },
+  //   '2': {
+  //     id: '2',
+  //     text: 'Make',
+  //   },
+  //   '3': {
+  //     id: '3',
+  //     text: 'Write',
+  //   },
+  //   '4': {
+  //     id: '4',
+  //     text: 'Create',
+  //   },
+  //   '5': {
+  //     id: '5',
+  //     text: 'Spam',
+  //   },
+  // });
+
   return (
     <>
       <DndProvider backend={HTML5Backend}>
@@ -160,7 +144,7 @@ export default function useLayout() {
           </GlobalStyle>
           {/* 오른쪽에서 보여지는 기능's */}
           <InvitaLayout>
-            <EditForm
+            {/* <EditForm
               text={text}
               test={test}
               handleChange={handleChange}
@@ -170,7 +154,7 @@ export default function useLayout() {
               setComponents={setComponents}
               HandleAllLayout={HandleAllLayout}
               components={components}
-            />
+            /> */}
           </InvitaLayout>
         </Container>
       </DndProvider>

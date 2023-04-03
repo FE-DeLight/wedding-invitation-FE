@@ -4,16 +4,11 @@
 import styled from '@emotion/styled';
 import Card from './Card.tsx';
 
-const PrivewCardSection = styled.section`
-  background-color: #9d9898;
-  padding: 12px 12px;
-  margin-bottom: 16px;
-`;
-
 const CardUl = styled.div`
   overflow-y: auto;
-  max-height: 150px;
+  max-height: 330px;
 `;
+
 export default function PrivewCard({
   cards,
   deleteCard,
@@ -22,25 +17,23 @@ export default function PrivewCard({
   setGuestDelectModal,
   passwordValidation,
   handleValidation,
-}) {
+}: any) {
   return (
-    <PrivewCardSection>
-      <CardUl>
-        {Object.keys(cards).length === 0
-          ? '축하 메시지를 남겨주세요!'
-          : Object.keys(cards).map((key) => (
-              <Card
-                key={key}
-                card={cards[key]}
-                deleteCard={deleteCard}
-                openGuestBookDelectModal={openGuestBookDelectModal}
-                HandleGBDelectVisibility={HandleGBDelectVisibility}
-                setGuestDelectModal={setGuestDelectModal}
-                passwordValidation={passwordValidation}
-                handleValidation={handleValidation}
-              />
-            ))}
-      </CardUl>
-    </PrivewCardSection>
+    <CardUl>
+      {Object.keys(cards).length === 0
+        ? '축하 메시지를 남겨주세요!'
+        : Object.keys(cards).map((key) => (
+            <Card
+              key={key}
+              card={cards[key]}
+              deleteCard={deleteCard}
+              openGuestBookDelectModal={openGuestBookDelectModal}
+              HandleGBDelectVisibility={HandleGBDelectVisibility}
+              setGuestDelectModal={setGuestDelectModal}
+              passwordValidation={passwordValidation}
+              handleValidation={handleValidation}
+            />
+          ))}
+    </CardUl>
   );
 }
