@@ -6,12 +6,9 @@ interface Props {
 }
 
 export default function Select(props: Props) {
-  const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    console.log(event.target.value);
-  };
   return (
     <S.SelectWrap>
-      <S.Select onChange={handleChange}>
+      <S.Select >
         {props?.options.map((item: any) => {
           return (
             <option value={item.value} key={item.id}>

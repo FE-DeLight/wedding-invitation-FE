@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const Card = styled.div`
   padding: 30px;
-  background-color: #eee;
+  background-color: ${ props => props.color ? props.color : '#eee'};
 `;
 
 export const Title = styled.div`
@@ -17,3 +17,4 @@ export const Content = styled.div`
   font-size: 14px;
   font-weight: 400;
 `;
+
