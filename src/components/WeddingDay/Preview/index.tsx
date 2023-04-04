@@ -5,9 +5,8 @@ import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import ko from 'date-fns/locale/ko';
 import * as S from '@/components/WeddingDay/Preview/style';
-import { Container } from '@/components/WeddingDay/Preview/style';
 
-export default function WeddingDayWrite({ weddingDay }: any) {
+export default function WeddingDayPreview({ weddingDay }: any) {
   registerLocale('ko', ko);
 
   const formattedDate = formatDate(weddingDay, 'M월 D일');

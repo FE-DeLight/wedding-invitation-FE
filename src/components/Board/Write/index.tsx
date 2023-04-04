@@ -147,7 +147,6 @@ export default function BoardWrite() {
         <Card color="white" title="예식일">
           <WeddingDayWrite weddingDay={weddingDay} setWeddingDay={setWeddingDay} />
         </Card>
-        <Card title="첫 화면" />
         <Card color="white" title="첫 화면" />
         <Card title="청첩장 문구" />
         <Card title="보내는 사람" />
