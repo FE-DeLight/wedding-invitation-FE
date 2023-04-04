@@ -1,21 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '@/store/userSlice';
 
 const Wrapper = styled.div`
   margin-top: 100px;
 `;
 
-interface UserInfo {
-  id: string;
-  nickname: string;
-  email: string;
-}
-
 export default function MyPage() {
-  const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
   const router = useRouter();
+  const dispatch = useDispatch();
   const handleLogout = async () => {
     try {
       await axios.post('/api/logout');
@@ -28,23 +24,18 @@ export default function MyPage() {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      axios
-        .get('/api/v1/nid/me', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((res) => {
-          setUserInfo(res.data.response);
-        })
-        .catch((err) => {
-          // eslint-disable-next-line no-console
-          console.error(err);
-        });
-    }
-  }, []);
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/api/v1/user');
+        const { nickname, email } = response.data;
+        const token = localStorage.getItem('token') || '';
+        dispatch(setUser({ nickname, email, token }));
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchUserData();
+  }, [dispatch]);
 
   return (
     <Wrapper>
