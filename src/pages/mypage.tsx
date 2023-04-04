@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
+import styled from '@emotion/styled';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import styled from '@emotion/styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from '@/store/userSlice';
+import { setUser, removeUser } from '@/store/userSlice';
 
 const Wrapper = styled.div`
   margin-top: 100px;
@@ -12,45 +12,47 @@ const Wrapper = styled.div`
 export default function MyPage() {
   const router = useRouter();
   const dispatch = useDispatch();
-  const handleLogout = async () => {
-    try {
-      await axios.post('/api/logout');
-      window.localStorage.removeItem('token');
-      router.push('/');
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(error);
-    }
-  };
+  const { nickname, email } = useSelector((state) => state.user);
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        const response = await axios.get('http://localhost:3000/api/v1/user');
-        const { nickname, email } = response.data;
-        const token = localStorage.getItem('token') || '';
-        dispatch(setUser({ nickname, email, token }));
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchUserData();
+    const token = localStorage.getItem('token');
+    if (token) {
+      axios
+        .get('/api/v1/nid/me', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          const { nickname, email } = res.data.response;
+          dispatch(setUser({ nickname, email, token }));
+        })
+        .catch((err) => {
+          console.error(err);
+          dispatch(removeUser());
+        });
+    }
   }, [dispatch]);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token'); // 토큰 삭제
+    dispatch(removeUser()); // 사용자 정보 초기화
+    router.push('/');
+  };
 
   return (
     <Wrapper>
       <div>
-        {userInfo ? (
+        {nickname ? (
           <div>
-            <p>{userInfo.email}</p>
-            <p>{userInfo.nickname}</p>
+            <p>{nickname}</p>
+            <p>{email}</p>
           </div>
         ) : (
           <p>사용자 정보를 불러오는 중입니다...</p>
         )}
       </div>
-      {/* eslint-disable-next-line react/button-has-type */}
-      <button onClick={handleLogout}>로그아웃</button>
+      <button onClick={handleLogout}>Logout</button>
     </Wrapper>
   );
 }
