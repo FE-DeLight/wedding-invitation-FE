@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 
+export const Container = styled.div`
+  padding: 56px 0;
+`;
+
 export const Title = styled.div`
   text-align: center;
   font-size: 20px;

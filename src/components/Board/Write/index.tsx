@@ -45,7 +45,7 @@ export default function BoardWrite() {
     content: '확인',
   });
 
-  const sandContent = (e:any) => {
+  const sandContent = (e: any) => {
     const content = e.target.innerHTML;
     const replaceSpace = content.replace(/(<br>|<br\/>|<br \/>)/g, '\r\n');
     setModal(!openModal);
@@ -55,7 +55,7 @@ export default function BoardWrite() {
     });
   };
 
-  const handleChange = (e:any) => {
+  const handleChange = (e: any) => {
     if (e.target.id === 'title') {
       setText({
         ...text,
@@ -102,17 +102,17 @@ export default function BoardWrite() {
     setGuestDelectModal(!openGuestBookDelectModal);
   };
 
-  const addCard = (card:any) => {
+  const addCard = (card: any) => {
     setCards((cards) => {
-      const updated:any = { ...cards };
+      const updated: any = { ...cards };
       updated[card.id] = card;
       return updated;
     });
     setGuestModal(!openGuestBookModal);
   };
 
-  const deleteCard = (cardPassword:any, id:any) => {
-    const updated:any = { ...cards }; // card를 받아온다.
+  const deleteCard = (cardPassword: any, id: any) => {
+    const updated: any = { ...cards }; // card를 받아온다.
     if (updated[id].password === cardPassword) {
       setCards(() => {
         delete updated[id];
@@ -135,7 +135,7 @@ export default function BoardWrite() {
         <Card title="제목2" type="preview">
           내용2
         </Card>
-        <Card title="예식일" type="preview" color="white">
+        <Card title="예식일" type="preview">
           <WeddingDayPreview weddingDay={weddingDay} />
         </Card>
       </S.ContentLeft>
@@ -144,11 +144,10 @@ export default function BoardWrite() {
         <Card title="템플릿">
           <TemplateWrite color={templateColor} type={templateType} />
         </Card>
-        <Card title="예식일" />
-        <Card title="첫 화면" />
-        <Card title="예식일">
+        <Card color="white" title="예식일">
           <WeddingDayWrite weddingDay={weddingDay} setWeddingDay={setWeddingDay} />
         </Card>
+        <Card title="첫 화면" />
         <Card color="white" title="첫 화면" />
         <Card title="청첩장 문구" />
         <Card title="보내는 사람" />

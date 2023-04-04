@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import ko from 'date-fns/locale/ko';
 import * as S from '@/components/WeddingDay/Preview/style';
+import { Container } from '@/components/WeddingDay/Preview/style';
 
 export default function WeddingDayWrite({ weddingDay }: any) {
   registerLocale('ko', ko);
@@ -22,7 +23,7 @@ export default function WeddingDayWrite({ weddingDay }: any) {
   const dateDiff = getDateDiffFromToday(weddingDay);
 
   return (
-    <>
+    <S.Container>
       <S.Title>{formattedDate}</S.Title>
       <DatePicker
         selected={weddingDay}
@@ -55,6 +56,6 @@ export default function WeddingDayWrite({ weddingDay }: any) {
           <span>남았습니다.</span>
         </S.Dday>
       </S.Wrapper>
-    </>
+    </S.Container>
   );
 }
