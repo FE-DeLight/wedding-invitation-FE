@@ -10,6 +10,7 @@ import PrivewCard from '@/components/GuestBook/PrivewCard';
 import GuestBookModal from '@/components/Modal/GuestBookModal';
 import WeddingDayWrite from '@/components/WeddingDay/Write';
 import WeddingDayPreview from '@/components/WeddingDay/Preview';
+import SenderWrite from '@/components/Sender/Write';
 
 type TemplateType = {
   id: number;
@@ -149,7 +150,9 @@ export default function BoardWrite() {
         </Card>
         <Card color="white" title="첫 화면" />
         <Card title="청첩장 문구" />
-        <Card title="보내는 사람" />
+        <Card title="보내는 사람">
+          <SenderWrite />
+        </Card>
         <Card title="캘린더 스타일" />
         <Card title="갤러리" />
         <Card title="예식장 정보" />
