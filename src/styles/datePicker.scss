@@ -150,8 +150,21 @@
           }
         }
         .react-datepicker__day--selected{
-          background-color: rgba(6, 8, 15, 0.44);
-           border-radius: 9999px;
+          &.circle{
+            background-color: rgba(6, 8, 15, 0.44);
+            border-radius: 9999px;
+          }
+          &.lined-circle{
+            border-radius: 9999px;
+            border: 1px solid rgba(6, 8, 15, 0.44);
+            background-color: transparent;
+            color: black;
+          }
+          &.heart{
+            background-color: rgba(6, 8, 15, 0.44);
+            border-radius: 9999px;
+          }
+
 
           &:hover{
             background-color: rgba(6, 8, 15, 0.44);;
