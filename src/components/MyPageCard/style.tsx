@@ -61,6 +61,10 @@ export const IconButton = styled.div`
     background-color: transparent;
     right: 8px;
     top: 8px;
+
+    .share-icon {
+      color: red;
+    }
   }
 `;
 

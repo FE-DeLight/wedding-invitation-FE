@@ -1,7 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable react/button-has-type */
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { GrShare } from 'react-icons/gr';
+import { RxShare2 } from 'react-icons/rx';
 import Tooltip from '../ToolTip';
 import * as S from './style';
 
@@ -21,7 +22,7 @@ export default function MyPageCard({ card }: any) {
         <S.IconButton>
           <button onClick={handleTooltip}>
             {/* 추후, 컬러 변경해주기 */}
-            <GrShare size="18" />
+            <RxShare2 size="18" className="share-icon" style={{ color: '#404040' }} />
           </button>
         </S.IconButton>
         <Tooltip oponTooltip={oponTooltip} />
