@@ -127,6 +127,9 @@ export default function BoardWrite() {
     }
   };
 
+  // 체크박스 상태를 관리할 상태 변수
+  const [showDday, setShowDday] = useState(true);
+
   return (
     <S.Wrapper>
       <S.ContentLeft>
@@ -137,7 +140,7 @@ export default function BoardWrite() {
           내용2
         </Card>
         <Card title="예식일" type="preview">
-          <WeddingDayPreview weddingDay={weddingDay} />
+          <WeddingDayPreview weddingDay={weddingDay} showDday={showDday} />
         </Card>
       </S.ContentLeft>
 
@@ -152,7 +155,7 @@ export default function BoardWrite() {
         <Card title="청첩장 문구" />
         <Card title="보내는 사람" />
         <Card color="white" title="캘린더 스타일">
-          <CalendarStyleWrite />
+          <CalendarStyleWrite showDday={showDday} setShowDday={setShowDday} />
         </Card>
         <Card title="갤러리" />
         <Card title="예식장 정보" />
