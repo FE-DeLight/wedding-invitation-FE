@@ -10,6 +10,7 @@ import PrivewCard from '@/components/GuestBook/PrivewCard';
 import GuestBookModal from '@/components/Modal/GuestBookModal';
 import WeddingDayWrite from '@/components/WeddingDay/Write';
 import WeddingDayPreview from '@/components/WeddingDay/Preview';
+import CalendarStyleWrite from '@/components/CalendarStyle/Write';
 
 type TemplateType = {
   id: number;
@@ -126,6 +127,9 @@ export default function BoardWrite() {
     }
   };
 
+  // 체크박스 상태를 관리할 상태 변수
+  const [showDday, setShowDday] = useState(true);
+
   return (
     <S.Wrapper>
       <S.ContentLeft>
@@ -135,8 +139,8 @@ export default function BoardWrite() {
         <Card title="제목2" type="preview">
           내용2
         </Card>
-        <Card title="예식일" type="preview" color="white">
-          <WeddingDayPreview weddingDay={weddingDay} />
+        <Card title="예식일" type="preview">
+          <WeddingDayPreview weddingDay={weddingDay} showDday={showDday} />
         </Card>
       </S.ContentLeft>
 
@@ -151,7 +155,9 @@ export default function BoardWrite() {
         <Card color="white" title="첫 화면" />
         <Card title="청첩장 문구" />
         <Card title="보내는 사람" />
-        <Card title="캘린더 스타일" />
+        <Card color="white" title="캘린더 스타일">
+          <CalendarStyleWrite showDday={showDday} setShowDday={setShowDday} />
+        </Card>
         <Card title="갤러리" />
         <Card title="예식장 정보" />
         <Card title="길 안내" />
