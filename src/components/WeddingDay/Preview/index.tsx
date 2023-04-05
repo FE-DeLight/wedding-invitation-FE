@@ -63,6 +63,7 @@ export default function WeddingDayPreview({ weddingDay }: any) {
         inline
         dayClassName={getDayClassName}
         calendarClassName="preview-react-datepicker"
+        onChange={() => {}}
       />
       <S.Wrapper>
         <S.Date>
