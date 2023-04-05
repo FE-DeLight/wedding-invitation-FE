@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 export const TooltipWrap = styled.div`
   position: absolute;
   width: 158px;
-  height: 147px;
   top: 40px;
   right: 8px;
   border: 1px solid #e5e5e5;
@@ -21,12 +20,21 @@ export const ToolListWrap = styled.div`
 export const List = styled.div`
   width: 100%;
   padding: 2px;
+  color: #000;
+  border-bottom: 1px solid #f5f5f5;
 
   button {
     width: 100%;
     padding: 8px;
-    border-bottom: 1px solid #f5f5f5;
+
     text-align: start;
+    font-size: 12px;
     background-color: transparent;
+
+    &:hover {
+      background-color: #525252;
+      border-radius: 5px;
+      color: #f5f5f5;
+    }
   }
 `;
