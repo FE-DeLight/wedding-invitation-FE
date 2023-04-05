@@ -159,6 +159,9 @@
             border: 1px solid rgba(6, 8, 15, 0.44);
             background-color: transparent;
             color: black;
+            &.react-datepicker__day--sun{
+              color: #f87171;
+            }
           }
           &.heart{
             background-color: transparent;

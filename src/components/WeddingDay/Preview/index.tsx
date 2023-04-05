@@ -39,13 +39,13 @@ export default function WeddingDayPreview({ weddingDay }: any) {
 
     switch (selectedStyleOption) {
       case 'circle':
-        className += 'circle';
+        className += ' circle ';
         break;
       case 'lined-circle':
-        className += 'lined-circle';
+        className += ' lined-circle ';
         break;
       case 'heart':
-        className += 'heart';
+        className += ' heart ';
         break;
       default:
         break;
