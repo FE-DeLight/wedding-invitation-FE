@@ -1,5 +1,9 @@
 import styled from '@emotion/styled';
 
+export const Container = styled.div`
+  padding: 56px 0;
+`;
+
 export const Title = styled.div`
   text-align: center;
   font-size: 20px;
@@ -29,7 +33,7 @@ export const Dday = styled.div`
   font-family: 'Nanum Myeongjo', serif;
   font-size: 12px;
   color: #171717;
-  margin-top: 10px;
+  margin-top: 15px;
 
   > span.red {
     color: #f87171;

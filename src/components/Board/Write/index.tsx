@@ -10,6 +10,7 @@ import PrivewCard from '@/components/GuestBook/PrivewCard';
 import GuestBookModal from '@/components/Modal/GuestBookModal';
 import WeddingDayWrite from '@/components/WeddingDay/Write';
 import WeddingDayPreview from '@/components/WeddingDay/Preview';
+import CalendarStyleWrite from '@/components/CalendarStyle/Write';
 
 type TemplateType = {
   id: number;
@@ -45,7 +46,7 @@ export default function BoardWrite() {
     content: '확인',
   });
 
-  const sandContent = (e:any) => {
+  const sandContent = (e: any) => {
     const content = e.target.innerHTML;
     const replaceSpace = content.replace(/(<br>|<br\/>|<br \/>)/g, '\r\n');
     setModal(!openModal);
@@ -55,7 +56,7 @@ export default function BoardWrite() {
     });
   };
 
-  const handleChange = (e:any) => {
+  const handleChange = (e: any) => {
     if (e.target.id === 'title') {
       setText({
         ...text,
@@ -102,17 +103,17 @@ export default function BoardWrite() {
     setGuestDelectModal(!openGuestBookDelectModal);
   };
 
-  const addCard = (card:any) => {
+  const addCard = (card: any) => {
     setCards((cards) => {
-      const updated:any = { ...cards };
+      const updated: any = { ...cards };
       updated[card.id] = card;
       return updated;
     });
     setGuestModal(!openGuestBookModal);
   };
 
-  const deleteCard = (cardPassword:any, id:any) => {
-    const updated:any = { ...cards }; // card를 받아온다.
+  const deleteCard = (cardPassword: any, id: any) => {
+    const updated: any = { ...cards }; // card를 받아온다.
     if (updated[id].password === cardPassword) {
       setCards(() => {
         delete updated[id];
@@ -126,6 +127,9 @@ export default function BoardWrite() {
     }
   };
 
+  // 체크박스 상태를 관리할 상태 변수
+  const [showDday, setShowDday] = useState(true);
+
   return (
     <S.Wrapper>
       <S.ContentLeft>
@@ -135,8 +139,8 @@ export default function BoardWrite() {
         <Card title="제목2" type="preview">
           내용2
         </Card>
-        <Card title="예식일" type="preview" color="white">
-          <WeddingDayPreview weddingDay={weddingDay} />
+        <Card title="예식일" type="preview">
+          <WeddingDayPreview weddingDay={weddingDay} showDday={showDday} />
         </Card>
       </S.ContentLeft>
 
@@ -144,15 +148,15 @@ export default function BoardWrite() {
         <Card title="템플릿">
           <TemplateWrite color={templateColor} type={templateType} />
         </Card>
-        <Card title="예식일" />
-        <Card title="첫 화면" />
-        <Card title="예식일">
+        <Card color="white" title="예식일">
           <WeddingDayWrite weddingDay={weddingDay} setWeddingDay={setWeddingDay} />
         </Card>
         <Card color="white" title="첫 화면" />
         <Card title="청첩장 문구" />
         <Card title="보내는 사람" />
-        <Card title="캘린더 스타일" />
+        <Card color="white" title="캘린더 스타일">
+          <CalendarStyleWrite showDday={showDday} setShowDday={setShowDday} />
+        </Card>
         <Card title="갤러리" />
         <Card title="예식장 정보" />
         <Card title="길 안내" />
