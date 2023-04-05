@@ -1,5 +1,7 @@
 /* eslint-disable react/button-has-type */
+import Image from 'next/image';
 import React from 'react';
+import { GrShare } from 'react-icons/gr';
 import * as S from './style';
 
 export default function MyPageCard({ card }: any) {
@@ -8,9 +10,15 @@ export default function MyPageCard({ card }: any) {
   return (
     <S.Li>
       <S.Header>
-        <div>{image}</div>
+        <S.ImageWrap>
+          {/* DB에 저장된 default 이미지일 경우 보여짐 */}
+          <Image src={image} width={150} height={254} alt="이미지 테스트" />
+        </S.ImageWrap>
         <S.IconButton>
-          <button>Icon</button>
+          <button>
+            {/* 추후, 컬러 변경해주기 */}
+            <GrShare size="18" />
+          </button>
         </S.IconButton>
       </S.Header>
       <S.Body>

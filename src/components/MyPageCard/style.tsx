@@ -13,9 +13,16 @@ export const Li = styled.li`
   background-color: #fff;
   border: solid 1px rgb(229, 229, 229);
 
+  margin-bottom: 20px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
   // 639까지 1개
   @media all and (max-width: 639px) {
     width: 100%;
+    margin-bottom: 40px;
   }
 
   // 640 ~1023 이상부터 2개
@@ -28,20 +35,21 @@ export const Li = styled.li`
   @media screen and (min-width: 1024px) {
     width: calc(25% - 20px);
     margin-right: 20px;
-    margin-bottom: 20px;
 
     &:nth-child(4n) {
       margin-right: 0;
     }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
   }
+`;
+
+export const ImageWrap = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export const Header = styled.div`
   position: relative;
+  padding: 32px 0;
   height: 318px;
   border-bottom: solid 1px rgb(229, 229, 229);
 `;
@@ -49,6 +57,7 @@ export const Header = styled.div`
 export const IconButton = styled.div`
   button {
     position: absolute;
+    background-color: transparent;
     right: 8px;
     top: 8px;
   }
