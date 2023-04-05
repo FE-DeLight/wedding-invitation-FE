@@ -1,12 +1,16 @@
 /* eslint-disable react/button-has-type */
 import Image from 'next/image';
-import React from 'react';
+import React, { useState } from 'react';
 import { GrShare } from 'react-icons/gr';
+import Tooltip from '../ToolTip';
 import * as S from './style';
 
 export default function MyPageCard({ card }: any) {
   const { image, codeNumber, createDate, deleteDate } = card;
-
+  const [oponTooltip, setOpenTootip] = useState(false);
+  const handleTooltip = () => {
+    setOpenTootip(!oponTooltip);
+  };
   return (
     <S.Li>
       <S.Header>
@@ -15,11 +19,12 @@ export default function MyPageCard({ card }: any) {
           <Image src={image} width={150} height={254} alt="이미지 테스트" />
         </S.ImageWrap>
         <S.IconButton>
-          <button>
+          <button onClick={handleTooltip}>
             {/* 추후, 컬러 변경해주기 */}
             <GrShare size="18" />
           </button>
         </S.IconButton>
+        <Tooltip oponTooltip={oponTooltip} />
       </S.Header>
       <S.Body>
         <div>

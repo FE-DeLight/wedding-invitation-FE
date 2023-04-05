@@ -8,6 +8,7 @@ export const Ul = styled.ul`
 `;
 
 export const Li = styled.li`
+  position: relative;
   height: 474px;
   font-size: 12px;
   background-color: #fff;
@@ -33,7 +34,7 @@ export const Li = styled.li`
 
   // 1024 이상 4개
   @media screen and (min-width: 1024px) {
-    width: calc(25% - 20px);
+    width: calc(25% - 15px);
     margin-right: 20px;
 
     &:nth-child(4n) {
