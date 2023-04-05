@@ -22,7 +22,7 @@ export default function WeddingDayPreview({ weddingDay }: any) {
   };
   const dateDiff = getDateDiffFromToday(weddingDay);
 
-  const selectedStyleOption = useSelector((state) => state.styleOption.selectedStyleOption);
+  const selectedStyleOption = useSelector((state) => (state as any).styleOption.selectedStyleOption);
 
   const getDayClassName = (date: Date) => {
     const isOutsideMonth = date.getMonth() !== weddingDay.getMonth();
