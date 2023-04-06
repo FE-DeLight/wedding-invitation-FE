@@ -2,6 +2,7 @@ import React from 'react';
 import * as G from '@/styles/globals';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSenderForm } from '@/store/userInfoSlice';
+import { TextField, FormControlLabel, Checkbox, Box, Stack } from '@mui/material';
 
 export default function SenderWrite() {
   const dispatch = useDispatch();
@@ -30,68 +31,74 @@ export default function SenderWrite() {
 
   return (
     <>
-      <G.RowWrap>
-        <G.Row>
+      <Box>
+        <Stack direction="row">
           <G.ColTitle>신랑</G.ColTitle>
-          <G.ColContent>
-            <input type="text" name="male.name" onChange={handleInputChange} />
-            <input
-              type="text"
+          <Stack direction="row">
+            <TextField variant="outlined" name="male.name" onChange={handleInputChange} />
+            <TextField
+              variant="outlined"
               value={senderForm.male.relationship}
               name="male.relationship"
               onChange={handleInputChange}
             />
-          </G.ColContent>
-        </G.Row>
-        <G.Row>
+          </Stack>
+        </Stack>
+        <Stack direction="row">
           <G.ColTitle>아버지</G.ColTitle>
-          <G.ColContent>
-            <input type="text" name="male.father.name" onChange={handleInputChange} />
-            <label>
-              <input type="checkbox" name="male.father.isDeceased" onChange={handleInputChange} />
-              고인
-            </label>
-          </G.ColContent>
-        </G.Row>
-        <G.Row>
+          <Stack direction="row">
+            <TextField variant="outlined" name="male.father.name" onChange={handleInputChange} />
+            <FormControlLabel
+              control={<Checkbox defaultChecked name="male.father.isDeceased" onChange={handleInputChange} />}
+              label="고인"
+            />
+          </Stack>
+        </Stack>
+        <Stack direction="row">
           <G.ColTitle>어머니</G.ColTitle>
-          <G.ColContent>
-            <input type="text" name="male.mother.name" onChange={handleInputChange} />
-            <label>
-              <input type="checkbox" name="male.mother.isDeceased" onChange={handleInputChange} />
-              고인
-            </label>
-          </G.ColContent>
-        </G.Row>
-      </G.RowWrap>
-      <G.RowWrap>
-        <G.Row>
+          <Stack direction="row">
+            <TextField variant="outlined" name="male.mother.name" onChange={handleInputChange} />
+            <FormControlLabel
+              control={<Checkbox defaultChecked name="male.mother.isDeceased" onChange={handleInputChange} />}
+              label="고인"
+            />
+          </Stack>
+        </Stack>
+      </Box>
+      <Box>
+        <Stack direction="row">
           <G.ColTitle>신부</G.ColTitle>
-          <G.ColContent>
-            <input type="text" name="female.name" onChange={handleInputChange} />
-            <input
-              type="text"
+          <Stack direction="row">
+            <TextField variant="outlined" name="female.name" onChange={handleInputChange} />
+            <TextField
+              variant="outlined"
               value={senderForm.female.relationship}
               name="female.relationship"
               onChange={handleInputChange}
             />
-          </G.ColContent>
-        </G.Row>
-        <G.Row>
+          </Stack>
+        </Stack>
+        <Stack direction="row">
           <G.ColTitle>아버지</G.ColTitle>
-          <G.ColContent>
-            <input type="text" name="female.father.name" onChange={handleInputChange} />
-            <input type="checkbox" name="female.father.isDeceased" onChange={handleInputChange} />
-          </G.ColContent>
-        </G.Row>
-        <G.Row>
+          <Stack direction="row">
+            <TextField variant="outlined" name="female.father.name" onChange={handleInputChange} />
+            <FormControlLabel
+              control={<Checkbox defaultChecked name="female.father.isDeceased" onChange={handleInputChange} />}
+              label="고인"
+            />
+          </Stack>
+        </Stack>
+        <Stack direction="row">
           <G.ColTitle>어머니</G.ColTitle>
-          <G.ColContent>
-            <input type="text" name="female.mother.name" onChange={handleInputChange} />
-            <input type="checkbox" name="female.mother.isDeceased" onChange={handleInputChange} />
-          </G.ColContent>
-        </G.Row>
-      </G.RowWrap>
+          <Stack direction="row">
+            <TextField variant="outlined" name="female.mother.name" onChange={handleInputChange} />
+            <FormControlLabel
+              control={<Checkbox defaultChecked name="female.mother.isDeceased" onChange={handleInputChange} />}
+              label="고인"
+            />
+          </Stack>
+        </Stack>
+      </Box>
     </>
   );
 }
