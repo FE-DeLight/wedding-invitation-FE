@@ -1,6 +1,6 @@
-import * as S from './style';
 import Image from 'next/image';
 import React, { useEffect, useRef } from 'react';
+import * as S from './style';
 
 export default function LoginNaver() {
   const naverLoginRef = useRef<HTMLDivElement>(null);

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser, resetUser } from '../store/loginSlice';
+import { setUser, resetUser } from '@/store/loginSlice';
 
 const Wrapper = styled.div`
   margin-top: 100px;
@@ -28,7 +28,6 @@ export default function MyPage() {
           dispatch(setUser({ nickname, email, token }));
         })
         .catch((err) => {
-          console.error(err);
           dispatch(resetUser());
         });
     }
