@@ -17,12 +17,19 @@ export default function SenderWrite() {
       ...senderForm,
       [senderType]: {
         ...senderForm[senderType],
-        [senderKey]: { ...senderForm[senderType][senderKey], [subKey]: type === 'checkbox' ? checked : value },
+        [senderKey]: !subKey
+          ? value
+          : {
+              ...senderForm[senderType][senderKey],
+              [subKey]: type === 'checkbox' ? checked : value,
+            },
       },
     };
 
     dispatch(setSenderForm(updatedSenderForm));
   };
+
+  console.log(senderForm);
 
   return (
     <>
