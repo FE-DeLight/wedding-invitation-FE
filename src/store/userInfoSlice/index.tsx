@@ -26,7 +26,7 @@ const initialState: InitialStateType = {
   senderForm: {
     male: {
       name: '',
-      relationship: '',
+      relationship: '아들',
       mother: {
         name: '',
         isDeceased: false,
@@ -38,7 +38,7 @@ const initialState: InitialStateType = {
     },
     female: {
       name: '',
-      relationship: '',
+      relationship: '딸',
       mother: {
         name: '',
         isDeceased: false,

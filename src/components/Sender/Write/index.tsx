@@ -25,7 +25,6 @@ export default function SenderWrite() {
             },
       },
     };
-
     dispatch(setSenderForm(updatedSenderForm));
   };
 
@@ -36,21 +35,32 @@ export default function SenderWrite() {
           <G.ColTitle>신랑</G.ColTitle>
           <G.ColContent>
             <input type="text" name="male.name" onChange={handleInputChange} />
-            <input type="text" name="male.relationship" onChange={handleInputChange} />
+            <input
+              type="text"
+              value={senderForm.male.relationship}
+              name="male.relationship"
+              onChange={handleInputChange}
+            />
           </G.ColContent>
         </G.Row>
         <G.Row>
           <G.ColTitle>아버지</G.ColTitle>
           <G.ColContent>
             <input type="text" name="male.father.name" onChange={handleInputChange} />
-            <input type="checkbox" name="male.father.isDeceased" onChange={handleInputChange} />
+            <label>
+              <input type="checkbox" name="male.father.isDeceased" onChange={handleInputChange} />
+              고인
+            </label>
           </G.ColContent>
         </G.Row>
         <G.Row>
           <G.ColTitle>어머니</G.ColTitle>
           <G.ColContent>
             <input type="text" name="male.mother.name" onChange={handleInputChange} />
-            <input type="checkbox" name="male.mother.isDeceased" onChange={handleInputChange} />
+            <label>
+              <input type="checkbox" name="male.mother.isDeceased" onChange={handleInputChange} />
+              고인
+            </label>
           </G.ColContent>
         </G.Row>
       </G.RowWrap>
@@ -59,7 +69,12 @@ export default function SenderWrite() {
           <G.ColTitle>신부</G.ColTitle>
           <G.ColContent>
             <input type="text" name="female.name" onChange={handleInputChange} />
-            <input type="text" name="female.relationship" onChange={handleInputChange} />
+            <input
+              type="text"
+              value={senderForm.female.relationship}
+              name="female.relationship"
+              onChange={handleInputChange}
+            />
           </G.ColContent>
         </G.Row>
         <G.Row>

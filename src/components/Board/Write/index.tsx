@@ -12,6 +12,7 @@ import WeddingDayWrite from '@/components/WeddingDay/Write';
 import WeddingDayPreview from '@/components/WeddingDay/Preview';
 import SenderWrite from '@/components/Sender/Write';
 import CalendarStyleWrite from '@/components/CalendarStyle/Write';
+import SenderPreview from '@/components/Sender/Preview';
 
 type TemplateType = {
   id: number;
@@ -140,6 +141,9 @@ export default function BoardWrite() {
         <Card title="제목2" type="preview">
           내용2
         </Card>
+        <Card color="white" type="preview">
+          <SenderPreview />
+        </Card>
         <Card title="예식일" type="preview">
           <WeddingDayPreview weddingDay={weddingDay} showDday={showDday} />
         </Card>
@@ -155,11 +159,9 @@ export default function BoardWrite() {
         <Card title="첫 화면" />
         <Card color="white" title="첫 화면" />
         <Card title="청첩장 문구" />
-        <Card title="보내는 사람">
+        <Card color="white" title="보내는 사람">
           <SenderWrite />
         </Card>
-        <Card title="캘린더 스타일" />
-        <Card title="보내는 사람" />
         <Card color="white" title="캘린더 스타일">
           <CalendarStyleWrite showDday={showDday} setShowDday={setShowDday} />
         </Card>

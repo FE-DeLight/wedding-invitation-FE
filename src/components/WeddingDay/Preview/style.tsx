@@ -19,7 +19,7 @@ export const Title = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  margin-top: 20px;
+  margin-top: 40px;
   text-align: center;
 `;
 
