@@ -35,17 +35,17 @@ export default function Card({
           </button>
         </S.CardHeader>
         <p>{content}</p>
+        {openGuestBookDelectModal && (
+          <GuestBookDelectModal
+            id={id}
+            password={password}
+            HandleGBDelectVisibility={HandleGBDelectVisibility}
+            deleteCard={deleteCard}
+            passwordValidation={passwordValidation}
+            handleValidation={handleValidation}
+          />
+        )}
       </S.Cardli>
-      {openGuestBookDelectModal && (
-        <GuestBookDelectModal
-          id={id}
-          password={password}
-          HandleGBDelectVisibility={HandleGBDelectVisibility}
-          deleteCard={deleteCard}
-          passwordValidation={passwordValidation}
-          handleValidation={handleValidation}
-        />
-      )}
     </>
   );
 }
