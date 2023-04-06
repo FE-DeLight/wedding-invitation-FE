@@ -13,7 +13,7 @@ const initialState: UserState = {
 };
 
 const loginSlice = createSlice({
-  name: 'userSlice',
+  name: 'loginSlice',
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<UserState>) => {
@@ -22,7 +22,7 @@ const loginSlice = createSlice({
       item.email = action.payload.email;
       item.token = action.payload.token;
     },
-    removeUser: (state) => {
+    resetUser: (state) => {
       const item = state;
       item.nickname = '';
       item.email = '';
@@ -31,6 +31,6 @@ const loginSlice = createSlice({
   },
 });
 
-export const { setUser, removeUser } = loginSlice.actions;
+export const { setUser, resetUser } = loginSlice.actions;
 
 export default loginSlice.reducer;
