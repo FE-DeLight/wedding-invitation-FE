@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser, removeUser } from '@/store/userSlice';
+import { setUser, removeUser } from '../store/loginSlice';
 
 const Wrapper = styled.div`
   margin-top: 100px;

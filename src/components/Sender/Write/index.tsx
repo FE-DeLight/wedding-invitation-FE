@@ -24,8 +24,6 @@ export default function SenderWrite() {
     dispatch(setSenderForm(updatedSenderForm));
   };
 
-  console.log(senderForm);
-
   return (
     <>
       <G.RowWrap>
