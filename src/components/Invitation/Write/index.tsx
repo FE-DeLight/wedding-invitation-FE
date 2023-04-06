@@ -1,15 +1,13 @@
-/* eslint-disable react/button-has-type */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 import * as G from '@/styles/globals';
 
-export default function Invitation({ text, textAreaRef, handleChange, showSampleText }: any) {
+export default function Index({ text, textAreaRef, handleChange, showSampleText }: any) {
   return (
     <G.RowWrap>
       <G.Row>
         <G.ColTitle>제목</G.ColTitle>
         <G.ColContent>
-          <G.InputText id="title" type="text" onChange={handleChange} />
+          <G.InputText id="title" type="text" value={text.title} onChange={handleChange} />
         </G.ColContent>
       </G.Row>
       <G.Row>

@@ -4,8 +4,9 @@ import * as S from '@/components/Board/Write/style';
 import { useRouter } from 'next/router';
 import TemplateWrite from '@/components/WeddingTemplate/Write';
 import TemplatePreview from '@/components/WeddingTemplate/Preview';
-import SampleModal from '@/components/Modal/SampleModal';
-import Invitation from '@/components/Invitation/Write/Invitation';
+import InvitationSampleTextModal from '@/components/Modal/InvitationSampleTextModal';
+import InvitationPreview from '@/components/Invitation/Preview';
+import InvitationWrite from '@/components/Invitation/Write';
 import PrivewCard from '@/components/GuestBook/PrivewCard';
 import GuestBookModal from '@/components/Modal/GuestBookModal';
 import WeddingDayWrite from '@/components/WeddingDay/Write';
@@ -42,8 +43,8 @@ export default function BoardWrite() {
   const [openModal, setModal] = useState(false);
   const textAreaRef = useRef();
   const [text, setText] = useState({
-    title: '확인',
-    content: '확인',
+    title: '초대합니다',
+    content: '[청첩장 문구]에 내용을 입력해 주세요.',
   });
 
   const sandContent = (e: any) => {
@@ -98,7 +99,6 @@ export default function BoardWrite() {
   };
 
   const HandleGBDelectVisibility = () => {
-    console.log(' 왜  닫기야 안되니? ');
     handleValidation();
     setGuestDelectModal(!openGuestBookDelectModal);
   };
@@ -113,7 +113,7 @@ export default function BoardWrite() {
   };
 
   const deleteCard = (cardPassword: any, id: any) => {
-    const updated: any = { ...cards }; // card를 받아온다.
+    const updated: any = { ...cards };
     if (updated[id].password === cardPassword) {
       setCards(() => {
         delete updated[id];
@@ -137,7 +137,7 @@ export default function BoardWrite() {
           <TemplatePreview />
         </Card>
         <Card title="제목2" type="preview">
-          내용2
+          <InvitationPreview text={text}/>
         </Card>
         <Card title="예식일" type="preview">
           <WeddingDayPreview weddingDay={weddingDay} showDday={showDday} />
@@ -153,7 +153,10 @@ export default function BoardWrite() {
         </Card>
         <Card title="첫 화면" />
         <Card color="white" title="첫 화면" />
-        <Card title="청첩장 문구" />
+        <Card title="청첩장 문구">
+          <InvitationWrite text={text} textAreaRef={textAreaRef} handleChange={handleChange} showSampleText={showSampleText}  />
+          <InvitationSampleTextModal openModal={openModal} showSampleText={showSampleText} sandContent={sandContent} />
+        </Card>
         <Card title="보내는 사람" />
         <Card color="white" title="캘린더 스타일">
           <CalendarStyleWrite showDday={showDday} setShowDday={setShowDday} />

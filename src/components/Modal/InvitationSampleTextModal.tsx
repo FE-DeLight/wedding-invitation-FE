@@ -1,18 +1,16 @@
-/* eslint-disable react/button-has-type */
-/* eslint-disable react/prop-types */
 import React from 'react';
 import * as S from '@/components/Modal/style';
+import { IoIosClose } from "react-icons/io";
 
-// 높이 : 28
-// 높이 : 140
-// 패딩 : 24px
-export default function SampleModal({ openModal, showSampleText, sandContent }) {
+export default function InvitationSampleTextModal({ openModal, showSampleText, sandContent } : any) {
   return (
     openModal && (
       <S.ModalLayout>
         <S.ModalHeader>
           <header>샘플테스트</header>
-          <button onClick={showSampleText}>닫기</button>
+          <button onClick={showSampleText}>
+            <IoIosClose size={25}/>
+          </button>
         </S.ModalHeader>
         <S.ModalBody>
           <div>
@@ -30,12 +28,16 @@ export default function SampleModal({ openModal, showSampleText, sandContent }) 
               저희의 하나됨을 따듯한 미소로 축복해주시기를 바랍니다.
             </S.SelectSample>
             <S.SelectSample onClick={sandContent}>
-              서로 다른 두 사람이 만나 인생이라는 같은 길을 걷고자 합니다.
+              서로 다른 두 사람이 만나 <br/>
+              인생이라는 같은 길을 걷고자 합니다.
               <br />
               <br />
-              모두가 어려운 시기, 결혼소식을 전하게 되어 마음이 무겁습니다.
+              모두가 어려운 시기, <br />
+              결혼소식을 전하게 되어 마음이 무겁습니다.
               <br />
-              참석이 어려우시더라도, 축복해주시는 마음에 감사함을 가지며 서로
+              <br />
+              참석이 어려우시더라도, <br />
+              축복해주시는 마음에 감사함을 가지며 서로
               <br />더 존중하고 사랑하며 살겠습니다.
               <br />
               <br /> 신랑 신부 올림

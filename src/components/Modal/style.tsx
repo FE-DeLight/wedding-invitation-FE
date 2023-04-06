@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const ModalLayout = styled.div`
   position: fixed;
+  z-index: 1;
   top: 50%;
   left: 50%;
   background-color: white;
@@ -14,6 +15,10 @@ export const ModalHeader = styled.div`
   height: 61px;
   padding: 16px 24px;
   background-color: #e5e5e5;
+  
+  button {
+    background-color: transparent;
+  }
 `;
 
 export const SelectSample = styled.div`
@@ -26,7 +31,7 @@ export const SelectSample = styled.div`
   min-height: 140px;
   margin-bottom: 10px;
   &:last-child {
-    margin-bottom: 0px;
+    margin-bottom: 0;
   }
   &:hover {
     background-color: #e5e5e5;
