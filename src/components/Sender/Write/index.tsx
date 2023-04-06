@@ -5,7 +5,7 @@ import { setSenderForm } from '@/store/userInfoSlice';
 
 export default function SenderWrite() {
   const dispatch = useDispatch();
-  const senderForm = useSelector((state: any) => state.userInfo.senderForm);
+  const senderForm = useSelector((state: any) => state.user.senderForm);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value, type, checked } = event.target;

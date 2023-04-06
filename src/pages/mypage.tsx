@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 export default function MyPage() {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { nickname, email } = useSelector((state) => state.user);
+  const { nickname, email } = useSelector((state) => state.login);
 
   useEffect(() => {
     const token = localStorage.getItem('token');

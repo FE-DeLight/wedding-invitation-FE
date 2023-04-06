@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 export interface InitialStateType {
   senderForm: SenderFormState;
@@ -51,8 +51,8 @@ const initialState: InitialStateType = {
   },
 };
 
-export const userInfoSlice = createSlice({
-  name: 'userInfo',
+const userInfoSlice = createSlice({
+  name: 'userInfoSlice',
   initialState,
   reducers: {
     setSenderForm: (state, action) => {
