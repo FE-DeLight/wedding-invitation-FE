@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import LoginNaver from '@/components/Login/LoginNaver';
 import { useRouter } from 'next/router';
-import * as S from './style';
+import * as S from '@/components/Login/style';
 
 export default function Login() {
   const router = useRouter();
