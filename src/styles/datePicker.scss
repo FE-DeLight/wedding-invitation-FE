@@ -150,9 +150,26 @@
           }
         }
         .react-datepicker__day--selected{
-          background-color: rgba(6, 8, 15, 0.44);
-           border-radius: 9999px;
-
+          &.circle{
+            background-color: rgba(6, 8, 15, 0.44);
+            border-radius: 9999px;
+          }
+          &.lined-circle{
+            border-radius: 9999px;
+            border: 1px solid rgba(6, 8, 15, 0.44);
+            background-color: transparent;
+            color: black;
+            &.react-datepicker__day--sun{
+              color: #f87171;
+            }
+          }
+          &.heart{
+            background-color: transparent;
+            background-image: url("https://s2.svgbox.net/octicons.svg?color=8c8c8f&ic=heart-fill");
+            background-repeat: no-repeat;
+            background-position: center left;
+            background-size: contain;
+          }
           &:hover{
             background-color: rgba(6, 8, 15, 0.44);;
           }
