@@ -49,7 +49,7 @@ export default function SenderWrite() {
           <Stack direction="row">
             <TextField variant="outlined" name="male.father.name" onChange={handleInputChange} />
             <FormControlLabel
-              control={<Checkbox defaultChecked name="male.father.isDeceased" onChange={handleInputChange} />}
+              control={<Checkbox name="male.father.isDeceased" onChange={handleInputChange} />}
               label="고인"
             />
           </Stack>
@@ -59,7 +59,7 @@ export default function SenderWrite() {
           <Stack direction="row">
             <TextField variant="outlined" name="male.mother.name" onChange={handleInputChange} />
             <FormControlLabel
-              control={<Checkbox defaultChecked name="male.mother.isDeceased" onChange={handleInputChange} />}
+              control={<Checkbox name="male.mother.isDeceased" onChange={handleInputChange} />}
               label="고인"
             />
           </Stack>
@@ -83,7 +83,7 @@ export default function SenderWrite() {
           <Stack direction="row">
             <TextField variant="outlined" name="female.father.name" onChange={handleInputChange} />
             <FormControlLabel
-              control={<Checkbox defaultChecked name="female.father.isDeceased" onChange={handleInputChange} />}
+              control={<Checkbox name="female.father.isDeceased" onChange={handleInputChange} />}
               label="고인"
             />
           </Stack>
@@ -93,7 +93,7 @@ export default function SenderWrite() {
           <Stack direction="row">
             <TextField variant="outlined" name="female.mother.name" onChange={handleInputChange} />
             <FormControlLabel
-              control={<Checkbox defaultChecked name="female.mother.isDeceased" onChange={handleInputChange} />}
+              control={<Checkbox name="female.mother.isDeceased" onChange={handleInputChange} />}
               label="고인"
             />
           </Stack>
