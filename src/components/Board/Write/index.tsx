@@ -7,8 +7,8 @@ import TemplatePreview from '@/components/WeddingTemplate/Preview';
 import InvitationSampleTextModal from '@/components/Modal/InvitationSampleTextModal';
 import InvitationPreview from '@/components/Invitation/Preview';
 import InvitationWrite from '@/components/Invitation/Write';
-import PrivewCard from '@/components/GuestBook/PrivewCard';
-import GuestBookModal from '@/components/Modal/GuestBookModal';
+import GuestBookWrite from '@/components/GuestBook/Write';
+import GuestBookPreview from '@/components/GuestBook/Preview';
 import WeddingDayWrite from '@/components/WeddingDay/Write';
 import WeddingDayPreview from '@/components/WeddingDay/Preview';
 import CalendarStyleWrite from '@/components/CalendarStyle/Write';
@@ -83,35 +83,19 @@ export default function BoardWrite() {
 
   // 방명록 관련 State, Function
   const [cards, setCards] = useState({});
-  const [openGuestBookModal, setGuestModal] = useState(false);
   const [openGuestBookDelectModal, setGuestDelectModal] = useState(false);
   const [passwordValidation, setPasswordValidation] = useState('');
   const [weddingDay, setWeddingDay] = useState<Date>(new Date());
   const addPost = () => {
     setGuestModal(!openGuestBookModal);
   };
-  const handleVisibility = () => {
-    setGuestModal(!openGuestBookModal);
-  };
-
   const handleValidation = () => {
     setPasswordValidation('');
   };
-
   const HandleGBDelectVisibility = () => {
     handleValidation();
     setGuestDelectModal(!openGuestBookDelectModal);
   };
-
-  const addCard = (card: any) => {
-    setCards((cards) => {
-      const updated: any = { ...cards };
-      updated[card.id] = card;
-      return updated;
-    });
-    setGuestModal(!openGuestBookModal);
-  };
-
   const deleteCard = (cardPassword: any, id: any) => {
     const updated: any = { ...cards };
     if (updated[id].password === cardPassword) {
@@ -127,6 +111,20 @@ export default function BoardWrite() {
     }
   };
 
+  // 방명록 모달 State, Function
+  const [openGuestBookModal, setGuestModal] = useState(false);
+  const handleVisibility = () => {
+    setGuestModal(!openGuestBookModal);
+  };
+  const addCard = (card: any) => {
+    setCards((cards) => {
+      const updated: any = { ...cards };
+      updated[card.id] = card;
+      return updated;
+    });
+    setGuestModal(!openGuestBookModal);
+  };
+
   // 체크박스 상태를 관리할 상태 변수
   const [showDday, setShowDday] = useState(true);
 
@@ -136,11 +134,26 @@ export default function BoardWrite() {
         <Card type="preview">
           <TemplatePreview />
         </Card>
-        <Card title="제목2" type="preview">
+        <Card title="청첩장문구" type="preview">
           <InvitationPreview text={text}/>
         </Card>
         <Card title="예식일" type="preview">
           <WeddingDayPreview weddingDay={weddingDay} showDday={showDday} />
+        </Card>
+        <Card title="방명록" type="preview">
+          <GuestBookPreview
+            cards={cards}
+            setGuestDelectModal={setGuestDelectModal}
+            addPost={addPost}
+            deleteCard={deleteCard}
+            openGuestBookDelectModal={openGuestBookDelectModal}
+            HandleGBDelectVisibility={HandleGBDelectVisibility}
+            passwordValidation={passwordValidation}
+            handleValidation={handleValidation}
+            addCard={addCard}
+            handleVisibility={handleVisibility}
+            openGuestBookModal={openGuestBookModal}
+          />
         </Card>
       </S.ContentLeft>
 
@@ -171,7 +184,9 @@ export default function BoardWrite() {
         <Card title="썸네일" />
         <Card title="애니메이션 효과" />
         <Card title="배경 음악" />
-        <Card title="방명록" />
+        <Card title="방명록">
+          <GuestBookWrite />
+        </Card>
         <Card title="추가 옵션" />
       </S.ContentRight>
       <S.ContentBottom>

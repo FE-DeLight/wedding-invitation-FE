@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import dayjs from 'dayjs';
 import { useState } from 'react';
 import GuestBookModal from './Modal/GuestBookModal';
-import PrivewCard from './GuestBook/PrivewCard';
+import PrevewCard from './GuestBook/Preview/PrevewCard';
 
 const BoxLayout = styled.div`
   flex-shrink: 0;
@@ -24,7 +24,7 @@ const InvitationPhrasesLayout = styled.div`
   overflow: hidden; //나눔명조 적용시, 크기가 ...
   overflow-y: auto;
   background-color: #f5f5f5;
-  background-image: ${({ backgroundImage }) => {
+  background-image: ${({ backgroundImage } :any) => {
     return backgroundImage === '없음' ? 'none' : "url('/assets/images/pattern_1.png')";
   }};
 
@@ -47,16 +47,60 @@ const TestLayout = styled.div`
   text-align: center;
   margin-bottom: 10px;
   background-color: #f5f5f5;
-  background-image: ${({ backgroundImage }) => {
+  background-image: ${({ backgroundImage }:any) => {
     return backgroundImage === '없음' ? 'none' : "url('/assets/images/pattern_1.png')";
   }};
 `;
 
-export default function usePriview({ text, backgroundImage }) {
+export default function usePriview({ text, backgroundImage } :any) {
+
+  // 방명록 모달
   const [openGuestBookModal, setGuestModal] = useState(false);
+  const handleVisibility = () => {
+    setGuestModal(!openGuestBookModal);
+  };
+
+  const addCard = (card) => {
+    setCards((cards) => {
+      const updated = { ...cards };
+      updated[card.id] = card;
+      return updated;
+    });
+    setGuestModal(!openGuestBookModal);
+  };
+
+  // 방명록 데이터
+  const [cards, setCards] = useState({});
   const [openGuestBookDelectModal] = useState(false);
   const [passwordValidation, setPasswordValidation] = useState('');
-  const [cards, setCards] = useState({});
+
+  const HandleGBDelectVisibility = () => {
+    handleValidation();
+    setGuestDelectModal(!openGuestBookDelectModal);
+  };
+
+  const handleValidation = () => {
+    setPasswordValidation('');
+  };
+
+
+  const deleteCard = (cardPassword, id) => {
+    const updated = { ...cards }; // card를 받아온다.
+    if (updated[id].password === cardPassword) {
+      setCards(() => {
+        delete updated[id];
+        return updated;
+      });
+      setGuestDelectModal(!openGuestBookDelectModal);
+    } else if (updated[id].password !== cardPassword) {
+      setPasswordValidation(!passwordValidation);
+    } else {
+      // 공백 && 포커스를 가져길을때 === 비밀번호를 입력해주세요.
+    }
+  };
+
+
+
 
   const detailDate = (a) => {
     const updated = a;
@@ -88,38 +132,11 @@ export default function usePriview({ text, backgroundImage }) {
     setGuestModal(!openGuestBookModal);
   };
 
-  const handleValidation = () => {
-    setPasswordValidation('');
-  };
 
-  const HandleGBDelectVisibility = () => {
-    handleValidation();
-    setGuestDelectModal(!openGuestBookDelectModal);
-  };
 
-  const addCard = (card) => {
-    setCards((cards) => {
-      const updated = { ...cards };
-      updated[card.id] = card;
-      return updated;
-    });
-    setGuestModal(!openGuestBookModal);
-  };
 
-  const deleteCard = (cardPassword, id) => {
-    const updated = { ...cards }; // card를 받아온다.
-    if (updated[id].password === cardPassword) {
-      setCards(() => {
-        delete updated[id];
-        return updated;
-      });
-      setGuestDelectModal(!openGuestBookDelectModal);
-    } else if (updated[id].password !== cardPassword) {
-      setPasswordValidation(!passwordValidation);
-    } else {
-      // 공백 && 포커스를 가져길을때 === 비밀번호를 입력해주세요.
-    }
-  };
+
+
 
   return (
     <BoxLayout>
@@ -135,7 +152,7 @@ export default function usePriview({ text, backgroundImage }) {
       {/* 방명록 */}
       <GuestBookLayout>
         <h3>방명록</h3>
-        <PrivewCard
+        <PrevewCard
           cards={cards}
           setGuestDelectModal={setGuestDelectModal}
           deleteCard={deleteCard}
@@ -145,7 +162,10 @@ export default function usePriview({ text, backgroundImage }) {
           handleValidation={handleValidation}
         />
         <button onClick={addPost}>방명록 남기기</button>
-        <GuestBookModal openGuestBookModal={openGuestBookModal} handleVisibility={handleVisibility} addCard={addCard} />
+        <GuestBookModal
+          openGuestBookModal={openGuestBookModal}
+          handleVisibility={handleVisibility}
+          addCard={addCard} />
       </GuestBookLayout>
       {/* 배경지를 위한 Test */}
       <TestLayout backgroundImage={backgroundImage}>

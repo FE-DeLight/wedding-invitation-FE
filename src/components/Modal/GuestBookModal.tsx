@@ -1,13 +1,10 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable jsx-a11y/label-has-associated-control */
-/* eslint-disable react/button-has-type */
 import React, { useRef } from 'react';
 import styled from '@emotion/styled';
 import dayjs from 'dayjs';
 
 const ModalLayout = styled.div`
   position: fixed;
-  z-index: 1;
+  z-index: 5;
   top: 50%;
   left: 50%;
   width: 510px;
@@ -66,7 +63,7 @@ const ModalBottom = styled.div`
   }
 `;
 
-export default function GuestBookModal({ openGuestBookModal, handleVisibility, addCard }) {
+export default function GuestBookModal({ openGuestBookModal, handleVisibility, addCard } :any) {
   const now = dayjs();
   const year = now.year();
   const month = now.month();
@@ -84,7 +81,7 @@ export default function GuestBookModal({ openGuestBookModal, handleVisibility, a
   const contentRef = useRef();
   const passwordRef = useRef();
 
-  const onSubmit = (event) => {
+  const onSubmit = (event :any) => {
     event.preventDefault();
     // onSubmit 함수에서 유효성 체크 검사 해야될 것 같음!
     const card = {
