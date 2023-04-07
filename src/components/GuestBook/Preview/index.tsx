@@ -2,6 +2,7 @@ import React from 'react';
 import * as S from './style';
 import PrevewCard from "@/components/GuestBook/Preview/PrevewCard";
 import GuestBookModal from "@/components/Modal/GuestBookModal";
+import { BsFillPencilFill } from "react-icons/bs";
 
 export default function Index({
   cards,
@@ -35,7 +36,7 @@ export default function Index({
         />
         <hr />
         <S.Button onClick={addPost}>
-          <span>방명록 남기기</span>
+          <BsFillPencilFill size={12} /> <span>방명록 남기기</span>
         </S.Button>
       </S.PrevewCardBody>
       <GuestBookModal

@@ -32,11 +32,16 @@ export const PrevewCardBody = styled.div`
 
 export const Button = styled.button`
   background-color: #fff;
-  width: 110px;
+  width: 118px;
   padding: 5px 12px;
   margin-top: 16px;
   border-radius: 25px;
   border: 1px solid #525252;
+  
+  span {
+    margin-left: 5px;
+    font-size: 12px;
+  }
 `;
 
 // PrevewCard.tsx
