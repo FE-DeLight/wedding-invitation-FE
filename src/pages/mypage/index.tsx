@@ -48,7 +48,7 @@ export default function index() {
 
   const router = useRouter();
   const dispatch = useDispatch();
-  const { nickname, email } = useSelector((state) => state.login);
+  const { nickname, email } = useSelector((state: any) => state.login);
 
   useEffect(() => {
     const token = localStorage.getItem('token');

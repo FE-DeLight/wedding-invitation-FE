@@ -14,7 +14,7 @@ import WeddingDayPreview from '@/components/WeddingDay/Preview';
 import SenderWrite from '@/components/Sender/Write';
 import CalendarStyleWrite from '@/components/CalendarStyle/Write';
 import SenderPreview from '@/components/Sender/Preview';
-import MoreOption from "@/components/MoreOption/MoreOption";
+import MoreOption from '@/components/MoreOption/MoreOption';
 import styled from '@emotion/styled';
 
 type TemplateType = {
@@ -163,18 +163,24 @@ export default function BoardWrite() {
     }
   };
 
-  const GlobalStyle = styled.div`
-  background-color: green;
-  font-size: ${({ fontSize }: any) => {
-    return fontSize === '32px' ? '32px' : '48px'; // TODO : 차이 보기 위해 임시적으로 해놓음
-  }};
-  font-weight: ${({ fontWeight }: any) => {
-    return fontWeight === '작게' ? '300' : '700'; // TODO : 400도 있음 -> 차이 보기 위해 임시적으로 해놓음
-  }};
-  font-family: ${({ fontFamily }: any) => {
-    return fontFamily === '나눔명조' ? 'Noto Sans KR' : 'Dongle'; // TODO : 나중에 font 추가 시키기 그리고 상의해보기
-  }};
-`;
+  interface GlobalStyleProps {
+    fontSize?: string;
+    fontWeight?: string;
+    fontFamily?: string;
+  }
+
+  const GlobalStyle = styled.div<GlobalStyleProps>`
+    background-color: green;
+    font-size: ${({ fontSize }) => {
+      return fontSize === '32px' ? '32px' : '48px'; // TODO : 차이 보기 위해 임시적으로 해놓음
+    }};
+    font-weight: ${({ fontWeight }) => {
+      return fontWeight === '작게' ? '300' : '700'; // TODO : 400도 있음 -> 차이 보기 위해 임시적으로 해놓음
+    }};
+    font-family: ${({ fontFamily }) => {
+      return fontFamily === '나눔명조' ? 'Noto Sans KR' : 'Dongle'; // TODO : 나중에 font 추가 시키기 그리고 상의해보기
+    }};
+  `;
 
   // 체크박스 상태를 관리할 상태 변수
   const [showDday, setShowDday] = useState(true);
@@ -185,13 +191,13 @@ export default function BoardWrite() {
         {/* Dongle 32px, 36px, 48px  */}
         <GlobalStyle fontSize={optionData.size} fontWeight={optionData.size} fontFamily={optionData.famliy}>
           <Card type="preview" color="#eee" backgroundImage="없음">
-              <TemplatePreview />
+            <TemplatePreview />
           </Card>
           <Card color="white" type="preview">
             <SenderPreview />
           </Card>
           <Card title="청첩장문구" type="preview" color="#fff" backgroundImage={optionData.background}>
-              <InvitationPreview text={text}/>
+            <InvitationPreview text={text} />
           </Card>
           <Card title="예식일" type="preview" color="#eee" backgroundImage="없음">
             <WeddingDayPreview weddingDay={weddingDay} showDday={showDday} />
@@ -215,16 +221,20 @@ export default function BoardWrite() {
       </S.ContentLeft>
 
       <S.ContentRight>
-        <Card title="템플릿" backgroundImage="없음" >
+        <Card title="템플릿" backgroundImage="없음">
           <TemplateWrite color={templateColor} type={templateType} />
         </Card>
         <Card color="white" title="예식일" backgroundImage="없음">
           <WeddingDayWrite weddingDay={weddingDay} setWeddingDay={setWeddingDay} />
         </Card>
-        <Card title="첫 화면" backgroundImage="없음"/>
-        <Card color="white" title="첫 화면" backgroundImage="없음"/>
+        <Card color="white" title="첫 화면" backgroundImage="없음" />
         <Card title="청첩장 문구" backgroundImage="없음">
-          <InvitationWrite text={text} textAreaRef={textAreaRef} handleChange={handleChange} showSampleText={showSampleText}  />
+          <InvitationWrite
+            text={text}
+            textAreaRef={textAreaRef}
+            handleChange={handleChange}
+            showSampleText={showSampleText}
+          />
           <InvitationSampleTextModal openModal={openModal} showSampleText={showSampleText} sandContent={sandContent} />
         </Card>
         <Card color="white" title="보내는 사람" backgroundImage="없음">
