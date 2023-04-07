@@ -12,8 +12,8 @@ const initialState: UserState = {
   token: '',
 };
 
-const userSlice = createSlice({
-  name: 'userSlice',
+const loginSlice = createSlice({
+  name: 'loginSlice',
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<UserState>) => {
@@ -22,7 +22,7 @@ const userSlice = createSlice({
       item.email = action.payload.email;
       item.token = action.payload.token;
     },
-    removeUser: (state) => {
+    resetUser: (state) => {
       const item = state;
       item.nickname = '';
       item.email = '';
@@ -31,6 +31,6 @@ const userSlice = createSlice({
   },
 });
 
-export const { setUser, removeUser } = userSlice.actions;
+export const { setUser, resetUser } = loginSlice.actions;
 
-export default userSlice;
+export default loginSlice.reducer;

@@ -14,7 +14,7 @@ const initialState: StyleOptionState = {
   selectedStyleOption: StyleOption.Circle,
 };
 
-export const styleOptionSlice = createSlice({
+const styleOptionSlice = createSlice({
   name: 'styleOption',
   initialState,
   reducers: {
