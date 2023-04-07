@@ -2,12 +2,10 @@ import styled from '@emotion/styled';
 
 export const InvitationWrap = styled.div`
   width: 100%;
-  background-color: #eee;
   align-items: center;
 `;
 
 export const PrevewCardHeader = styled.div`
-  background-color: #fff;
   height: 40px;
   padding: 32px 0;
 `;
@@ -24,7 +22,9 @@ export const Content = styled.p`
 
 export const PrevewCardBody = styled.div`
   padding: 32px 12px 16px;
-  
+  background-color: #eee;
+  margin: 0 -30px -30px;
+
   hr {
     border: 1px solid rgb(229, 229, 229);
   }

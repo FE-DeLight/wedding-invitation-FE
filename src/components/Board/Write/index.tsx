@@ -12,6 +12,8 @@ import GuestBookPreview from '@/components/GuestBook/Preview';
 import WeddingDayWrite from '@/components/WeddingDay/Write';
 import WeddingDayPreview from '@/components/WeddingDay/Preview';
 import CalendarStyleWrite from '@/components/CalendarStyle/Write';
+import MoreOption from "@/components/MoreOption/MoreOption";
+import styled from '@emotion/styled';
 
 type TemplateType = {
   id: number;
@@ -116,6 +118,7 @@ export default function BoardWrite() {
   const handleVisibility = () => {
     setGuestModal(!openGuestBookModal);
   };
+
   const addCard = (card: any) => {
     setCards((cards) => {
       const updated: any = { ...cards };
@@ -125,69 +128,120 @@ export default function BoardWrite() {
     setGuestModal(!openGuestBookModal);
   };
 
+  // 추가옵션 State, Function
+  const [optionData, setOptionData] = useState({
+    background: '없음',
+    famliy: '나눔명조',
+    size: '32px',
+  });
+
+  const handleMoreOption = (value: any) => {
+    const family = Object.keys(value).includes('famliy');
+    const size = Object.keys(value).includes('size');
+
+    if (family) {
+      setOptionData((optionData) => {
+        const updated = { ...optionData };
+        updated.famliy = value.famliy;
+        return updated;
+      });
+    } else if (size) {
+      // handleFontSize(value.size);
+      setOptionData((optionData) => {
+        const updated = { ...optionData };
+        updated.size = value.size;
+        return updated;
+      });
+    } else {
+      setOptionData((optionData) => {
+        const updated = { ...optionData };
+        updated.background = value.background;
+        return updated;
+      });
+    }
+  };
+
+  const GlobalStyle = styled.div`
+  background-color: green;
+  font-size: ${({ fontSize }: any) => {
+    return fontSize === '32px' ? '32px' : '48px'; // TODO : 차이 보기 위해 임시적으로 해놓음
+  }};
+  font-weight: ${({ fontWeight }: any) => {
+    return fontWeight === '작게' ? '300' : '700'; // TODO : 400도 있음 -> 차이 보기 위해 임시적으로 해놓음
+  }};
+  font-family: ${({ fontFamily }: any) => {
+    return fontFamily === '나눔명조' ? 'Noto Sans KR' : 'Dongle'; // TODO : 나중에 font 추가 시키기 그리고 상의해보기
+  }};
+`;
+
   // 체크박스 상태를 관리할 상태 변수
   const [showDday, setShowDday] = useState(true);
 
   return (
     <S.Wrapper>
       <S.ContentLeft>
-        <Card type="preview">
-          <TemplatePreview />
-        </Card>
-        <Card title="청첩장문구" type="preview">
-          <InvitationPreview text={text}/>
-        </Card>
-        <Card title="예식일" type="preview">
-          <WeddingDayPreview weddingDay={weddingDay} showDday={showDday} />
-        </Card>
-        <Card title="방명록" type="preview">
-          <GuestBookPreview
-            cards={cards}
-            setGuestDelectModal={setGuestDelectModal}
-            addPost={addPost}
-            deleteCard={deleteCard}
-            openGuestBookDelectModal={openGuestBookDelectModal}
-            HandleGBDelectVisibility={HandleGBDelectVisibility}
-            passwordValidation={passwordValidation}
-            handleValidation={handleValidation}
-            addCard={addCard}
-            handleVisibility={handleVisibility}
-            openGuestBookModal={openGuestBookModal}
-          />
-        </Card>
+        {/* Dongle 32px, 36px, 48px  */}
+        <GlobalStyle fontSize={optionData.size} fontWeight={optionData.size} fontFamily={optionData.famliy}>
+          <Card type="preview" color="#eee" backgroundImage="없음">
+              <TemplatePreview />
+          </Card>
+          <Card title="청첩장문구" type="preview" color="#fff" backgroundImage={optionData.background}>
+              <InvitationPreview text={text}/>
+          </Card>
+          <Card title="예식일" type="preview" color="#eee" backgroundImage="없음">
+            <WeddingDayPreview weddingDay={weddingDay} showDday={showDday} />
+          </Card>
+          <Card title="방명록" type="preview" color="#fff" backgroundImage={optionData.background}>
+            <GuestBookPreview
+              cards={cards}
+              setGuestDelectModal={setGuestDelectModal}
+              addPost={addPost}
+              deleteCard={deleteCard}
+              openGuestBookDelectModal={openGuestBookDelectModal}
+              HandleGBDelectVisibility={HandleGBDelectVisibility}
+              passwordValidation={passwordValidation}
+              handleValidation={handleValidation}
+              addCard={addCard}
+              handleVisibility={handleVisibility}
+              openGuestBookModal={openGuestBookModal}
+            />
+          </Card>
+        </GlobalStyle>
       </S.ContentLeft>
 
       <S.ContentRight>
-        <Card title="템플릿">
+        <Card title="템플릿" backgroundImage="없음" >
           <TemplateWrite color={templateColor} type={templateType} />
         </Card>
-        <Card color="white" title="예식일">
+        <Card color="white" title="예식일" backgroundImage="없음">
           <WeddingDayWrite weddingDay={weddingDay} setWeddingDay={setWeddingDay} />
         </Card>
-        <Card title="첫 화면" />
-        <Card color="white" title="첫 화면" />
-        <Card title="청첩장 문구">
+        <Card title="첫 화면" backgroundImage="없음"/>
+        <Card color="white" title="첫 화면" backgroundImage="없음"/>
+        <Card title="청첩장 문구" backgroundImage="없음">
           <InvitationWrite text={text} textAreaRef={textAreaRef} handleChange={handleChange} showSampleText={showSampleText}  />
           <InvitationSampleTextModal openModal={openModal} showSampleText={showSampleText} sandContent={sandContent} />
         </Card>
-        <Card title="보내는 사람" />
-        <Card color="white" title="캘린더 스타일">
+        <Card title="보내는 사람" backgroundImage="없음"/>
+        <Card color="white" title="캘린더 스타일" backgroundImage="없음">
           <CalendarStyleWrite showDday={showDday} setShowDday={setShowDday} />
         </Card>
-        <Card title="갤러리" />
-        <Card title="예식장 정보" />
-        <Card title="길 안내" />
-        <Card title="계좌 정보" />
-        <Card title="연락처 정보" />
-        <Card title="식전 영상" />
-        <Card title="안내사항" />
-        <Card title="썸네일" />
-        <Card title="애니메이션 효과" />
-        <Card title="배경 음악" />
-        <Card title="방명록">
+        <Card title="갤러리" backgroundImage="없음" />
+        <Card title="예식장 정보" backgroundImage="없음" />
+        <Card title="길 안내" backgroundImage="없음" />
+        <Card title="계좌 정보" backgroundImage="없음" />
+        <Card title="연락처 정보" backgroundImage="없음" />
+        <Card title="식전 영상" backgroundImage="없음" />
+        <Card title="안내사항" backgroundImage="없음" />
+        <Card title="썸네일" backgroundImage="없음" />
+        <Card title="애니메이션 효과" backgroundImage="없음" />
+        <Card title="배경 음악" backgroundImage="없음" />
+        <Card title="방명록" backgroundImage="없음">
           <GuestBookWrite />
         </Card>
-        <Card title="추가 옵션" />
+        <Card color="white" title="추가 옵션" backgroundImage="없음">
+          <MoreOption optionData={optionData} handleMoreOption={handleMoreOption} />
+        </Card>
       </S.ContentRight>
       <S.ContentBottom>
         <S.SubmitButton onClick={handleSave}>저장하기</S.SubmitButton>
