@@ -30,14 +30,22 @@ export default function SenderPreview() {
           <S.Male>
             {(maleFatherName || maleMotherName) && (
               <>
-                {maleFatherIsDeceased && <S.Text>故</S.Text>}
+                {maleFatherIsDeceased && (
+                  <S.Text small space grey>
+                    故
+                  </S.Text>
+                )}
                 {maleFatherName && (
                   <>
                     <S.Text>{maleFatherName}</S.Text>
                     {maleMotherName && <S.Text space>·</S.Text>}
                   </>
                 )}
-                {maleMotherIsDeceased && <S.Text>故</S.Text>}
+                {maleMotherIsDeceased && (
+                  <S.Text small space grey>
+                    故
+                  </S.Text>
+                )}
                 {maleMotherName && <S.Text>{maleMotherName}</S.Text>}
                 {(maleFatherName || maleMotherName) && (
                   <S.Text grey space>
@@ -47,20 +55,28 @@ export default function SenderPreview() {
               </>
             )}
             {maleName && <S.Text grey>{maleRelationship}</S.Text>}
-            {maleName && <S.Text> {maleName}</S.Text>}
+            {maleName && <S.Text space>{maleName}</S.Text>}
           </S.Male>
 
           <S.Female>
             {(femaleFatherName || femaleMotherName) && (
               <>
-                {femaleFatherIsDeceased && <S.Text>故</S.Text>}
+                {femaleFatherIsDeceased && (
+                  <S.Text small space grey>
+                    故
+                  </S.Text>
+                )}
                 {femaleFatherName && (
                   <>
                     <S.Text>{femaleFatherName}</S.Text>
                     {femaleMotherName && <S.Text space>·</S.Text>}
                   </>
                 )}
-                {femaleMotherIsDeceased && <S.Text>故</S.Text>}
+                {femaleMotherIsDeceased && (
+                  <S.Text small space grey>
+                    故
+                  </S.Text>
+                )}
                 {femaleMotherName && <S.Text>{femaleMotherName}</S.Text>}
                 {(femaleFatherName || femaleMotherName) && (
                   <S.Text grey space>
@@ -70,7 +86,7 @@ export default function SenderPreview() {
               </>
             )}
             {femaleName && <S.Text grey>{femaleRelationship}</S.Text>}
-            {femaleName && <S.Text> {femaleName}</S.Text>}
+            {femaleName && <S.Text space>{femaleName}</S.Text>}
           </S.Female>
         </S.Wrap>
       )}
