@@ -9,8 +9,8 @@ export default function GuestBookDelectModal({
   passwordValidation,
   handleValidation,
 }: any) {
-  const formRef = useRef();
-  const passwordRef = useRef(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
   const onChangeInput = (e:any) => {
     if (e.target.value > 0) {
       // 0 보다 크면서 값이 입력되어있으면 '비밀번호가 틀렸습니다'를 지워준다.
@@ -22,9 +22,9 @@ export default function GuestBookDelectModal({
   const onSubmit = (event :any) => {
     event.preventDefault();
     // 저장을 눌렀는데, 만약 비밀번호가 공백 이라면 '입력해주세요 띄우기'
-    const passWord = passwordRef.current.value;
+    const passWord = passwordRef.current?.value;
     deleteCard(passWord, id, password);
-    formRef.current.reset();
+    formRef.current?.reset();
   };
 
   return (

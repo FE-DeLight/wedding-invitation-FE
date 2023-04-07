@@ -2,7 +2,6 @@ import React, { useRef } from 'react';
 import * as S from './GuestBookStyle';
 import dayjs from 'dayjs';
 
-
 export default function GuestBookModal({ openGuestBookModal, handleVisibility, addCard } :any) {
   const now = dayjs();
   const year = now.year();
@@ -16,23 +15,23 @@ export default function GuestBookModal({ openGuestBookModal, handleVisibility, a
   const stringMinute = minute.toString();
   const dateResult = [stringYear, stringMonth, stringDate, stringMinute].join('');
 
-  const formRef = useRef();
-  const nameRef = useRef();
-  const contentRef = useRef();
-  const passwordRef = useRef();
+  const formRef = useRef<HTMLFormElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const contentRef = useRef<HTMLTextAreaElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
   const onSubmit = (event :any) => {
     event.preventDefault();
     // onSubmit 함수에서 유효성 체크 검사 해야될 것 같음!
     const card = {
       id: Date.now(), // uuid
-      name: nameRef.current.value || '',
+      name: nameRef.current?.value || '',
       time: dateResult, // 여기는 무조건 그 고정값을 가져와야돼!
-      content: contentRef.current.value || '',
-      password: passwordRef.current.value || '',
+      content: contentRef.current?.value || '',
+      password: passwordRef.current?.value || '',
     };
 
-    formRef.current.reset();
+    formRef.current?.reset();
     addCard(card);
   };
 
