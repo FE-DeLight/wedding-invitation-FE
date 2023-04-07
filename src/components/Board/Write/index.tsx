@@ -11,6 +11,7 @@ import GuestBookModal from '@/components/Modal/GuestBookModal';
 import WeddingDayWrite from '@/components/WeddingDay/Write';
 import WeddingDayPreview from '@/components/WeddingDay/Preview';
 import CalendarStyleWrite from '@/components/CalendarStyle/Write';
+import AccountInfoWrite from '@/components/WeddingAccountInfo/Write';
 
 type TemplateType = {
   id: number;
@@ -161,7 +162,9 @@ export default function BoardWrite() {
         <Card title="갤러리" />
         <Card title="예식장 정보" />
         <Card title="길 안내" />
-        <Card title="계좌 정보" />
+        <Card title="계좌 정보">
+          <AccountInfoWrite />
+        </Card>
         <Card title="연락처 정보" />
         <Card title="식전 영상" />
         <Card title="안내사항" />
