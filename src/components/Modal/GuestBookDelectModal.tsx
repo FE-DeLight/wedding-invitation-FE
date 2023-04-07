@@ -1,6 +1,5 @@
 import React, { useRef } from 'react';
-import * as S from './style';
-import * as SG from './guestBookStyle';
+import * as SG from './guestBookDelectStyle';
 
 export default function GuestBookDelectModal({
   id,

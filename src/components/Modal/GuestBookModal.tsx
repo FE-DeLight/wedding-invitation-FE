@@ -1,67 +1,7 @@
 import React, { useRef } from 'react';
-import styled from '@emotion/styled';
+import * as S from './GuestBookStyle';
 import dayjs from 'dayjs';
 
-const ModalLayout = styled.div`
-  position: fixed;
-  z-index: 5;
-  top: 50%;
-  left: 50%;
-  width: 510px;
-  max-height: 600px;
-  background-color: white;
-  transform: translate(-50%, -50%);
-`;
-
-const ModalWrap = styled.div`
-  padding: 24px;
-`;
-
-const ModalHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 16px 24px;
-  background-color: #e5e5e5;
-`;
-
-const IconButton = styled.button`
-  height: 0;
-  color: black;
-`;
-
-const ModalBody = styled.form`
-  //
-`;
-
-const SelectSample = styled.div`
-  display: flex;
-  align-items: flex-start;
-  text-align: center;
-  color: black;
-  margin-bottom: 16px;
-  label {
-    color: black;
-    width: 80px;
-    text-align: start;
-  }
-
-  input,
-  textarea {
-    width: 100%;
-  }
-`;
-
-const ModalBottom = styled.div`
-  text-align: end;
-
-  button {
-    margin-right: 12px;
-
-    &:last-child {
-      margin-right: 0;
-    }
-  }
-`;
 
 export default function GuestBookModal({ openGuestBookModal, handleVisibility, addCard } :any) {
   const now = dayjs();
@@ -98,32 +38,32 @@ export default function GuestBookModal({ openGuestBookModal, handleVisibility, a
 
   return (
     openGuestBookModal && (
-      <ModalLayout>
-        <ModalHeader>
+      <S.ModalLayout>
+        <S.ModalHeader>
           <header>방명록</header>
-          <IconButton onClick={handleVisibility}>닫기</IconButton>
-        </ModalHeader>
-        <ModalWrap>
-          <ModalBody ref={formRef} action="" method="post">
-            <SelectSample>
+          <S.IconButton onClick={handleVisibility}>닫기</S.IconButton>
+        </S.ModalHeader>
+        <S.ModalWrap>
+          <S.ModalBody ref={formRef} action="" method="post">
+            <S.SelectSample>
               <label>작성자</label>
               <input ref={nameRef} type="text" placeholder="작성자" />
-            </SelectSample>
-            <SelectSample>
+            </S.SelectSample>
+            <S.SelectSample>
               <label>내용</label>
               <textarea ref={contentRef} placeholder="내용" />
-            </SelectSample>
-            <SelectSample>
+            </S.SelectSample>
+            <S.SelectSample>
               <label>비밀번호</label>
               <input ref={passwordRef} type="password" placeholder="비밀번호" />
-            </SelectSample>
-          </ModalBody>
-          <ModalBottom>
+            </S.SelectSample>
+          </S.ModalBody>
+          <S.ModalBottom>
             <button onClick={handleVisibility}>닫기</button>
             <button onClick={onSubmit}>저장</button>
-          </ModalBottom>
-        </ModalWrap>
-      </ModalLayout>
+          </S.ModalBottom>
+        </S.ModalWrap>
+      </S.ModalLayout>
     )
   );
 }

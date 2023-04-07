@@ -1,5 +1,5 @@
 import React from 'react';
-import * as S from '@/components/Modal/style';
+import * as S from '@/components/Modal/InvitationSampleTextStyle';
 import { IoIosClose } from "react-icons/io";
 
 export default function InvitationSampleTextModal({ openModal, showSampleText, sandContent } : any) {
