@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import * as S from '@/components/Sender/Preview/style';
 
 export default function SenderPreview() {
   const {
@@ -21,65 +22,65 @@ export default function SenderPreview() {
     <>
       {/* 부모님 데이터가 있는 경우 */}
       {(maleFatherName || maleMotherName || femaleFatherName || femaleMotherName) && (
-        <>
-          <div>
+        <S.Wrap withParents>
+          <S.Male>
             {(maleFatherName || maleMotherName) && (
               <>
-                {maleFatherIsDeceased && <span>故</span>}
+                {maleFatherIsDeceased && <S.Text>故</S.Text>}
                 {maleFatherName && (
                   <>
-                    <span>{maleFatherName}</span>
-                    {maleMotherName && <span> · </span>}
+                    <S.Text>{maleFatherName}</S.Text>
+                    {maleMotherName && <S.Text> · </S.Text>}
                   </>
                 )}
-                {maleMotherIsDeceased && <span>故</span>}
-                {maleMotherName && <span>{maleMotherName}</span>}
-                {(maleFatherName || maleMotherName) && <span> 의</span>}
+                {maleMotherIsDeceased && <S.Text>故</S.Text>}
+                {maleMotherName && <S.Text>{maleMotherName}</S.Text>}
+                {(maleFatherName || maleMotherName) && <S.Text grey> 의 </S.Text>}
               </>
             )}
-            {maleName && <span> {maleRelationship}</span>}
-            {maleName && <span> {maleName}</span>}
-          </div>
+            {maleName && <S.Text grey> {maleRelationship}</S.Text>}
+            {maleName && <S.Text> {maleName}</S.Text>}
+          </S.Male>
 
-          <div>
+          <S.Female>
             {(femaleFatherName || femaleMotherName) && (
               <>
-                {femaleFatherIsDeceased && <span>故</span>}
+                {femaleFatherIsDeceased && <S.Text>故</S.Text>}
                 {femaleFatherName && (
                   <>
-                    <span>{femaleFatherName}</span>
-                    {femaleMotherName && <span> · </span>}
+                    <S.Text>{femaleFatherName}</S.Text>
+                    {femaleMotherName && <S.Text> · </S.Text>}
                   </>
                 )}
-                {femaleMotherIsDeceased && <span>故</span>}
-                {femaleMotherName && <span>{femaleMotherName}</span>}
-                {(femaleFatherName || femaleMotherName) && <span> 의</span>}
+                {femaleMotherIsDeceased && <S.Text>故</S.Text>}
+                {femaleMotherName && <S.Text>{femaleMotherName}</S.Text>}
+                {(femaleFatherName || femaleMotherName) && <S.Text grey> 의 </S.Text>}
               </>
             )}
-            {femaleName && <span> {femaleRelationship}</span>}
-            {femaleName && <span> {femaleName}</span>}
-          </div>
-        </>
+            {femaleName && <S.Text grey> {femaleRelationship}</S.Text>}
+            {femaleName && <S.Text> {femaleName}</S.Text>}
+          </S.Female>
+        </S.Wrap>
       )}
 
       {/* 부모님 데이터가 없는 경우 */}
       {!maleFatherName && !maleMotherName && !femaleFatherName && !femaleMotherName && (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <S.Wrap withoutParents>
           <div>
             {maleName && (
               <>
-                <span> {maleRelationship}</span>
-                {maleName && <span> {maleName}</span>}
-                {femaleName && <span> · </span>}
+                <S.Text> {maleRelationship}</S.Text>
+                {maleName && <S.Text> {maleName}</S.Text>}
+                {femaleName && <S.Text> · </S.Text>}
               </>
             )}
           </div>
 
           <div>
-            {femaleName && <span> {femaleRelationship}</span>}
-            {femaleName && <span> {femaleName}</span>}
+            {femaleName && <S.Text> {femaleRelationship}</S.Text>}
+            {femaleName && <S.Text> {femaleName}</S.Text>}
           </div>
-        </div>
+        </S.Wrap>
       )}
     </>
   );
