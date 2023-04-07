@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
-import { setUser, removeUser } from '@/store/userSlice';
+import { setUser, resetUser } from '@/store/loginSlice';
 
 const Wrapper = styled.div`
   margin-top: 100px;
@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 export default function MyPage() {
   const router = useRouter();
   const dispatch = useDispatch();
-  const { nickname, email } = useSelector((state) => state.user);
+  const { nickname, email } = useSelector((state) => state.login);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -28,15 +28,14 @@ export default function MyPage() {
           dispatch(setUser({ nickname, email, token }));
         })
         .catch((err) => {
-          console.error(err);
-          dispatch(removeUser());
+          dispatch(resetUser());
         });
     }
   }, [dispatch]);
 
   const handleLogout = () => {
+    dispatch(resetUser()); // 사용자 정보 초기화
     localStorage.removeItem('token'); // 토큰 삭제
-    dispatch(removeUser()); // 사용자 정보 초기화
     router.push('/');
   };
 

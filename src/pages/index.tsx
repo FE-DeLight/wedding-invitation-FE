@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Seo from '@/components/Seo';
-import Login from '@/components/Login/Login';
+import { useRouter } from 'next/router';
 
 export default function Home() {
-  return (
-    <>
-      <Seo title="Home" />
-      <Login />
-    </>
-  );
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/login');
+  }, [router]);
+
+  return <Seo title="Home" />;
 }

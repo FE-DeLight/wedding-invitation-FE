@@ -22,7 +22,8 @@ export default function WeddingDayPreview({ weddingDay, showDday }: any) {
   };
   const dateDiff = getDateDiffFromToday(weddingDay);
 
-  const selectedStyleOption = useSelector((state) => (state as any).styleOption.selectedStyleOption);
+  const selectedStyleOption = useSelector((state: any) => state.styleOption.selectedStyleOption);
+  const senderForm = useSelector((state: any) => state.user.senderForm);
 
   const getDayClassName = (date: Date) => {
     const isOutsideMonth = date.getMonth() !== weddingDay.getMonth();
@@ -72,8 +73,10 @@ export default function WeddingDayPreview({ weddingDay, showDday }: any) {
         </S.Date>
         {showDday && (
           <S.Dday>
+            {senderForm.male.name && <span>{senderForm.male.name}</span>}
             <span className="red"> ♥ </span>
-            <span> 의 결혼식이</span>
+            {senderForm.female.name && <span>{senderForm.female.name}</span>}
+            <span>의 결혼식이</span>
             <span className="red"> {dateDiff}일 </span>
             <span>남았습니다.</span>
           </S.Dday>

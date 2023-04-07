@@ -11,7 +11,9 @@ import GuestBookWrite from '@/components/GuestBook/Write';
 import GuestBookPreview from '@/components/GuestBook/Preview';
 import WeddingDayWrite from '@/components/WeddingDay/Write';
 import WeddingDayPreview from '@/components/WeddingDay/Preview';
+import SenderWrite from '@/components/Sender/Write';
 import CalendarStyleWrite from '@/components/CalendarStyle/Write';
+import SenderPreview from '@/components/Sender/Preview';
 import MoreOption from "@/components/MoreOption/MoreOption";
 import styled from '@emotion/styled';
 
@@ -185,6 +187,9 @@ export default function BoardWrite() {
           <Card type="preview" color="#eee" backgroundImage="없음">
               <TemplatePreview />
           </Card>
+          <Card color="white" type="preview">
+            <SenderPreview />
+          </Card>
           <Card title="청첩장문구" type="preview" color="#fff" backgroundImage={optionData.background}>
               <InvitationPreview text={text}/>
           </Card>
@@ -222,7 +227,9 @@ export default function BoardWrite() {
           <InvitationWrite text={text} textAreaRef={textAreaRef} handleChange={handleChange} showSampleText={showSampleText}  />
           <InvitationSampleTextModal openModal={openModal} showSampleText={showSampleText} sandContent={sandContent} />
         </Card>
-        <Card title="보내는 사람" backgroundImage="없음"/>
+        <Card color="white" title="보내는 사람" backgroundImage="없음">
+          <SenderWrite />
+        </Card>
         <Card color="white" title="캘린더 스타일" backgroundImage="없음">
           <CalendarStyleWrite showDday={showDday} setShowDday={setShowDday} />
         </Card>
