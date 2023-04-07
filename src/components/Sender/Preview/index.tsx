@@ -18,11 +18,15 @@ export default function SenderPreview() {
     },
   } = useSelector((state: any) => state.user.senderForm);
 
+  if (!maleFatherName && !maleMotherName && !femaleFatherName && !femaleMotherName && !maleName && !femaleName) {
+    return null;
+  }
+
   return (
     <>
       {/* 부모님 데이터가 있는 경우 */}
       {(maleFatherName || maleMotherName || femaleFatherName || femaleMotherName) && (
-        <S.Wrap withParents>
+        <S.Wrap>
           <S.Male>
             {(maleFatherName || maleMotherName) && (
               <>
@@ -30,15 +34,19 @@ export default function SenderPreview() {
                 {maleFatherName && (
                   <>
                     <S.Text>{maleFatherName}</S.Text>
-                    {maleMotherName && <S.Text> · </S.Text>}
+                    {maleMotherName && <S.Text space>·</S.Text>}
                   </>
                 )}
                 {maleMotherIsDeceased && <S.Text>故</S.Text>}
                 {maleMotherName && <S.Text>{maleMotherName}</S.Text>}
-                {(maleFatherName || maleMotherName) && <S.Text grey> 의 </S.Text>}
+                {(maleFatherName || maleMotherName) && (
+                  <S.Text grey space>
+                    의
+                  </S.Text>
+                )}
               </>
             )}
-            {maleName && <S.Text grey> {maleRelationship}</S.Text>}
+            {maleName && <S.Text grey>{maleRelationship}</S.Text>}
             {maleName && <S.Text> {maleName}</S.Text>}
           </S.Male>
 
@@ -49,15 +57,19 @@ export default function SenderPreview() {
                 {femaleFatherName && (
                   <>
                     <S.Text>{femaleFatherName}</S.Text>
-                    {femaleMotherName && <S.Text> · </S.Text>}
+                    {femaleMotherName && <S.Text space>·</S.Text>}
                   </>
                 )}
                 {femaleMotherIsDeceased && <S.Text>故</S.Text>}
                 {femaleMotherName && <S.Text>{femaleMotherName}</S.Text>}
-                {(femaleFatherName || femaleMotherName) && <S.Text grey> 의 </S.Text>}
+                {(femaleFatherName || femaleMotherName) && (
+                  <S.Text grey space>
+                    의
+                  </S.Text>
+                )}
               </>
             )}
-            {femaleName && <S.Text grey> {femaleRelationship}</S.Text>}
+            {femaleName && <S.Text grey>{femaleRelationship}</S.Text>}
             {femaleName && <S.Text> {femaleName}</S.Text>}
           </S.Female>
         </S.Wrap>
@@ -69,16 +81,16 @@ export default function SenderPreview() {
           <div>
             {maleName && (
               <>
-                <S.Text> {maleRelationship}</S.Text>
-                {maleName && <S.Text> {maleName}</S.Text>}
-                {femaleName && <S.Text> · </S.Text>}
+                <S.Text grey>{maleRelationship} </S.Text>
+                {maleName && <S.Text>{maleName}</S.Text>}
+                {femaleName && <S.Text space>·</S.Text>}
               </>
             )}
           </div>
 
           <div>
-            {femaleName && <S.Text> {femaleRelationship}</S.Text>}
-            {femaleName && <S.Text> {femaleName}</S.Text>}
+            {femaleName && <S.Text grey>{femaleRelationship} </S.Text>}
+            {femaleName && <S.Text>{femaleName}</S.Text>}
           </div>
         </S.Wrap>
       )}
