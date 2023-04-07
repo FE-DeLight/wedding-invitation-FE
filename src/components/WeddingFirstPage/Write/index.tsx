@@ -25,6 +25,12 @@ export default function FirstPageWrite() {
           <TextField fullWidth placeholder="장소" />
         </G.ColContent>
       </G.Row>
+      <G.Row>
+        <G.ColTitle>배경사진</G.ColTitle>
+        <G.ColContent>
+          <TextField fullWidth placeholder="장소" type="file" />
+        </G.ColContent>
+      </G.Row>
     </G.RowWrap>
   );
 }
