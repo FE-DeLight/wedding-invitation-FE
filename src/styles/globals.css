@@ -62,7 +62,10 @@ input {
   font-size: 14px;
   border: 1px solid #777;
 }
-select {
+.MuiSelect-outlined{
+  width: 100%;
+}
+/* select {
   padding-right: 35px;
   appearance: none;
   cursor: pointer;
@@ -85,4 +88,4 @@ input[type='radio'] {
   width: 20px;
   height: 20px;
   cursor: pointer;
-}
+} */

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as G from '@/styles/globals';
+import * as G from '@/styles/formStyles';
 import Image from 'next/image';
 import styled from '@emotion/styled';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -237,10 +237,10 @@ export default function TemplateWrite({ color, type }: Props) {
   };
 
   return (
-    <G.RowWrap>
+    <G.Form>
       <G.Row>
-        <G.ColTitle>타입</G.ColTitle>
-        <G.ColContent>
+        <G.Label>타입</G.Label>
+        <G.Content>
           <TypeContents>
             <Swiper slidesPerView="auto" spaceBetween={20} className="typeSwiper">
               {type.map((item: any, index: number) => {
@@ -263,11 +263,11 @@ export default function TemplateWrite({ color, type }: Props) {
               })}
             </Swiper>
           </TypeContents>
-        </G.ColContent>
+        </G.Content>
       </G.Row>
       <G.Row>
-        <G.ColTitle>색상</G.ColTitle>
-        <G.ColContent>
+        <G.Label>색상</G.Label>
+        <G.Content>
           <ColorContents>
             <Swiper slidesPerView="auto" spaceBetween={10} className="colorSwiper">
               {color.map((item: any, index: number) => {
@@ -330,8 +330,8 @@ export default function TemplateWrite({ color, type }: Props) {
               </Popover>
             </UserEditColor>
           </ColorContents>
-        </G.ColContent>
+        </G.Content>
       </G.Row>
-    </G.RowWrap>
+    </G.Form>
   );
 }

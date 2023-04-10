@@ -4,6 +4,7 @@ import * as S from '@/components/Board/Write/style';
 import { useRouter } from 'next/router';
 import TemplateWrite from '@/components/WeddingTemplate/Write';
 import TemplatePreview from '@/components/WeddingTemplate/Preview';
+import TemplateWrite2 from '@/components/WeddingTemplate2/Write';
 
 type TemplateType = {
   id: number;
@@ -50,6 +51,9 @@ export default function BoardWrite() {
       <S.ContentRight>
         <Card title="템플릿">
           <TemplateWrite color={templateColor} type={templateType} />
+        </Card>
+        <Card title="템플릿2">
+          <TemplateWrite2 />
         </Card>
         <Card title="예식일" />
         <Card title="첫 화면" />

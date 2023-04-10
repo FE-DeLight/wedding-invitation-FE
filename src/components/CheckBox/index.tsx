@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import * as G from '@/styles/globals';
+import * as G from '@/styles/formStyles';
 
 type Props = {
   options: Array<object>;
