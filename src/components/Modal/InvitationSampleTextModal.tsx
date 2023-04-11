@@ -1,15 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from '@/components/Modal/InvitationSampleTextStyle';
-import { IoIosClose } from "react-icons/io";
+import { IoIosClose } from 'react-icons/io';
+import { useDispatch, useSelector } from 'react-redux';
+import { setModal, setText } from '@/store/invitationSlice';
 
-export default function InvitationSampleTextModal({ openModal, showSampleText, sandContent } : any) {
+// const [openModal, setModal] = useState(false);
+// const textAreaRef = useRef();
+// const [text, setText] = useState({
+//   title: '초대합니다',
+//   content: '[청첩장 문구]에 내용을 입력해 주세요.',
+// });
+
+export default function InvitationSampleTextModal() {
+  const dispatch = useDispatch();
+  const openModal = useSelector((state: any) => state.invitation.openModal);
+  // 받아와야 되는 기존 props :  openModal={openModal} showSampleText={showSampleText} sandContent={sandContent}
+
+  const showSampleText = () => {
+    setModal(!openModal);
+  };
+
+  const sandContent = (e: any) => {
+    const content = e.target.innerHTML;
+    const replaceSpace = content.replace(/(<br>|<br\/>|<br \/>)/g, '\r\n');
+    // setModal(!openModal);
+    // setText({
+    //   ...text,
+    //   content: replaceSpace,
+    // });
+  };
+
   return (
     openModal && (
       <S.ModalLayout>
         <S.ModalHeader>
           <header>샘플테스트</header>
           <button onClick={showSampleText}>
-            <IoIosClose size={25}/>
+            <IoIosClose size={25} />
           </button>
         </S.ModalHeader>
         <S.ModalBody>
@@ -28,7 +55,7 @@ export default function InvitationSampleTextModal({ openModal, showSampleText, s
               저희의 하나됨을 따듯한 미소로 축복해주시기를 바랍니다.
             </S.SelectSample>
             <S.SelectSample onClick={sandContent}>
-              서로 다른 두 사람이 만나 <br/>
+              서로 다른 두 사람이 만나 <br />
               인생이라는 같은 길을 걷고자 합니다.
               <br />
               <br />

@@ -3,6 +3,7 @@ import templateSlice from './templateSlice';
 import userInfoSlice from './userInfoSlice';
 import loginSlice from './loginSlice';
 import styleOptionSlice from './styleOptionSlice';
+import invitationSlice from './invitationSlice';
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     user: userInfoSlice,
     login: loginSlice,
     styleOption: styleOptionSlice,
+    invitation: invitationSlice,
   },
 });
 

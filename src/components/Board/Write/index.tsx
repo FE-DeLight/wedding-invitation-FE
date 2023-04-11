@@ -43,42 +43,6 @@ const templateColor = [
 // 템플릿
 
 export default function BoardWrite() {
-  // 청첩장 문구 관련 State, Function
-  const [openModal, setModal] = useState(false);
-  const textAreaRef = useRef();
-  const [text, setText] = useState({
-    title: '초대합니다',
-    content: '[청첩장 문구]에 내용을 입력해 주세요.',
-  });
-
-  const sandContent = (e: any) => {
-    const content = e.target.innerHTML;
-    const replaceSpace = content.replace(/(<br>|<br\/>|<br \/>)/g, '\r\n');
-    setModal(!openModal);
-    setText({
-      ...text,
-      content: replaceSpace,
-    });
-  };
-
-  const handleChange = (e: any) => {
-    if (e.target.id === 'title') {
-      setText({
-        ...text,
-        title: e.target.value,
-      });
-    } else {
-      setText({
-        ...text,
-        content: e.target.value,
-      });
-    }
-  };
-
-  const showSampleText = () => {
-    setModal(!openModal);
-  };
-
   const router = useRouter();
 
   const handleSave = () => {
@@ -197,7 +161,7 @@ export default function BoardWrite() {
             <SenderPreview />
           </Card>
           <Card title="청첩장문구" type="preview" color="#fff" backgroundImage={optionData.background}>
-            <InvitationPreview text={text} />
+            <InvitationPreview />
           </Card>
           <Card title="예식일" type="preview" color="#eee" backgroundImage="없음">
             <WeddingDayPreview weddingDay={weddingDay} showDday={showDday} />
@@ -229,13 +193,8 @@ export default function BoardWrite() {
         </Card>
         <Card color="white" title="첫 화면" backgroundImage="없음" />
         <Card title="청첩장 문구" backgroundImage="없음">
-          <InvitationWrite
-            text={text}
-            textAreaRef={textAreaRef}
-            handleChange={handleChange}
-            showSampleText={showSampleText}
-          />
-          <InvitationSampleTextModal openModal={openModal} showSampleText={showSampleText} sandContent={sandContent} />
+          <InvitationWrite />
+          <InvitationSampleTextModal />
         </Card>
         <Card color="white" title="보내는 사람" backgroundImage="없음">
           <SenderWrite />
