@@ -1,15 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as S from '@/components/Modal/InvitationSampleTextStyle';
 import { IoIosClose } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
 import { setText } from '@/store/invitationSlice';
-
-// const [openModal, setModal] = useState(false);
-// const textAreaRef = useRef();
-// const [text, setText] = useState({
-//   title: '초대합니다',
-//   content: '[청첩장 문구]에 내용을 입력해 주세요.',
-// });
 
 export default function InvitationSampleTextModal({ openModal, setModal }: any) {
   const dispatch = useDispatch();

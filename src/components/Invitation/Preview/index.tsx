@@ -3,7 +3,7 @@ import * as S from './style';
 import { useSelector } from 'react-redux';
 
 export default function Index() {
-  const { text } = useSelector((state: any) => state.invitation); // Redux 스토어의 상태 가져오기
+  const { text } = useSelector((state: any) => state.invitation);
 
   return (
     <S.InvitationWrap>
