@@ -1,27 +1,33 @@
 import React from 'react';
 import * as G from '@/styles/globals';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setText } from '@/store/invitationSlice';
 
-export default function Index() {
+export default function Index({ openModal, setModal }: any) {
   // 받아와야 되는 기존 props : { text, textAreaRef, handleChange, showSampleText }: any
+  const dispatch = useDispatch();
   const { text } = useSelector((state: any) => state.invitation); // Redux 스토어의 상태 가져오기
 
   const handleChange = (e: any) => {
     if (e.target.id === 'title') {
-      // setText({
-      //   ...text,
-      //   title: e.target.value,
-      // });
+      dispatch(
+        setText({
+          ...text,
+          title: e.target.value,
+        }),
+      );
     } else {
-      // setText({
-      //   ...text,
-      //   content: e.target.value,
-      // });
+      dispatch(
+        setText({
+          ...text,
+          content: e.target.value,
+        }),
+      );
     }
   };
 
   const showSampleText = () => {
-    // setModal(!openModal);
+    setModal(!openModal);
   };
 
   return (

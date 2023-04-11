@@ -23,7 +23,6 @@ type TemplateType = {
 };
 
 // 템플릿
-
 const templateType: TemplateType[] = [
   { id: 1, value: 'A' },
   { id: 2, value: 'B' },
@@ -48,6 +47,9 @@ export default function BoardWrite() {
   const handleSave = () => {
     router.push('/boards/');
   };
+
+  // 청첩장 문구 모달
+  const [openModal, setModal] = useState(false);
 
   // 방명록 관련 State, Function
   const [cards, setCards] = useState({});
@@ -193,8 +195,8 @@ export default function BoardWrite() {
         </Card>
         <Card color="white" title="첫 화면" backgroundImage="없음" />
         <Card title="청첩장 문구" backgroundImage="없음">
-          <InvitationWrite />
-          <InvitationSampleTextModal />
+          <InvitationWrite openModal={openModal} setModal={setModal} />
+          <InvitationSampleTextModal openModal={openModal} setModal={setModal} />
         </Card>
         <Card color="white" title="보내는 사람" backgroundImage="없음">
           <SenderWrite />

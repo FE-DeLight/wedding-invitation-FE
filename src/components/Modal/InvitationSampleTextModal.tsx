@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as S from '@/components/Modal/InvitationSampleTextStyle';
 import { IoIosClose } from 'react-icons/io';
 import { useDispatch, useSelector } from 'react-redux';
-import { setModal, setText } from '@/store/invitationSlice';
+import { setText } from '@/store/invitationSlice';
 
 // const [openModal, setModal] = useState(false);
 // const textAreaRef = useRef();
@@ -11,23 +11,24 @@ import { setModal, setText } from '@/store/invitationSlice';
 //   content: '[청첩장 문구]에 내용을 입력해 주세요.',
 // });
 
-export default function InvitationSampleTextModal() {
+export default function InvitationSampleTextModal({ openModal, setModal }: any) {
   const dispatch = useDispatch();
-  const openModal = useSelector((state: any) => state.invitation.openModal);
-  // 받아와야 되는 기존 props :  openModal={openModal} showSampleText={showSampleText} sandContent={sandContent}
-
-  const showSampleText = () => {
-    setModal(!openModal);
-  };
+  const { text } = useSelector((state: any) => state.invitation); // Redux 스토어의 상태 가져오기
 
   const sandContent = (e: any) => {
     const content = e.target.innerHTML;
     const replaceSpace = content.replace(/(<br>|<br\/>|<br \/>)/g, '\r\n');
-    // setModal(!openModal);
-    // setText({
-    //   ...text,
-    //   content: replaceSpace,
-    // });
+    setModal(!openModal);
+    dispatch(
+      setText({
+        ...text,
+        content: replaceSpace,
+      }),
+    );
+  };
+
+  const showSampleText = () => {
+    setModal(!openModal);
   };
 
   return (
