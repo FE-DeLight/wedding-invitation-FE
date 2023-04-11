@@ -10,9 +10,11 @@ import PrivewCard from '@/components/GuestBook/PrivewCard';
 import GuestBookModal from '@/components/Modal/GuestBookModal';
 import WeddingDayWrite from '@/components/WeddingDay/Write';
 import WeddingDayPreview from '@/components/WeddingDay/Preview';
-import SenderWrite from '@/components/Sender/Write';
 import CalendarStyleWrite from '@/components/CalendarStyle/Write';
+import SenderWrite from '@/components/Sender/Write';
 import SenderPreview from '@/components/Sender/Preview';
+import WeddingHallWrite from '@/components/WeddingHall/Write';
+import WeddingHallPreview from '@/components/WeddingHall/Preview';
 
 type TemplateType = {
   id: number;
@@ -147,6 +149,9 @@ export default function BoardWrite() {
         <Card title="예식일" type="preview">
           <WeddingDayPreview weddingDay={weddingDay} showDday={showDday} />
         </Card>
+        <Card title="예식일" type="preview">
+          <WeddingHallPreview />
+        </Card>
       </S.ContentLeft>
 
       <S.ContentRight>
@@ -166,7 +171,9 @@ export default function BoardWrite() {
           <CalendarStyleWrite showDday={showDday} setShowDday={setShowDday} />
         </Card>
         <Card title="갤러리" />
-        <Card title="예식장 정보" />
+        <Card color="white" title="예식장 정보">
+          <WeddingHallWrite />
+        </Card>
         <Card title="길 안내" />
         <Card title="계좌 정보" />
         <Card title="연락처 정보" />
