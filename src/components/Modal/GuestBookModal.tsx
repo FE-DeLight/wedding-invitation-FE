@@ -1,8 +1,18 @@
 import React, { useRef } from 'react';
 import * as S from './GuestBookStyle';
 import dayjs from 'dayjs';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCard, setOpenGuestBookModal } from '@/store/guestBookSlice';
 
-export default function GuestBookModal({ openGuestBookModal, handleVisibility, addCard } :any) {
+export default function GuestBookModal() {
+  const dispatch = useDispatch();
+  const guestBookState = useSelector((state: any) => state.guestBook);
+  const { openGuestBookModal } = guestBookState;
+
+  const stateModal = () => {
+    dispatch(setOpenGuestBookModal(!openGuestBookModal));
+  };
+
   const now = dayjs();
   const year = now.year();
   const month = now.month();
@@ -13,14 +23,14 @@ export default function GuestBookModal({ openGuestBookModal, handleVisibility, a
   const stringMonth = month.toString();
   const stringDate = date.toString();
   const stringMinute = minute.toString();
-  const dateResult = [stringYear, stringMonth, stringDate, stringMinute].join('');
 
   const formRef = useRef<HTMLFormElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
+  const dateResult = [stringYear, stringMonth, stringDate, stringMinute].join('');
   const contentRef = useRef<HTMLTextAreaElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-  const onSubmit = (event :any) => {
+  const onSubmit = (event: any) => {
     event.preventDefault();
     // onSubmit 함수에서 유효성 체크 검사 해야될 것 같음!
     const card = {
@@ -32,7 +42,8 @@ export default function GuestBookModal({ openGuestBookModal, handleVisibility, a
     };
 
     formRef.current?.reset();
-    addCard(card);
+    dispatch(setCard(card));
+    stateModal();
   };
 
   return (
@@ -40,7 +51,7 @@ export default function GuestBookModal({ openGuestBookModal, handleVisibility, a
       <S.ModalLayout>
         <S.ModalHeader>
           <header>방명록</header>
-          <S.IconButton onClick={handleVisibility}>닫기</S.IconButton>
+          <S.IconButton onClick={stateModal}>닫기</S.IconButton>
         </S.ModalHeader>
         <S.ModalWrap>
           <S.ModalBody ref={formRef} action="" method="post">
@@ -58,7 +69,7 @@ export default function GuestBookModal({ openGuestBookModal, handleVisibility, a
             </S.SelectSample>
           </S.ModalBody>
           <S.ModalBottom>
-            <button onClick={handleVisibility}>닫기</button>
+            <button onClick={stateModal}>닫기</button>
             <button onClick={onSubmit}>저장</button>
           </S.ModalBottom>
         </S.ModalWrap>

@@ -43,58 +43,13 @@ const templateColor = [
 
 export default function BoardWrite() {
   const router = useRouter();
-
   const handleSave = () => {
     router.push('/boards/');
   };
 
   // 청첩장 문구 모달
   const [openModal, setModal] = useState(false);
-
-  // 방명록 관련 State, Function
-  const [cards, setCards] = useState({});
-  const [openGuestBookDelectModal, setGuestDelectModal] = useState(false);
-  const [passwordValidation, setPasswordValidation] = useState('');
   const [weddingDay, setWeddingDay] = useState<Date>(new Date());
-  const addPost = () => {
-    setGuestModal(!openGuestBookModal);
-  };
-  const handleValidation = () => {
-    setPasswordValidation('');
-  };
-  const HandleGBDelectVisibility = () => {
-    handleValidation();
-    setGuestDelectModal(!openGuestBookDelectModal);
-  };
-  const deleteCard = (cardPassword: any, id: any) => {
-    const updated: any = { ...cards };
-    if (updated[id].password === cardPassword) {
-      setCards(() => {
-        delete updated[id];
-        return updated;
-      });
-      setGuestDelectModal(!openGuestBookDelectModal);
-    } else if (updated[id].password !== cardPassword) {
-      // setPasswordValidation(!passwordValidation); error 발생
-    } else {
-      // 공백 && 포커스를 가져길을때 === 비밀번호를 입력해주세요.
-    }
-  };
-
-  // 방명록 모달 State, Function
-  const [openGuestBookModal, setGuestModal] = useState(false);
-  const handleVisibility = () => {
-    setGuestModal(!openGuestBookModal);
-  };
-
-  const addCard = (card: any) => {
-    setCards((cards) => {
-      const updated: any = { ...cards };
-      updated[card.id] = card;
-      return updated;
-    });
-    setGuestModal(!openGuestBookModal);
-  };
 
   // 추가옵션 State, Function
   const [optionData, setOptionData] = useState({
@@ -169,19 +124,7 @@ export default function BoardWrite() {
             <WeddingDayPreview weddingDay={weddingDay} showDday={showDday} />
           </Card>
           <Card title="방명록" type="preview" color="#fff" backgroundImage={optionData.background}>
-            <GuestBookPreview
-              cards={cards}
-              setGuestDelectModal={setGuestDelectModal}
-              addPost={addPost}
-              deleteCard={deleteCard}
-              openGuestBookDelectModal={openGuestBookDelectModal}
-              HandleGBDelectVisibility={HandleGBDelectVisibility}
-              passwordValidation={passwordValidation}
-              handleValidation={handleValidation}
-              addCard={addCard}
-              handleVisibility={handleVisibility}
-              openGuestBookModal={openGuestBookModal}
-            />
+            <GuestBookPreview />
           </Card>
         </GlobalStyle>
       </S.ContentLeft>

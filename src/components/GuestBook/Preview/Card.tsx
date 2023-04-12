@@ -1,27 +1,17 @@
 import * as S from './style';
-import { IoIosClose } from "react-icons/io";
+import { IoIosClose } from 'react-icons/io';
 import GuestBookDelectModal from '../../Modal/GuestBookDelectModal';
+import { useDispatch, useSelector } from 'react-redux';
+import { setOpenGuestBookDelectModal } from '@/store/guestBookSlice';
 
-// type CardProp = {
-//   card: {
-//     name: string;
-//     time: string;
-//     content: string;
-//   };
-// };
+export default function Card({ card }: any) {
+  const dispatch = useDispatch();
+  const guestBookState = useSelector((state: any) => state.guestBook);
+  const { openGuestBookDelectModal } = guestBookState;
 
-export default function Card({
-  card,
-  deleteCard,
-  setGuestDelectModal,
-  openGuestBookDelectModal,
-  HandleGBDelectVisibility,
-  passwordValidation,
-  handleValidation,
-}: any) {
   const { id, password, name, time, content } = card;
   const onSubmit = () => {
-    setGuestDelectModal(!openGuestBookDelectModal);
+    dispatch(setOpenGuestBookDelectModal(!openGuestBookDelectModal));
   };
 
   return (
@@ -35,16 +25,7 @@ export default function Card({
           </button>
         </S.CardHeader>
         <p>{content}</p>
-        {openGuestBookDelectModal && (
-          <GuestBookDelectModal
-            id={id}
-            password={password}
-            HandleGBDelectVisibility={HandleGBDelectVisibility}
-            deleteCard={deleteCard}
-            passwordValidation={passwordValidation}
-            handleValidation={handleValidation}
-          />
-        )}
+        {openGuestBookDelectModal && <GuestBookDelectModal id={id} password={password} />}
       </S.Cardli>
     </>
   );
