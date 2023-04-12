@@ -5,8 +5,7 @@ interface Address {
   showMap?: boolean;
   address?: string;
   detailAddress?: string;
-  contactPerson?: string;
-  contactNumber?: string;
+  contact?: { person: string; phone: string };
   showDetail?: boolean;
 }
 
@@ -15,8 +14,7 @@ const initialState: Address = {
   showMap: false,
   address: '',
   detailAddress: '',
-  contactPerson: '',
-  contactNumber: '',
+  contact: { person: '', phone: '' },
   showDetail: false,
 };
 
@@ -26,9 +24,12 @@ const addressSlice = createSlice({
   reducers: {
     setAddress: (state: Address, action) => {
       state.address = action.payload.address;
+    },
+    setDetailAddress: (state: Address, action) => {
       state.detailAddress = action.payload.detailAddress;
-      state.contactPerson = action.payload.contactPerson;
-      state.contactNumber = action.payload.contactNumber;
+    },
+    setContact: (state: Address, action) => {
+      state.contact = action.payload.contact;
     },
     setShowMap: (state, action) => {
       state.showMap = action.payload.showMap;
@@ -42,6 +43,7 @@ const addressSlice = createSlice({
   },
 });
 
-export const { setAddress, setShowMap, setCoordinate, setShowDetail } = addressSlice.actions;
+export const { setAddress, setDetailAddress, setContact, setShowMap, setCoordinate, setShowDetail } =
+  addressSlice.actions;
 
 export default addressSlice.reducer;

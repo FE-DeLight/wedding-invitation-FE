@@ -1,15 +1,19 @@
 import React, { useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
+import { useSelector } from 'react-redux';
 
 declare const naver: any; // 네이버 지도 API 전역 객체
 
 const NaverMap = styled.div`
   width: 100%;
-  height: 300px;
+  height: 384px;
   transition: filter 0.5s ease-in-out;
 `;
 
-export default function Map({ coordinate, showMap }: any) {
+export default function Map() {
+  const showMap = useSelector((state: any) => state.address.showMap);
+  const coordinate = useSelector((state: any) => state.address.coordinate);
+
   const mapRef = useRef(null);
 
   useEffect(() => {
