@@ -56,3 +56,16 @@ export const TextButton = styled.button`
   color: inherit;
   cursor: pointer;
 `;
+export const Title = styled.div`
+  text-align: center;
+  font-size: 20px;
+  color: #06080f;
+  font-family: 'Nanum Myeongjo', serif;
+  &:after {
+    content: '';
+    display: block;
+    width: 20px;
+    border-bottom: 1px solid #06080f;
+    margin: 10px auto 0;
+  }
+`;
