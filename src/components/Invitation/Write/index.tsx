@@ -2,10 +2,10 @@ import React from 'react';
 import * as G from '@/styles/globals';
 import { useDispatch, useSelector } from 'react-redux';
 import { setText } from '@/store/invitationSlice';
-
-export default function Index({ openModal, setModal }: any) {
+import { setInvitationModal } from '@/store/invitationSlice';
+export default function Index() {
   const dispatch = useDispatch();
-  const { text } = useSelector((state: any) => state.invitation);
+  const { text, openModal } = useSelector((state: any) => state.invitation);
 
   const handleChange = (e: any) => {
     if (e.target.id === 'title') {
@@ -26,7 +26,7 @@ export default function Index({ openModal, setModal }: any) {
   };
 
   const showSampleText = () => {
-    setModal(!openModal);
+    dispatch(setInvitationModal(!openModal));
   };
 
   return (

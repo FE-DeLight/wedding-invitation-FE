@@ -40,7 +40,6 @@ const templateColor = [
 ];
 
 // 템플릿
-
 export default function BoardWrite() {
   const router = useRouter();
 
@@ -195,8 +194,8 @@ export default function BoardWrite() {
         </Card>
         <Card color="white" title="첫 화면" backgroundImage="없음" />
         <Card title="청첩장 문구" backgroundImage="없음">
-          <InvitationWrite openModal={openModal} setModal={setModal} />
-          <InvitationSampleTextModal openModal={openModal} setModal={setModal} />
+          <InvitationWrite />
+          <InvitationSampleTextModal />
         </Card>
         <Card color="white" title="보내는 사람" backgroundImage="없음">
           <SenderWrite />
