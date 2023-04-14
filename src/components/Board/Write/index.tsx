@@ -13,6 +13,7 @@ import WeddingDayPreview from '@/components/WeddingDay/Preview';
 import SenderWrite from '@/components/Sender/Write';
 import CalendarStyleWrite from '@/components/CalendarStyle/Write';
 import SenderPreview from '@/components/Sender/Preview';
+import SampleForm from '@/components/SampleForm';
 
 type TemplateType = {
   id: number;
@@ -156,7 +157,9 @@ export default function BoardWrite() {
         <Card color="white" title="예식일">
           <WeddingDayWrite weddingDay={weddingDay} setWeddingDay={setWeddingDay} />
         </Card>
-        <Card title="첫 화면" />
+        <Card title="첫 화면">
+          <SampleForm />
+        </Card>
         <Card color="white" title="첫 화면" />
         <Card title="청첩장 문구" />
         <Card color="white" title="보내는 사람">
