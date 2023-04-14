@@ -1,6 +1,8 @@
 import React from 'react';
 import '@/styles/globals.scss';
 import '@/styles/datePicker.scss';
+import '@/styles/guestBook.scss';
+
 import type { AppProps } from 'next/app';
 import LayoutComponent from '@/components/Layout';
 import { Provider } from 'react-redux';

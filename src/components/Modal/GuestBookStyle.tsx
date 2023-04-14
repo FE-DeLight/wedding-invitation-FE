@@ -1,30 +1,7 @@
 import styled from '@emotion/styled';
 
-export const ModalLayout = styled.div`
-  position: fixed;
-  z-index: 5;
-  top: 50%;
-  left: 50%;
-  width: 510px;
-  max-height: 600px;
-  background-color: white;
-  transform: translate(-50%, -50%);
-`;
-
 export const ModalWrap = styled.div`
-  padding: 24px;
-`;
-
-export const ModalHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 16px 24px;
-  background-color: #e5e5e5;
-`;
-
-export const IconButton = styled.button`
-  height: 0;
-  color: black;
+  //padding: 24px;
 `;
 
 export const ModalBody = styled.form`
@@ -45,7 +22,7 @@ export const SelectSample = styled.div`
 
   input,
   textarea {
-    width: 100%;
+    //width: 100%;
   }
 `;
 
