@@ -1,7 +1,56 @@
 import React, { useRef, useState } from 'react';
 import * as SG from './guestBookDelectStyle';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCard, deleteCard, setOpenGuestBookDelectModal } from '@/store/guestBookSlice';
+import { deleteCard, setOpenGuestBookDelectModal } from '@/store/guestBookSlice';
+import { styled } from "@mui/material/styles";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import DialogContent from "@mui/material/DialogContent";
+import * as S from "@/components/Modal/GuestBookStyle";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
+
+const BootstrapDialog = styled(Dialog)(({ theme }) => ({
+  '& .MuiDialogContent-root': {
+    padding: theme.spacing(2),
+  },
+  '& .MuiDialogActions-root': {
+    padding: theme.spacing(1),
+  },
+}));
+
+export interface DialogTitleProps {
+  id: string;
+  children?: React.ReactNode;
+  onClose: () => void;
+}
+
+function BootstrapDialogTitle(props: DialogTitleProps) {
+  const { children, onClose, ...other } = props;
+
+  return (
+    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+      {children}
+      {onClose ? (
+        <IconButton
+          aria-label="close"
+          onClick={onClose}
+          sx={{
+            position: 'absolute',
+            right: 8,
+            top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+    </DialogTitle>
+  );
+}
+
 
 export default function GuestBookDelectModal({ id, password }: any) {
   const dispatch = useDispatch();
@@ -47,7 +96,6 @@ export default function GuestBookDelectModal({ id, password }: any) {
   // };
 
   const onSubmit = (event: any) => {
-    console.log('onSubmit으로 들어옴', cards);
     event.preventDefault();
     // 저장을 눌렀는데, 만약 비밀번호가 공백 이라면 '입력해주세요 띄우기'
     // const passWord = passwordRef.current?.value;
@@ -56,12 +104,15 @@ export default function GuestBookDelectModal({ id, password }: any) {
   };
 
   return (
-    <SG.ModalLayout>
-      <SG.ModalHeader>
-        <header>글 삭제</header>
-        <button onClick={HandleGBDelectVisibility}>닫기</button>
-      </SG.ModalHeader>
-      <SG.ModalWrap>
+    <BootstrapDialog
+      onClose={HandleGBDelectVisibility}
+      aria-labelledby="customized-dialog-title"
+      open={openGuestBookDelectModal}
+    >
+      <BootstrapDialogTitle id="customized-dialog-title" onClose={HandleGBDelectVisibility}>
+        방명록
+      </BootstrapDialogTitle>
+      <DialogContent dividers>
         <SG.ModalBody ref={formRef} action="" method="post">
           <SG.SelectSample>
             <label>비밀번호</label>
@@ -69,11 +120,15 @@ export default function GuestBookDelectModal({ id, password }: any) {
           </SG.SelectSample>
           {passwordValidation && <SG.Validation>비밀번호가 틀렸습니다.</SG.Validation>}
         </SG.ModalBody>
-        <SG.ModalBottom>
-          <button onClick={HandleGBDelectVisibility}>닫기</button>
-          <button onClick={onSubmit}>저장</button>
-        </SG.ModalBottom>
-      </SG.ModalWrap>
-    </SG.ModalLayout>
+      </DialogContent>
+      <DialogActions>
+        <Button autoFocus onClick={HandleGBDelectVisibility} className="close">
+          닫기
+        </Button>
+        <Button autoFocus onClick={onSubmit} className="save">
+          저장
+        </Button>
+      </DialogActions>
+    </BootstrapDialog>
   );
 }

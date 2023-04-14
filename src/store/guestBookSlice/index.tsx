@@ -30,7 +30,6 @@ const guestBookSlice = createSlice({
     },
     deleteCard: (state, action: PayloadAction<Card>) => {
       const Card = action.payload;
-
       // console.log('redux로 들어온 card : ', Card[0].password);
       return {
         ...state,
