@@ -32,6 +32,15 @@ export default function Map() {
         logoControl: false,
         mapDataControl: false,
         mapTypeControl: false,
+        draggable: showMap ? true : false,
+        pinchZoom: showMap ? true : false,
+        scrollWheel: showMap ? true : false,
+        keyboardShortcuts: showMap ? true : false,
+        disableDoubleTapZoom: showMap ? true : false,
+        disableDoubleClickZoom: showMap ? true : false,
+        disableTwoFingerTapZoom: showMap ? true : false,
+        disableKineticPan: showMap ? true : false,
+        tileTransition: showMap ? true : false,
       };
 
       const map = new naver.maps.Map(mapRef.current, mapOptions);

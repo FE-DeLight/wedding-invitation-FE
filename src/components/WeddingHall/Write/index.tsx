@@ -5,7 +5,14 @@ import { Radio, RadioGroup, FormControlLabel, Divider, TextField, Button, Checkb
 import Map from '@/components/Map';
 import AddressSearchModal from '@/components/Modal/AddressSearchModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { setAddress, setDetailAddress, setShowMap, setCoordinate, setContact } from '@/store/addressSlice';
+import {
+  setAddress,
+  setDetailAddress,
+  setShowMap,
+  setCoordinate,
+  setContact,
+  setShowDetail,
+} from '@/store/addressSlice';
 
 export default function WeddingHallWrite() {
   const [visible, setVisible] = useState(false); // 우편번호 컴포넌트의 노출여부 상태
@@ -13,6 +20,7 @@ export default function WeddingHallWrite() {
   const dispatch = useDispatch();
   const address = useSelector((state: any) => state.address.address);
   const contact = useSelector((state: any) => state.address.contact);
+  const showDetail = useSelector((state: any) => state.address.showDetail);
 
   const handleSearchButton = () => {
     setVisible(true);
@@ -81,7 +89,13 @@ export default function WeddingHallWrite() {
     );
   };
 
-  const handleShowDetail = () => {};
+  const handleShowDetail = () => {
+    dispatch(
+      setShowDetail({
+        showDetail: !showDetail,
+      }),
+    );
+  };
 
   return (
     <div>
@@ -139,8 +153,8 @@ export default function WeddingHallWrite() {
       <G.Row>
         <G.ColTitle>자세히 보기</G.ColTitle>
         <FormControlLabel
-          control={<Checkbox name="seeDetail" onChange={handleShowDetail} />}
-          label="※ [지도 자세히 보기] 버튼을 숨기고 지도 클릭시 네이버 지도로 이동합니다."
+          control={<Checkbox name="seeDetail" onChange={handleShowDetail} checked={showDetail} />}
+          label="※ [지도 자세히 보기] 버튼을 숨기고 지도를 더블 클릭시 네이버 지도로 이동합니다."
         />
       </G.Row>
     </div>

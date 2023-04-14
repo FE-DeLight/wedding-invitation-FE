@@ -15,7 +15,7 @@ const initialState: Address = {
   address: '',
   detailAddress: '',
   contact: { person: '', phone: '' },
-  showDetail: false,
+  showDetail: true,
 };
 
 const addressSlice = createSlice({
