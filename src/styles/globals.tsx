@@ -7,11 +7,13 @@ export const RowWrap = styled.div`
 `;
 export const Row = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 `;
 export const ColTitle = styled.div`
   display: flex;
+  align-items: center;
   min-width: 100px;
+  min-height: 40px;
 `;
 export const ColContent = styled.div`
   display: flex;

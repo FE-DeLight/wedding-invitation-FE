@@ -14,6 +14,7 @@ import SenderWrite from '@/components/Sender/Write';
 import CalendarStyleWrite from '@/components/CalendarStyle/Write';
 import SenderPreview from '@/components/Sender/Preview';
 import SampleForm from '@/components/SampleForm';
+import DirectionsWrite from '@/components/WeddingDirections/Write';
 
 type TemplateType = {
   id: number;
@@ -170,7 +171,9 @@ export default function BoardWrite() {
         </Card>
         <Card title="갤러리" />
         <Card title="예식장 정보" />
-        <Card title="길 안내" />
+        <Card title="길 안내">
+          <DirectionsWrite />
+        </Card>
         <Card title="계좌 정보" />
         <Card title="연락처 정보" />
         <Card title="식전 영상" />
