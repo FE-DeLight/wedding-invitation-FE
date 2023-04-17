@@ -1,8 +1,9 @@
 import React from 'react';
 import * as G from '@/styles/globals';
+import * as S from './style';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSenderForm } from '@/store/userInfoSlice';
-import { TextField, FormControlLabel, Checkbox, Box, Stack, Divider } from '@mui/material';
+import { TextField, FormControlLabel, Checkbox, Divider } from '@mui/material';
 
 export default function SenderWrite() {
   const dispatch = useDispatch();
@@ -30,10 +31,10 @@ export default function SenderWrite() {
   };
 
   return (
-    <Box>
-      <Stack direction="row">
+    <>
+      <div>
         <G.ColTitle>신랑</G.ColTitle>
-        <Stack direction="row">
+        <S.InputField>
           <TextField variant="outlined" name="male.name" onChange={handleInputChange} />
           <TextField
             variant="outlined"
@@ -41,33 +42,36 @@ export default function SenderWrite() {
             name="male.relationship"
             onChange={handleInputChange}
           />
-        </Stack>
-      </Stack>
-      <Stack direction="row">
+        </S.InputField>
+      </div>
+
+      <div>
         <G.ColTitle>아버지</G.ColTitle>
-        <Stack direction="row">
+        <S.InputField>
           <TextField variant="outlined" name="male.father.name" onChange={handleInputChange} />
           <FormControlLabel
             control={<Checkbox name="male.father.isDeceased" onChange={handleInputChange} />}
             label="고인"
           />
-        </Stack>
-      </Stack>
-      <Stack direction="row">
+        </S.InputField>
+      </div>
+
+      <div>
         <G.ColTitle>어머니</G.ColTitle>
-        <Stack direction="row">
+        <S.InputField>
           <TextField variant="outlined" name="male.mother.name" onChange={handleInputChange} />
           <FormControlLabel
             control={<Checkbox name="male.mother.isDeceased" onChange={handleInputChange} />}
             label="고인"
           />
-        </Stack>
-      </Stack>
+        </S.InputField>
+      </div>
 
       <Divider />
-      <Stack direction="row">
+
+      <div>
         <G.ColTitle>신부</G.ColTitle>
-        <Stack direction="row">
+        <S.InputField>
           <TextField variant="outlined" name="female.name" onChange={handleInputChange} />
           <TextField
             variant="outlined"
@@ -75,32 +79,36 @@ export default function SenderWrite() {
             name="female.relationship"
             onChange={handleInputChange}
           />
-        </Stack>
-      </Stack>
-      <Stack direction="row">
+        </S.InputField>
+      </div>
+
+      <div>
         <G.ColTitle>아버지</G.ColTitle>
-        <Stack direction="row">
+        <S.InputField>
           <TextField variant="outlined" name="female.father.name" onChange={handleInputChange} />
           <FormControlLabel
             control={<Checkbox name="female.father.isDeceased" onChange={handleInputChange} />}
             label="고인"
           />
-        </Stack>
-      </Stack>
-      <Stack direction="row">
+        </S.InputField>
+      </div>
+
+      <div>
         <G.ColTitle>어머니</G.ColTitle>
-        <Stack direction="row">
+        <S.InputField>
           <TextField variant="outlined" name="female.mother.name" onChange={handleInputChange} />
           <FormControlLabel
             control={<Checkbox name="female.mother.isDeceased" onChange={handleInputChange} />}
             label="고인"
           />
-        </Stack>
-      </Stack>
+        </S.InputField>
+      </div>
+
       <Divider />
-      <Box>
+
+      <S.Text>
         <p>※ 아버님, 어머님의 정보는 빈칸으로 두시면 생략이 가능합니다.</p>
-      </Box>
-    </Box>
+      </S.Text>
+    </>
   );
 }
