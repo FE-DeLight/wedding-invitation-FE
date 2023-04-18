@@ -1,25 +1,27 @@
-import React from 'react';
+import React, {useState} from 'react';
 import * as S from './style';
 import * as G from "@/styles/globals";
 import { Checkbox, FormControlLabel, MenuItem, Radio, RadioGroup, Select, SelectChangeEvent, TextField } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import { ColTextContent } from "./style";
 
 export default function ContactWrite() {
-  const [contact, setContact] = React.useState('신랑에게 연락하기');
+  const [contacts, setContacts] = useState([{ id: 1, group: '', title: '', name: '', phone: '' }]);
 
   const handleChange = (event: SelectChangeEvent) => {
-    setContact(event.target.value as string);
-  };
-
-  const stateModal = () => {
-    console.log('Im in')
-    // dispatch(setOpenGuestBookModal(!openGuestBookModal));
+    // setContact(event.target.value as string);
   };
 
   const AddContact = () => {
-    console.log('AddContact');
+    // 새로운 연락처 객체를 생성하여 contacts 배열에 추가
+    const newContact = { id: contacts.length + 1, group: '', title: '', name: '', phone: '' };
+    setContacts([...contacts, newContact]);
+  }
+
+  const handleDeleteContact = (contactId:any) => {
+    // contacts 배열에서 해당 연락처를 제외하고 새로운 배열 생성하여 업데이트
+    const updatedContacts = contacts.filter(contact => contact.id !== contactId);
+    setContacts(updatedContacts);
   }
 
   return (
@@ -34,7 +36,7 @@ export default function ContactWrite() {
               id="demo-simple-select"
               size="small"
               fullWidth
-              value={contact}
+              // value={contact}
               onChange={handleChange}
             >
               <MenuItem value="신랑에게 연락하기">신랑에게 연락하기</MenuItem>
@@ -47,43 +49,49 @@ export default function ContactWrite() {
       <S.Divider>
         <hr />
       </S.Divider>
-
-      <G.Row>
-        <G.ColTitle></G.ColTitle>
-        <S.ColWrap>
-          <S.NoContact>
-            <ErrorOutlineIcon />
-            <span>등록 된 연락처가 없습니다.</span>
-          </S.NoContact>
-        </S.ColWrap>
-      </G.Row>
-
-      <G.Row>
-        <G.ColTitle>연락처</G.ColTitle>
-        <S.ColWrap>
-          <S.ColContent>
-            <G.RowItem>
-              <TextField size="small" fullWidth placeholder={"연락처"}/>
-            </G.RowItem>
-          </S.ColContent>
-          <CloseIcon />
-        </S.ColWrap>
-      </G.Row>
-      <G.Row>
-        <G.ColTitle>연락처</G.ColTitle>
-        <S.ColWrap>
-          <S.ColContent>
-            <S.GroupRowItem>
-              <TextField size="small" fullWidth placeholder={"그룹"}/>
-              <TextField size="small" fullWidth placeholder={"호칭"}/>
-              <TextField size="small" fullWidth placeholder={"이름"}/>
-              <TextField size="small" fullWidth placeholder={"연락처"}/>
-            </S.GroupRowItem>
-          </S.ColContent>
-          <CloseIcon onClick={AddContact} />
-        </S.ColWrap>
-      </G.Row>
-      <S.Button onClick={stateModal}>
+      {contacts.length === 0
+          ?
+            <G.Row>
+              <G.ColTitle></G.ColTitle>
+              <S.ColWrap>
+                <S.NoContact>
+                  <ErrorOutlineIcon />
+                  <span>등록 된 연락처가 없습니다.</span>
+                </S.NoContact>
+              </S.ColWrap>
+            </G.Row>
+          :
+            contacts.length === 1
+            ?
+              <G.Row>
+                <G.ColTitle>연락처</G.ColTitle>
+                <S.ColWrap>
+                  <S.ColContent>
+                    <G.RowItem>
+                      <TextField size="small" fullWidth placeholder={"연락처"}/>
+                    </G.RowItem>
+                  </S.ColContent>
+                  <CloseIcon onClick={() => handleDeleteContact(contacts[0].id)}/>
+                </S.ColWrap>
+              </G.Row>
+            :
+              contacts.map(contact => (
+                <G.Row>
+                  <G.ColTitle>연락처</G.ColTitle>
+                  <S.ColWrap>
+                    <S.ColContent>
+                      <S.GroupRowItem>
+                        <TextField size="small" fullWidth placeholder={"그룹"}/>
+                        <TextField size="small" fullWidth placeholder={"호칭"}/>
+                        <TextField size="small" fullWidth placeholder={"이름"}/>
+                        <TextField size="small" fullWidth placeholder={"연락처"}/>
+                      </S.GroupRowItem>
+                    </S.ColContent>
+                    <CloseIcon onClick={() => handleDeleteContact(contact.id)} />
+                  </S.ColWrap>
+                </G.Row>
+        ))}
+      <S.Button onClick={AddContact}>
         <span>연락처 추가하기</span>
       </S.Button>
       <S.Divider>

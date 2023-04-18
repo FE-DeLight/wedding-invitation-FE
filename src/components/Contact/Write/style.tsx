@@ -64,6 +64,6 @@ export const GroupRowItem = styled.div`
   display: flex;
   gap: 10px;
   > :last-child {
-    min-width: 140px;
+    min-width: 170px;
   }
 `;
