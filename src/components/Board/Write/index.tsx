@@ -16,6 +16,8 @@ import CalendarStyleWrite from '@/components/CalendarStyle/Write';
 import SenderPreview from '@/components/Sender/Preview';
 import MoreOption from '@/components/MoreOption/MoreOption';
 import styled from '@emotion/styled';
+import Contact from '@/components/Contact/Write';
+import SampleForm from "@/components/SampleForm";
 
 type TemplateType = {
   id: number;
@@ -136,7 +138,9 @@ export default function BoardWrite() {
         <Card color="white" title="예식일" backgroundImage="없음">
           <WeddingDayWrite weddingDay={weddingDay} setWeddingDay={setWeddingDay} />
         </Card>
-        <Card color="white" title="첫 화면" backgroundImage="없음" />
+        <Card color="white" title="첫 화면" backgroundImage="없음">
+          <SampleForm />
+        </Card>
         <Card title="청첩장 문구" backgroundImage="없음">
           <InvitationWrite openModal={openModal} setModal={setModal} />
           <InvitationSampleTextModal openModal={openModal} setModal={setModal} />
@@ -151,7 +155,9 @@ export default function BoardWrite() {
         <Card title="예식장 정보" backgroundImage="없음" />
         <Card title="길 안내" backgroundImage="없음" />
         <Card title="계좌 정보" backgroundImage="없음" />
-        <Card title="연락처 정보" backgroundImage="없음" />
+        <Card color="white" title="연락처 정보" backgroundImage="없음">
+          <Contact />
+        </Card>
         <Card title="식전 영상" backgroundImage="없음" />
         <Card title="안내사항" backgroundImage="없음" />
         <Card title="썸네일" backgroundImage="없음" />
