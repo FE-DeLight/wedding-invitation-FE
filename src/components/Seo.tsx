@@ -30,7 +30,7 @@ export default function Seo({ title }: SeoProps) {
       <meta name="Date" content="2023-03" />
 
       {/* 검색엔진 노출 여부 설정 (수집 대상으로 설정) */}
-      <meta name="Robots" content="Index" />
+      <meta name="Robots" content="Login" />
 
       <title>{`${title} | wedding invitation`}</title>
     </Head>

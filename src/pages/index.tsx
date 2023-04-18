@@ -1,17 +1,13 @@
-import React from 'react';
-import Image from 'next/image';
-import { Inter } from 'next/font/google';
-import styles from '@/styles/Home.module.css';
+import React, { useEffect } from 'react';
 import Seo from '@/components/Seo';
-
-const inter = Inter({ subsets: ['latin'] });
+import { useRouter } from 'next/router';
 
 export default function Home() {
-  return (
-    <>
-      <Seo title="Home" />
-      <Image src="/vercel.svg" alt="Vercel Logo" className={styles.vercelLogo} width={100} height={24} priority />
-      <h1 className={inter.className}>Home</h1>
-    </>
-  );
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push('/login');
+  }, [router]);
+
+  return <Seo title="Home" />;
 }
