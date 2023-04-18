@@ -55,6 +55,11 @@ export const ColContent = styled.div`
   width: 100%;
 `;
 
+export const ColTextContent = styled.div`
+  font-size: 12px;
+  color: #a3a3a3;
+`;
+
 export const GroupRowItem = styled.div`
   display: flex;
   gap: 10px;

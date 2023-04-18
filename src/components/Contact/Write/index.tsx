@@ -4,8 +4,9 @@ import * as G from "@/styles/globals";
 import { Checkbox, FormControlLabel, MenuItem, Radio, RadioGroup, Select, SelectChangeEvent, TextField } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import { ColTextContent } from "./style";
 
-export default function Contact() {
+export default function ContactWrite() {
   const [contact, setContact] = React.useState('신랑에게 연락하기');
 
   const handleChange = (event: SelectChangeEvent) => {
@@ -16,6 +17,10 @@ export default function Contact() {
     console.log('Im in')
     // dispatch(setOpenGuestBookModal(!openGuestBookModal));
   };
+
+  const AddContact = () => {
+    console.log('AddContact');
+  }
 
   return (
     <>
@@ -42,6 +47,7 @@ export default function Contact() {
       <S.Divider>
         <hr />
       </S.Divider>
+
       <G.Row>
         <G.ColTitle></G.ColTitle>
         <S.ColWrap>
@@ -51,6 +57,7 @@ export default function Contact() {
           </S.NoContact>
         </S.ColWrap>
       </G.Row>
+
       <G.Row>
         <G.ColTitle>연락처</G.ColTitle>
         <S.ColWrap>
@@ -73,7 +80,7 @@ export default function Contact() {
               <TextField size="small" fullWidth placeholder={"연락처"}/>
             </S.GroupRowItem>
           </S.ColContent>
-          <CloseIcon />
+          <CloseIcon onClick={AddContact} />
         </S.ColWrap>
       </G.Row>
       <S.Button onClick={stateModal}>
@@ -84,10 +91,10 @@ export default function Contact() {
       </S.Divider>
       <G.Row>
         <G.ColTitle></G.ColTitle>
-        <G.ColContent>
+        <S.ColTextContent>
             <p>※ 버튼에 소속 된 <strong>연락처가 2개 이상 일 경우</strong> 버튼이 <strong>팝업</strong>으로 대체됩니다.</p>
             <p>※ 팝업에서 <strong>그룹 명이 같은 경우</strong> 묶여서 표시됩니다.</p>
-        </G.ColContent>
+        </S.ColTextContent>
       </G.Row>
     </G.RowWrap>
     </>

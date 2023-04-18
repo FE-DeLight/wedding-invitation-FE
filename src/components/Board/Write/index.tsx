@@ -18,6 +18,7 @@ import MoreOption from '@/components/MoreOption/MoreOption';
 import styled from '@emotion/styled';
 import Contact from '@/components/Contact/Write';
 import SampleForm from "@/components/SampleForm";
+import ContactPreview from "@/components/Contact/Preview";
 
 type TemplateType = {
   id: number;
@@ -127,6 +128,9 @@ export default function BoardWrite() {
           </Card>
           <Card title="방명록" type="preview" color="#fff" backgroundImage={optionData.background}>
             <GuestBookPreview />
+          </Card>
+          <Card title="마음전하실곳" type="preview" color="#fff" backgroundImage={optionData.background}>
+            <ContactPreview />
           </Card>
         </GlobalStyle>
       </S.ContentLeft>
