@@ -6,9 +6,12 @@ import CloseIcon from '@mui/icons-material/Close';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 export default function ContactWrite() {
+  // 데이터 바인딩하는법을 모르겠음
+  // TODO : const [select, setSelect] = useState([{to: "신랑에게 연락하기"}, { to: "신부에게 연락하기"}, { to: "혼주에게 연락하기" }])
   const [contacts, setContacts] = useState([{ id: 1, group: '', title: '', name: '', phone: '' }]);
 
   const handleChange = (event: SelectChangeEvent) => {
+    console.log('event.target.value :',event.target.value);
     // setContact(event.target.value as string);
   };
 
