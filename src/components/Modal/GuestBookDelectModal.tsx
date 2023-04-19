@@ -54,7 +54,7 @@ export default function GuestBookDelectModal({ id, password }: any) {
   const dispatch = useDispatch();
   const guestBookState = useSelector((state: any) => state.guestBook);
   const { openGuestBookDelectModal, cards } = guestBookState;
-  const [passwordValidation, setPasswordValidation] = useState('');
+  const [passwordValidation, setPasswordValidation] = useState(false);
 
   const handleValidation = () => {
     setPasswordValidation('');
@@ -77,6 +77,13 @@ export default function GuestBookDelectModal({ id, password }: any) {
   const onSubmit = (event: any) => {
     event.preventDefault();
     const password = passwordRef.current?.value;
+    const cardPassword = cards.map(card => card.password);
+
+    // TODO : password에 있는 저장 값들이 아닌, card로 부터 받아온 password랑 비교해서 로직 변경하기
+    if(!cardPassword.includes(password)) {
+      setPasswordValidation(true);
+      return;
+    }
     dispatch(deleteCard(password));
     dispatch(setOpenGuestBookDelectModal(!openGuestBookDelectModal));
   };
