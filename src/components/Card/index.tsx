@@ -6,13 +6,14 @@ interface Props {
   title?: string;
   children?: any;
   color?: string;
+  backgroundImage? : string;
 }
 
 export default function Card(props: Props) {
 
-  const {color} = props;
+  const {color, backgroundImage} = props;
   return (
-    <S.Card color={color}>
+    <S.Card color={color} backgroundImage={backgroundImage}>
       {props?.type !== 'preview' && <S.Title>{props?.title}</S.Title>}
       <S.Content>{props?.children}</S.Content>
     </S.Card>

@@ -1,8 +1,15 @@
 import styled from '@emotion/styled';
 
-export const Card = styled.div`
+interface Props {
+  color?: string;
+  backgroundImage?: string;
+}
+
+export const Card = styled('div')<Props>`
   padding: 30px;
-  background-color: ${ props => props.color ? props.color : '#eee'};
+  background-color: ${(props) => (props.color ? props.color : '#eee')};
+  background-image: ${(props) => (props.backgroundImage === '없음' ? 'none' : "url('/images/pattern_1.png')")};
+  // TODO 배경지 추가해야됨 && case문 추가
 `;
 
 export const Title = styled.div`
@@ -17,4 +24,3 @@ export const Content = styled.div`
   font-size: 14px;
   font-weight: 400;
 `;
-

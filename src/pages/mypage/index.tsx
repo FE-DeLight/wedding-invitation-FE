@@ -1,7 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Card from '@/components/MyPageCard/Card';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './style';
+import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+import { resetUser, setUser } from '@/store/loginSlice';
 
 export default function index() {
   const [mypageCards, setMyPageCards] = useState({
@@ -41,6 +45,38 @@ export default function index() {
       deleteDate: '2023.04.29',
     },
   });
+
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const { nickname, email } = useSelector((state: any) => state.login);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      axios
+        .get('/api/v1/nid/me', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          const { nickname, email } = res.data.response;
+          dispatch(setUser({ nickname, email, token }));
+        })
+        .catch((err) => {
+          dispatch(resetUser());
+        });
+    }
+  }, [dispatch]);
+
+  console.log('nickname, email', nickname, email);
+
+  const handleLogout = () => {
+    dispatch(resetUser()); // 사용자 정보 초기화
+    localStorage.removeItem('token'); // 토큰 삭제
+    router.push('/');
+  };
+
   return (
     <S.MypageContainer>
       <S.Header>
@@ -55,7 +91,10 @@ export default function index() {
             <p>마이페이지</p>
           </li>
         </ul>
-        <span>이메일</span>
+        <div>
+          <span>{nickname} </span>
+          <span>{email}</span>
+        </div>
       </S.Header>
       <S.Impomation>
         <h1>Information</h1>
