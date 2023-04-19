@@ -29,7 +29,6 @@ export interface DialogTitleProps {
 
 function BootstrapDialogTitle(props: DialogTitleProps) {
   const { children, onClose, ...other } = props;
-
   return (
     <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
       {children}
@@ -51,12 +50,10 @@ function BootstrapDialogTitle(props: DialogTitleProps) {
   );
 }
 
-
 export default function GuestBookDelectModal({ id, password }: any) {
   const dispatch = useDispatch();
   const guestBookState = useSelector((state: any) => state.guestBook);
   const { openGuestBookDelectModal, cards } = guestBookState;
-
   const [passwordValidation, setPasswordValidation] = useState('');
 
   const handleValidation = () => {
@@ -70,37 +67,18 @@ export default function GuestBookDelectModal({ id, password }: any) {
   const formRef = useRef<HTMLFormElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const onChangeInput = (e: any) => {
-    //   if (e.target.value > 0) {
-    //     // 0 보다 크면서 값이 입력되어있으면 '비밀번호가 틀렸습니다'를 지워준다.
-    //     // console.log('비밀번호가 틀렸습니다.');
-    //     handleValidation();
-    //   }
+      if (e.target.value > 0) {
+        // 0 보다 크면서 값이 입력되어있으면 '비밀번호가 틀렸습니다'를 지워준다.
+        // console.log('비밀번호가 틀렸습니다.');
+        handleValidation();
+      }
   };
-
-  // 사용자입력된 값, prpos로 받아온 id, props로 받아온 password
-  // const deleteCard = (cardPassword: any, id: any, propsPassword: any) => {
-  // // 그리고,
-  // if (updated[0].password === cardPassword) {
-  //   // dispatch(
-  //   //   setCard(() => {
-  //   //     delete updated[0];
-  //   //     return updated;
-  //   //   }),
-  //   // );
-  //   dispatch(setOpenGuestBookDelectModal(!openGuestBookDelectModal));
-  // } else if (updated[id]?.password !== cardPassword) {
-  //   // setPasswordValidation(!passwordValidation); error 발생
-  // } else {
-  //   // 공백 && 포커스를 가져길을때 === 비밀번호를 입력해주세요.
-  // }
-  // };
 
   const onSubmit = (event: any) => {
     event.preventDefault();
-    // 저장을 눌렀는데, 만약 비밀번호가 공백 이라면 '입력해주세요 띄우기'
-    // const passWord = passwordRef.current?.value;
-    dispatch(deleteCard(cards)); // 사용자입력된 값, prpos로 받아온 id, props로 받아온 password
-    // formRef.current?.reset();
+    const password = passwordRef.current?.value;
+    dispatch(deleteCard(password));
+    dispatch(setOpenGuestBookDelectModal(!openGuestBookDelectModal));
   };
 
   return (

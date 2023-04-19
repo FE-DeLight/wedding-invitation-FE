@@ -14,6 +14,10 @@ type AppState = {
   openGuestBookDelectModal: boolean;
 };
 
+type DeleteCardPayload = {
+  password: string;
+}
+
 const initialState: AppState = {
   // 초기값 설정
   cards: [],
@@ -28,13 +32,11 @@ const guestBookSlice = createSlice({
     setCard: (state, action: PayloadAction<Card>) => {
       state.cards.push(action.payload);
     },
-    deleteCard: (state, action: PayloadAction<Card>) => {
-      const Card = action.payload;
-      // console.log('redux로 들어온 card : ', Card[0].password);
+    deleteCard: (state, action: PayloadAction<DeleteCardPayload>) => {
+      const cardToDelete = action.payload;
       return {
         ...state,
-        cards: state.cards.filter((card) => console.log('cards :', card)),
-        // cards: state.cards.filter((card) => card.password !== Card.password),
+        cards: state.cards.filter((card) => card.password !== cardToDelete),
       };
     },
     setOpenGuestBookModal: (state, action: PayloadAction<boolean>) => {
