@@ -57,7 +57,7 @@ export default function GuestBookDelectModal({ id, password }: any) {
   const [passwordValidation, setPasswordValidation] = useState(false);
 
   const handleValidation = () => {
-    setPasswordValidation('');
+    setPasswordValidation(!passwordValidation);
   };
   const HandleGBDelectVisibility = () => {
     handleValidation();
@@ -84,8 +84,8 @@ export default function GuestBookDelectModal({ id, password }: any) {
       setPasswordValidation(true);
       return;
     }
-    dispatch(deleteCard(password));
-    dispatch(setOpenGuestBookDelectModal(!openGuestBookDelectModal));
+      dispatch(deleteCard(password));
+      dispatch(setOpenGuestBookDelectModal(!openGuestBookDelectModal));
   };
 
   return (
