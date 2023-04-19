@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import Card from '@/components/Card';
 import * as S from '@/components/Board/Write/style';
 import { useRouter } from 'next/router';
@@ -216,7 +216,7 @@ export default function BoardWrite() {
         </Card>
         <Card color="white" title="첫 화면" />
         <Card title="청첩장 문구" />
-        <Card color="white" title="보내는 사람">
+        <Card color="white" title="보내는 사람" />
         <Card color="white" title="첫 화면" backgroundImage="없음" />
         <Card title="청첩장 문구" backgroundImage="없음">
           <InvitationWrite />
