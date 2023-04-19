@@ -4,15 +4,18 @@ import * as S from '@/components/Board/Write/style';
 import { useRouter } from 'next/router';
 import TemplateWrite from '@/components/WeddingTemplate/Write';
 import TemplatePreview from '@/components/WeddingTemplate/Preview';
-import SampleModal from '@/components/Modal/SampleModal';
-import Invitation from '@/components/Invitation/Write/Invitation';
-import PrivewCard from '@/components/GuestBook/PrivewCard';
-import GuestBookModal from '@/components/Modal/GuestBookModal';
+import InvitationSampleTextModal from '@/components/Modal/InvitationSampleTextModal';
+import InvitationPreview from '@/components/Invitation/Preview';
+import InvitationWrite from '@/components/Invitation/Write';
+import GuestBookWrite from '@/components/GuestBook/Write';
+import GuestBookPreview from '@/components/GuestBook/Preview';
 import WeddingDayWrite from '@/components/WeddingDay/Write';
 import WeddingDayPreview from '@/components/WeddingDay/Preview';
 import SenderWrite from '@/components/Sender/Write';
 import CalendarStyleWrite from '@/components/CalendarStyle/Write';
 import SenderPreview from '@/components/Sender/Preview';
+import MoreOption from '@/components/MoreOption/MoreOption';
+import styled from '@emotion/styled';
 
 type TemplateType = {
   id: number;
@@ -20,7 +23,6 @@ type TemplateType = {
 };
 
 // 템플릿
-
 const templateType: TemplateType[] = [
   { id: 1, value: 'A' },
   { id: 2, value: 'B' },
@@ -38,84 +40,33 @@ const templateColor = [
 ];
 
 // 템플릿
-
 export default function BoardWrite() {
-  // 청첩장 문구 관련 State, Function
-  const [openModal, setModal] = useState(false);
-  const textAreaRef = useRef();
-  const [text, setText] = useState({
-    title: '확인',
-    content: '확인',
-  });
-
-  const sandContent = (e: any) => {
-    const content = e.target.innerHTML;
-    const replaceSpace = content.replace(/(<br>|<br\/>|<br \/>)/g, '\r\n');
-    setModal(!openModal);
-    setText({
-      ...text,
-      content: replaceSpace,
-    });
-  };
-
-  const handleChange = (e: any) => {
-    if (e.target.id === 'title') {
-      setText({
-        ...text,
-        title: e.target.value,
-      });
-    } else {
-      setText({
-        ...text,
-        content: e.target.value,
-      });
-    }
-  };
-
-  const showSampleText = () => {
-    setModal(!openModal);
-  };
-
   const router = useRouter();
 
   const handleSave = () => {
     router.push('/boards/');
   };
 
+  // 청첩장 문구 모달
+  const [openModal, setModal] = useState(false);
+
   // 방명록 관련 State, Function
   const [cards, setCards] = useState({});
-  const [openGuestBookModal, setGuestModal] = useState(false);
   const [openGuestBookDelectModal, setGuestDelectModal] = useState(false);
   const [passwordValidation, setPasswordValidation] = useState('');
   const [weddingDay, setWeddingDay] = useState<Date>(new Date());
   const addPost = () => {
     setGuestModal(!openGuestBookModal);
   };
-  const handleVisibility = () => {
-    setGuestModal(!openGuestBookModal);
-  };
-
   const handleValidation = () => {
     setPasswordValidation('');
   };
-
   const HandleGBDelectVisibility = () => {
-    console.log(' 왜  닫기야 안되니? ');
     handleValidation();
     setGuestDelectModal(!openGuestBookDelectModal);
   };
-
-  const addCard = (card: any) => {
-    setCards((cards) => {
-      const updated: any = { ...cards };
-      updated[card.id] = card;
-      return updated;
-    });
-    setGuestModal(!openGuestBookModal);
-  };
-
   const deleteCard = (cardPassword: any, id: any) => {
-    const updated: any = { ...cards }; // card를 받아온다.
+    const updated: any = { ...cards };
     if (updated[id].password === cardPassword) {
       setCards(() => {
         delete updated[id];
@@ -129,54 +80,145 @@ export default function BoardWrite() {
     }
   };
 
+  // 방명록 모달 State, Function
+  const [openGuestBookModal, setGuestModal] = useState(false);
+  const handleVisibility = () => {
+    setGuestModal(!openGuestBookModal);
+  };
+
+  const addCard = (card: any) => {
+    setCards((cards) => {
+      const updated: any = { ...cards };
+      updated[card.id] = card;
+      return updated;
+    });
+    setGuestModal(!openGuestBookModal);
+  };
+
+  // 추가옵션 State, Function
+  const [optionData, setOptionData] = useState({
+    background: '없음',
+    famliy: '나눔명조',
+    size: '32px',
+  });
+
+  const handleMoreOption = (value: any) => {
+    const family = Object.keys(value).includes('famliy');
+    const size = Object.keys(value).includes('size');
+
+    if (family) {
+      setOptionData((optionData) => {
+        const updated = { ...optionData };
+        updated.famliy = value.famliy;
+        return updated;
+      });
+    } else if (size) {
+      // handleFontSize(value.size);
+      setOptionData((optionData) => {
+        const updated = { ...optionData };
+        updated.size = value.size;
+        return updated;
+      });
+    } else {
+      setOptionData((optionData) => {
+        const updated = { ...optionData };
+        updated.background = value.background;
+        return updated;
+      });
+    }
+  };
+
+  interface GlobalStyleProps {
+    fontSize?: string;
+    fontWeight?: string;
+    fontFamily?: string;
+  }
+
+  const GlobalStyle = styled.div<GlobalStyleProps>`
+    background-color: green;
+    font-size: ${({ fontSize }) => {
+      return fontSize === '32px' ? '32px' : '48px'; // TODO : 차이 보기 위해 임시적으로 해놓음
+    }};
+    font-weight: ${({ fontWeight }) => {
+      return fontWeight === '작게' ? '300' : '700'; // TODO : 400도 있음 -> 차이 보기 위해 임시적으로 해놓음
+    }};
+    font-family: ${({ fontFamily }) => {
+      return fontFamily === '나눔명조' ? 'Noto Sans KR' : 'Dongle'; // TODO : 나중에 font 추가 시키기 그리고 상의해보기
+    }};
+  `;
+
   // 체크박스 상태를 관리할 상태 변수
   const [showDday, setShowDday] = useState(true);
 
   return (
     <S.Wrapper>
       <S.ContentLeft>
-        <Card type="preview">
-          <TemplatePreview />
-        </Card>
-        <Card title="제목2" type="preview">
-          내용2
-        </Card>
-        <Card color="white" type="preview">
-          <SenderPreview />
-        </Card>
-        <Card title="예식일" type="preview">
-          <WeddingDayPreview weddingDay={weddingDay} showDday={showDday} />
-        </Card>
+        {/* Dongle 32px, 36px, 48px  */}
+        <GlobalStyle fontSize={optionData.size} fontWeight={optionData.size} fontFamily={optionData.famliy}>
+          <Card type="preview" color="#eee" backgroundImage="없음">
+            <TemplatePreview />
+          </Card>
+          <Card color="white" type="preview">
+            <SenderPreview />
+          </Card>
+          <Card title="청첩장문구" type="preview" color="#fff" backgroundImage={optionData.background}>
+            <InvitationPreview />
+          </Card>
+          <Card title="예식일" type="preview" color="#eee" backgroundImage="없음">
+            <WeddingDayPreview weddingDay={weddingDay} showDday={showDday} />
+          </Card>
+          <Card title="방명록" type="preview" color="#fff" backgroundImage={optionData.background}>
+            <GuestBookPreview
+              cards={cards}
+              setGuestDelectModal={setGuestDelectModal}
+              addPost={addPost}
+              deleteCard={deleteCard}
+              openGuestBookDelectModal={openGuestBookDelectModal}
+              HandleGBDelectVisibility={HandleGBDelectVisibility}
+              passwordValidation={passwordValidation}
+              handleValidation={handleValidation}
+              addCard={addCard}
+              handleVisibility={handleVisibility}
+              openGuestBookModal={openGuestBookModal}
+            />
+          </Card>
+        </GlobalStyle>
       </S.ContentLeft>
 
       <S.ContentRight>
-        <Card title="템플릿">
+        <Card title="템플릿" backgroundImage="없음">
           <TemplateWrite color={templateColor} type={templateType} />
         </Card>
-        <Card color="white" title="예식일">
+        <Card color="white" title="예식일" backgroundImage="없음">
           <WeddingDayWrite weddingDay={weddingDay} setWeddingDay={setWeddingDay} />
         </Card>
-        <Card title="첫 화면" />
-        <Card color="white" title="첫 화면" />
-        <Card title="청첩장 문구" />
-        <Card color="white" title="보내는 사람">
+        <Card color="white" title="첫 화면" backgroundImage="없음" />
+        <Card title="청첩장 문구" backgroundImage="없음">
+          <InvitationWrite />
+          <InvitationSampleTextModal />
+        </Card>
+        <Card color="white" title="보내는 사람" backgroundImage="없음">
           <SenderWrite />
         </Card>
-        <Card color="white" title="캘린더 스타일">
+        <Card color="white" title="캘린더 스타일" backgroundImage="없음">
           <CalendarStyleWrite showDday={showDday} setShowDday={setShowDday} />
         </Card>
-        <Card title="갤러리" />
-        <Card title="예식장 정보" />
-        <Card title="길 안내" />
-        <Card title="계좌 정보" />
-        <Card title="연락처 정보" />
-        <Card title="식전 영상" />
-        <Card title="안내사항" />
-        <Card title="썸네일" />
-        <Card title="애니메이션 효과" />
-        <Card title="배경 음악" />
-        <Card title="방명록" />
-        <Card title="추가 옵션" />
+        <Card title="갤러리" backgroundImage="없음" />
+        <Card title="예식장 정보" backgroundImage="없음" />
+        <Card title="길 안내" backgroundImage="없음" />
+        <Card title="계좌 정보" backgroundImage="없음" />
+        <Card title="연락처 정보" backgroundImage="없음" />
+        <Card title="식전 영상" backgroundImage="없음" />
+        <Card title="안내사항" backgroundImage="없음" />
+        <Card title="썸네일" backgroundImage="없음" />
+        <Card title="애니메이션 효과" backgroundImage="없음" />
+        <Card title="배경 음악" backgroundImage="없음" />
+        <Card title="방명록" backgroundImage="없음">
+          <GuestBookWrite />
+        </Card>
+        <Card color="white" title="추가 옵션" backgroundImage="없음">
+          <MoreOption optionData={optionData} handleMoreOption={handleMoreOption} />
+        </Card>
       </S.ContentRight>
       <S.ContentBottom>
         <S.SubmitButton onClick={handleSave}>저장하기</S.SubmitButton>
