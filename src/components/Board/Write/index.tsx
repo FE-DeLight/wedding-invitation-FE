@@ -18,6 +18,8 @@ import WeddingHallWrite from '@/components/WeddingHall/Write';
 import WeddingHallPreview from '@/components/WeddingHall/Preview';
 import MoreOption from '@/components/MoreOption/MoreOption';
 import styled from '@emotion/styled';
+import SampleForm from '@/components/SampleForm';
+import DirectionsWrite from '@/components/WeddingDirections/Write';
 
 type TemplateType = {
   id: number;
@@ -209,6 +211,12 @@ export default function BoardWrite() {
         <Card color="white" title="예식일" backgroundImage="없음">
           <WeddingDayWrite weddingDay={weddingDay} setWeddingDay={setWeddingDay} />
         </Card>
+        <Card title="첫 화면">
+          <SampleForm />
+        </Card>
+        <Card color="white" title="첫 화면" />
+        <Card title="청첩장 문구" />
+        <Card color="white" title="보내는 사람">
         <Card color="white" title="첫 화면" backgroundImage="없음" />
         <Card title="청첩장 문구" backgroundImage="없음">
           <InvitationWrite />
@@ -237,6 +245,10 @@ export default function BoardWrite() {
           <MoreOption optionData={optionData} handleMoreOption={handleMoreOption} />
         </Card>
         <Card title="갤러리" />
+        <Card title="예식장 정보" />
+        <Card title="길 안내">
+          <DirectionsWrite />
+        </Card>
         <Card color="white" title="예식장 정보">
           <WeddingHallWrite />
         </Card>
