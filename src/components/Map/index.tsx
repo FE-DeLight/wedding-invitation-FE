@@ -10,7 +10,7 @@ const NaverMap = styled.div`
   transition: filter 0.5s ease-in-out;
 `;
 
-export default function Map() {
+export default function Map({ handleMap }: any) {
   const showMap = useSelector((state: any) => state.address.showMap);
   const coordinate = useSelector((state: any) => state.address.coordinate);
 
@@ -59,8 +59,8 @@ export default function Map() {
 
     initMap();
 
-    mapElement.style.filter = showMap ? '' : 'blur(3px)';
+    // mapElement.style.filter = showMap ? '' : 'blur(3px)';
   }, [coordinate]);
 
-  return <NaverMap id="map" ref={mapRef} style={{ width: '100%', height: '300px' }} />;
+  return <NaverMap id="map" ref={mapRef} style={{ width: '100%', height: '300px' }} onClick={handleMap} />;
 }
