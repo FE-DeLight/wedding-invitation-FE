@@ -221,7 +221,9 @@ export default function BoardWrite() {
           <CalendarStyleWrite showDday={showDday} setShowDday={setShowDday} />
         </Card>
         <Card title="갤러리" backgroundImage="없음" />
-        <Card title="예식장 정보" backgroundImage="없음" />
+        <Card color="white" title="예식장 정보" backgroundImage="없음">
+          <WeddingHallWrite />
+        </Card>
         <Card title="길 안내" backgroundImage="없음" />
         <Card title="계좌 정보" backgroundImage="없음" />
         <Card title="연락처 정보" backgroundImage="없음" />
@@ -236,20 +238,6 @@ export default function BoardWrite() {
         <Card color="white" title="추가 옵션" backgroundImage="없음">
           <MoreOption optionData={optionData} handleMoreOption={handleMoreOption} />
         </Card>
-        <Card title="갤러리" />
-        <Card color="white" title="예식장 정보">
-          <WeddingHallWrite />
-        </Card>
-        <Card title="길 안내" />
-        <Card title="계좌 정보" />
-        <Card title="연락처 정보" />
-        <Card title="식전 영상" />
-        <Card title="안내사항" />
-        <Card title="썸네일" />
-        <Card title="애니메이션 효과" />
-        <Card title="배경 음악" />
-        <Card title="방명록" />
-        <Card title="추가 옵션" />
       </S.ContentRight>
       <S.ContentBottom>
         <S.SubmitButton onClick={handleSave}>저장하기</S.SubmitButton>
