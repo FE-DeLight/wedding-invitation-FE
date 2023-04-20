@@ -61,9 +61,3 @@ export const SubmitButton = styled.div`
 `;
 export const Content = styled.div``;
 
-// 방명록
-
-export const GuestBookAddButton = styled.button`
-  border-radius: 20px;
-  text-align: center;
-`;

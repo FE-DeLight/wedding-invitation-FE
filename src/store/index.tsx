@@ -3,6 +3,7 @@ import templateSlice from './templateSlice';
 import userInfoSlice from './userInfoSlice';
 import loginSlice from './loginSlice';
 import styleOptionSlice from './styleOptionSlice';
+import invitationSlice from './invitationSlice';
 import addressSlice from './addressSlice';
 
 const store = configureStore({
@@ -11,6 +12,7 @@ const store = configureStore({
     user: userInfoSlice,
     login: loginSlice,
     styleOption: styleOptionSlice,
+    invitation: invitationSlice,
     address: addressSlice,
   },
 });

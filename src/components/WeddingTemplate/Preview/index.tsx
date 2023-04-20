@@ -126,7 +126,6 @@ export default function TemplatePreview() {
           </ImgArea>
         </Type>
       </TypeWrap>
-      <div>dsa</div>
     </>
   );
 }
