@@ -13,20 +13,19 @@ export default function WeddingHallPreview() {
   const coordinate = useSelector((state: any) => state.address.coordinate);
   const showDetail = useSelector((state: any) => state.address.showDetail);
 
+  const handleMap = () => {
+    window.open(
+      `https://map.naver.com/?x=${coordinate.lng}&y=${coordinate.lat}&query=${encodeURIComponent(address)}`,
+      '_blank',
+    );
+  };
+
   return (
     <S.Container>
       <G.Title>오시는 길</G.Title>
       <S.Wrapper>
-        <>
-          <Map />
-          <a
-            href={`https://map.naver.com/?x=${coordinate.lng}&y=${coordinate.lat}&query=${encodeURIComponent(address)}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {showDetail && <S.Detail>지도 자세히 보기</S.Detail>}
-          </a>
-        </>
+        <Map handleMap={showDetail ? null : handleMap} />
+        {showDetail && <S.Detail onClick={handleMap}>지도 자세히 보기</S.Detail>}
       </S.Wrapper>
       {address && (
         <S.Address>

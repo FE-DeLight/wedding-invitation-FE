@@ -4,16 +4,31 @@ import { useSelector } from 'react-redux';
 
 declare const naver: any; // 네이버 지도 API 전역 객체
 
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  position: relative;
+`;
+
 const NaverMap = styled.div`
   width: 100%;
   height: 384px;
   transition: filter 0.5s ease-in-out;
 `;
 
+const MapBlur = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 1;
+`;
+
 export default function Map({ handleMap }: any) {
   const showMap = useSelector((state: any) => state.address.showMap);
   const coordinate = useSelector((state: any) => state.address.coordinate);
-
   const mapRef = useRef(null);
 
   useEffect(() => {
@@ -58,9 +73,12 @@ export default function Map({ handleMap }: any) {
     };
 
     initMap();
-
-    // mapElement.style.filter = showMap ? '' : 'blur(3px)';
   }, [coordinate]);
 
-  return <NaverMap id="map" ref={mapRef} style={{ width: '100%', height: '300px' }} onClick={handleMap} />;
+  return (
+    <Wrapper>
+      {!showMap && <MapBlur />}
+      <NaverMap id="map" ref={mapRef} style={{ width: '100%', height: '300px' }} onClick={handleMap} />
+    </Wrapper>
+  );
 }
