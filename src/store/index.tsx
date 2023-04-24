@@ -5,6 +5,7 @@ import loginSlice from './loginSlice';
 import styleOptionSlice from './styleOptionSlice';
 import invitationSlice from './invitationSlice';
 import guestBookSlice from './guestBookSlice';
+import contactSlice from './contactSlice';
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     styleOption: styleOptionSlice,
     invitation: invitationSlice,
     guestBook: guestBookSlice,
+    contact: contactSlice,
   },
 });
 
