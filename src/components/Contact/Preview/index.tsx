@@ -16,21 +16,21 @@ export default function ContactPreview({ contacts, selectContact, setSelectConta
     if (contactType === 'groom') {
       setSelectContact({
         name: 'groom',
-        contact1: {
+        contact: {
           ...contactList[0],
         },
       });
     } else if (contactType === 'bride') {
       setSelectContact({
         name: 'bride',
-        contact1: {
+        contact: {
           ...contactList[1],
         },
       });
     } else {
       setSelectContact({
         name: 'host',
-        contact1: {
+        contact: {
           ...contactList[2],
         },
       });

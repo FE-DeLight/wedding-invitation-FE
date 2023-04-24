@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import * as S from './style';
 import * as G from '@/styles/globals';
 import {
@@ -14,23 +14,73 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
-export default function ContactWrite({ setContacts }) {
-  // 데이터 바인딩하는법을 모르겠음
+export default function ContactWrite({ contacts, selectContact, setSelectContact }) {
+  console.log('1.contactLength:', selectContact);
+  const contactLength = Object.values(selectContact.contact.contact);
+  console.log('2.contactLength:', contactLength, contactLength.length);
   const [select, setSelect] = useState([{ id: 1, group: '', title: '', name: '', phone: '' }]);
 
+  const groupRef = useRef(null);
+  const nickNameRef = useRef(null);
+  const nameRef = useRef(null);
+  const phoneRef = useRef(null);
+  // console.log(groupRef.current?.value);
+  // console.log(nickNameRef.current?.value);
+  // console.log(nameRef.current?.value);
+  // console.log(phoneRef.current?.value);
   const handleChange = (event: SelectChangeEvent) => {
-    console.log('event.target.value :', event.target.value);
-    // setContact(event.target.value as string);
+    const newContacts = Object.values(contacts);
+    const value = event.target.value;
+
+    if (value === '신랑에게 연락하기') {
+      console.log('Object.values(...contacts)', newContacts[0]);
+      setSelectContact({
+        name: 'groom',
+        contact: {
+          ...newContacts[0],
+        },
+      });
+      // const groupName = 'groom';
+      // const newKey = 'contact' + (Object.keys(contacts[groupName].contact).length + 1);
+      // setContacts((contacts) => {
+      //   return {
+      //     ...contacts,
+      //     [groupName]: {
+      //       contact: {
+      //         ...contacts[groupName].contact,
+      //         [newKey]: {
+      //           title: 'Mr.',
+      //           name: nameRef.current.value,
+      //           phone: phoneRef.current.value,
+      //           email: 'john.smith@email.com',
+      //         },
+      //       },
+      //     },
+      //   };
+      // });
+    } else if (value === '신부에게 연락하기') {
+      setSelectContact({
+        name: 'bride',
+        contact: {
+          ...newContacts[1],
+        },
+      });
+    } else {
+      setSelectContact({
+        name: 'host',
+        contact: {
+          ...newContacts[2],
+        },
+      });
+    }
   };
 
   const AddContact = () => {
-    // 새로운 연락처 객체를 생성하여 contacts 배열에 추가
     const newContact = { id: select.length + 1, group: '', title: '', name: '', phone: '' };
     setSelect([...select, newContact]);
   };
 
   const handleDeleteContact = (contactId: any) => {
-    // contacts 배열에서 해당 연락처를 제외하고 새로운 배열 생성하여 업데이트
     const updatedContacts = select.filter((item) => item.id !== contactId);
     setSelect(updatedContacts);
   };
@@ -60,7 +110,7 @@ export default function ContactWrite({ setContacts }) {
         <S.Divider>
           <hr />
         </S.Divider>
-        {select.length === 0 ? (
+        {contactLength.length === 0 ? (
           <G.Row>
             <G.ColTitle></G.ColTitle>
             <S.ColWrap>
@@ -70,7 +120,7 @@ export default function ContactWrite({ setContacts }) {
               </S.NoContact>
             </S.ColWrap>
           </G.Row>
-        ) : select.length === 1 ? (
+        ) : contactLength.length === 1 ? (
           <G.Row>
             <G.ColTitle>연락처</G.ColTitle>
             <S.ColWrap>
@@ -83,16 +133,16 @@ export default function ContactWrite({ setContacts }) {
             </S.ColWrap>
           </G.Row>
         ) : (
-          select.map((contact) => (
+          Object.values(contactLength).map((contact) => (
             <G.Row>
               <G.ColTitle>연락처</G.ColTitle>
               <S.ColWrap>
                 <S.ColContent>
                   <S.GroupRowItem>
-                    <TextField size="small" fullWidth placeholder={'그룹'} />
-                    <TextField size="small" fullWidth placeholder={'호칭'} />
-                    <TextField size="small" fullWidth placeholder={'이름'} />
-                    <TextField size="small" fullWidth placeholder={'연락처'} />
+                    <TextField size="small" ref={groupRef} fullWidth placeholder={'그룹'} />
+                    <TextField size="small" ref={nickNameRef} fullWidth placeholder={'호칭'} />
+                    <TextField size="small" ref={nameRef} fullWidth placeholder={'이름'} />
+                    <TextField size="small" ref={phoneRef} fullWidth placeholder={'연락처'} />
                   </S.GroupRowItem>
                 </S.ColContent>
                 <CloseIcon onClick={() => handleDeleteContact(contact.id)} />

@@ -112,37 +112,65 @@ export default function BoardWrite() {
   // 연락처정보
   const [contacts, setContacts] = useState({
     groom: {
-      contact1: {
-        title: 'Mr.',
-        name: 'John Smith',
-        phone: '123-456-7890',
-        email: 'john.smith@email.com',
-      },
-      contact2: {
-        title: 'Ms.',
-        name: 'Jane Doe',
-        phone: '123-456-7890',
-        email: 'jane.doe@email.com',
+      contact: {
+        contact1: {
+          title: 'Mr.',
+          name: 'John Smith',
+          phone: '123-456-7890',
+          email: 'john.smith@email.com',
+        },
+        contact2: {
+          title: 'Ms.',
+          name: 'Jane Doe',
+          phone: '123-456-7890',
+          email: 'jane.doe@email.com',
+        },
       },
     },
     bride: {
-      contact1: {
-        title: 'Mr.',
-        name: 'John bride',
-        phone: '123-456-7890',
-        email: 'john.smith@email.com',
+      contact: {
+        contact1: {
+          title: 'Mr.',
+          name: 'John Smith',
+          phone: '123-456-7890',
+          email: 'john.smith@email.com',
+        },
       },
     },
     host: {
-      contact1: {
-        title: 'Mr.',
-        name: 'John host',
-        phone: '123-456-7890',
-        email: 'john.smith@email.com',
+      contact: {
+        contact1: {
+          title: 'Mr.',
+          name: 'John Smith',
+          phone: '123-456-7890',
+          email: 'john.smith@email.com',
+        },
+        contact2: {
+          title: 'Ms.',
+          name: 'Jane Doe',
+          phone: '123-456-7890',
+          email: 'jane.doe@email.com',
+        },
       },
     },
   });
   const [selectContact, setSelectContact] = useState({
+    groom: {
+      contact: {
+        contact1: {
+          title: 'Mr.',
+          name: 'John Smith',
+          phone: '123-456-7890',
+          email: 'john.smith@email.com',
+        },
+        contact2: {
+          title: 'Ms.',
+          name: 'Jane Doe',
+          phone: '123-456-7890',
+          email: 'jane.doe@email.com',
+        },
+      },
+    },
     // name: 'groom',
     // contact1: {
     //   title: 'Mr.',
@@ -211,7 +239,7 @@ export default function BoardWrite() {
         <Card title="길 안내" backgroundImage="없음" />
         <Card title="계좌 정보" backgroundImage="없음" />
         <Card color="white" title="연락처 정보" backgroundImage="없음">
-          <Contact setContacts={setContacts} />
+          <Contact contacts={contacts} selectContact={selectContact} setSelectContact={setSelectContact} />
         </Card>
         <Card title="식전 영상" backgroundImage="없음" />
         <Card title="안내사항" backgroundImage="없음" />

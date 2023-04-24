@@ -5,7 +5,8 @@ import { setOpenContactModal } from '@/store/contactSlice';
 
 export default function ContactModal({ selectContact }) {
   console.log('Modal에 들어온 selectContact', selectContact);
-  const { name, contact1 } = selectContact;
+  const { name, contact } = selectContact;
+  // console.log('name, contact :', name, contact.contact.contact1, contact.contact.contact2);
 
   let headerText = '';
 
@@ -59,10 +60,16 @@ export default function ContactModal({ selectContact }) {
         </S.ModalHeader>
         <S.ModalWrap>
           <S.ModalBody ref={formRef} action="" method="post">
-            {contact1.contact1.title}
-            {contact1.contact1.name}
-            {contact1.contact1.phone}
-            {contact1.contact1.email}
+            {contact.contact.contact1.title}
+            {contact.contact.contact1.name}
+            {contact.contact.contact1.phone}
+            {contact.contact.contact1.email}
+            {/* 
+            {contact.contact.contact2.title}
+            {contact.contact.contact2.name}
+            {contact.contact.contact2.phone}
+            {contact.contact.contact2.email}
+             */}
           </S.ModalBody>
           <S.ModalBottom>
             <button onClick={stateModal}>닫기</button>
