@@ -126,17 +126,36 @@ export default function BoardWrite() {
       },
     },
     bride: {
-      title: 'Ms.',
-      name: 'Jane Doe',
-      phone: '987-654-3210',
-      email: 'jane.doe@email.com',
+      contact1: {
+        title: 'Mr.',
+        name: 'John bride',
+        phone: '123-456-7890',
+        email: 'john.smith@email.com',
+      },
     },
     host: {
-      title: 'Dr.',
-      name: 'Bob Johnson',
-      phone: '555-555-5555',
-      email: 'bob.johnson@email.com',
+      contact1: {
+        title: 'Mr.',
+        name: 'John host',
+        phone: '123-456-7890',
+        email: 'john.smith@email.com',
+      },
     },
+  });
+  const [selectContact, setSelectContact] = useState({
+    // name: 'groom',
+    // contact1: {
+    //   title: 'Mr.',
+    //   name: 'John Smith',
+    //   phone: '123-456-7890',
+    //   email: 'john.smith@email.com',
+    // },
+    // contact2: {
+    //   title: 'Ms.',
+    //   name: 'Jane Doe',
+    //   phone: '123-456-7890',
+    //   email: 'jane.doe@email.com',
+    // },
   });
   // contacts 데이터를 돌려서, 만약 contacts.group이 '신랑에게 연락하기'라면
   // 그 데이터들을 아래 연락처 부분에 보여준다.
@@ -162,7 +181,7 @@ export default function BoardWrite() {
             <GuestBookPreview />
           </Card>
           <Card title="마음전하실곳" type="preview" color="#fff" backgroundImage={optionData.background}>
-            <ContactPreview contacts={contacts} />
+            <ContactPreview contacts={contacts} selectContact={selectContact} setSelectContact={setSelectContact} />
           </Card>
         </GlobalStyle>
       </S.ContentLeft>

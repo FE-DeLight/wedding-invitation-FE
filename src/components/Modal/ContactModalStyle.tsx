@@ -6,7 +6,6 @@ export const ModalLayout = styled.div`
   top: 50%;
   left: 50%;
   width: 300px;
-  height: 157px;
   background-color: white;
   transform: translate(-50%, -50%);
 `;

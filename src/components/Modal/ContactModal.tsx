@@ -3,7 +3,12 @@ import * as S from './ContactModalStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOpenContactModal } from '@/store/contactSlice';
 
-export default function ContactModal() {
+export default function ContactModal({ selectContact }) {
+  console.log('Modal에 들어온 selectContact', selectContact);
+  const { name, contact1 } = selectContact;
+
+  let headerText = '';
+
   const dispatch = useDispatch();
   const contactState = useSelector((state: any) => state.contact);
   const { openContactModal } = contactState;
@@ -11,6 +16,20 @@ export default function ContactModal() {
   const stateModal = () => {
     dispatch(setOpenContactModal(!openContactModal));
   };
+  switch (name) {
+    case 'groom':
+      headerText = '신랑에게 연락하기';
+      break;
+    case 'bride':
+      headerText = '신부에게 연락하기';
+      break;
+    case 'host':
+      headerText = '혼주에게 연락하기';
+      break;
+    default:
+      headerText = '';
+      break;
+  }
 
   const formRef = useRef<HTMLFormElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
@@ -35,23 +54,15 @@ export default function ContactModal() {
     openContactModal && (
       <S.ModalLayout>
         <S.ModalHeader>
-          <header>방명록</header>
+          <header>{headerText}</header>
           <S.IconButton onClick={stateModal}>닫기</S.IconButton>
         </S.ModalHeader>
         <S.ModalWrap>
           <S.ModalBody ref={formRef} action="" method="post">
-            <S.SelectSample>
-              <label>작성자</label>
-              <input ref={nameRef} type="text" placeholder="작성자" />
-            </S.SelectSample>
-            <S.SelectSample>
-              <label>내용</label>
-              <textarea ref={contentRef} placeholder="내용" />
-            </S.SelectSample>
-            <S.SelectSample>
-              <label>비밀번호</label>
-              <input ref={passwordRef} type="password" placeholder="비밀번호" />
-            </S.SelectSample>
+            {contact1.contact1.title}
+            {contact1.contact1.name}
+            {contact1.contact1.phone}
+            {contact1.contact1.email}
           </S.ModalBody>
           <S.ModalBottom>
             <button onClick={stateModal}>닫기</button>
