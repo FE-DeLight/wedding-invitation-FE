@@ -1,7 +1,8 @@
 import React from 'react';
 import * as S from './style';
 
-export default function ContactPreview() {
+export default function ContactPreview({ contacts }) {
+  console.log('contacts : ', contacts);
   return (
     <>
       <S.Container>

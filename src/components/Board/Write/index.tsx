@@ -17,8 +17,8 @@ import SenderPreview from '@/components/Sender/Preview';
 import MoreOption from '@/components/MoreOption/MoreOption';
 import styled from '@emotion/styled';
 import Contact from '@/components/Contact/Write';
-import SampleForm from "@/components/SampleForm";
-import ContactPreview from "@/components/Contact/Preview";
+import SampleForm from '@/components/SampleForm';
+import ContactPreview from '@/components/Contact/Preview';
 
 type TemplateType = {
   id: number;
@@ -109,6 +109,38 @@ export default function BoardWrite() {
   // 체크박스 상태를 관리할 상태 변수
   const [showDday, setShowDday] = useState(true);
 
+  // 연락처정보
+  const [contacts, setContacts] = useState({
+    groom: {
+      contact1: {
+        title: 'Mr.',
+        name: 'John Smith',
+        phone: '123-456-7890',
+        email: 'john.smith@email.com',
+      },
+      contact2: {
+        title: 'Ms.',
+        name: 'Jane Doe',
+        phone: '123-456-7890',
+        email: 'jane.doe@email.com',
+      },
+    },
+    bride: {
+      title: 'Ms.',
+      name: 'Jane Doe',
+      phone: '987-654-3210',
+      email: 'jane.doe@email.com',
+    },
+    host: {
+      title: 'Dr.',
+      name: 'Bob Johnson',
+      phone: '555-555-5555',
+      email: 'bob.johnson@email.com',
+    },
+  });
+  // contacts 데이터를 돌려서, 만약 contacts.group이 '신랑에게 연락하기'라면
+  // 그 데이터들을 아래 연락처 부분에 보여준다.
+
   return (
     <S.Wrapper>
       <S.ContentLeft>
@@ -130,7 +162,7 @@ export default function BoardWrite() {
             <GuestBookPreview />
           </Card>
           <Card title="마음전하실곳" type="preview" color="#fff" backgroundImage={optionData.background}>
-            <ContactPreview />
+            <ContactPreview contacts={contacts} />
           </Card>
         </GlobalStyle>
       </S.ContentLeft>
@@ -160,7 +192,7 @@ export default function BoardWrite() {
         <Card title="길 안내" backgroundImage="없음" />
         <Card title="계좌 정보" backgroundImage="없음" />
         <Card color="white" title="연락처 정보" backgroundImage="없음">
-          <Contact />
+          <Contact setContacts={setContacts} />
         </Card>
         <Card title="식전 영상" backgroundImage="없음" />
         <Card title="안내사항" backgroundImage="없음" />
