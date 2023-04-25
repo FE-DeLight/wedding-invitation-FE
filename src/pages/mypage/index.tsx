@@ -46,7 +46,6 @@ export default function index() {
     },
   });
 
-  const router = useRouter();
   const dispatch = useDispatch();
   const { nickname, email } = useSelector((state: any) => state.login);
 
@@ -68,14 +67,6 @@ export default function index() {
         });
     }
   }, [dispatch]);
-
-  console.log('nickname, email', nickname, email);
-
-  const handleLogout = () => {
-    dispatch(resetUser()); // 사용자 정보 초기화
-    localStorage.removeItem('token'); // 토큰 삭제
-    router.push('/');
-  };
 
   return (
     <S.MypageContainer>
