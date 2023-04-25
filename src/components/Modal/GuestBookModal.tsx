@@ -81,7 +81,7 @@ export default function GuestBookModal() {
     event.preventDefault();
     // onSubmit 함수에서 유효성 체크 검사 해야될 것 같음!
     const card = {
-      id: Date.now(), // uuid
+      id: Date.now() + 1, // uuid
       name: nameRef.current?.value || '',
       time: dateResult, // 여기는 무조건 그 고정값을 가져와야돼!
       content: contentRef.current?.value || '',
@@ -96,16 +96,12 @@ export default function GuestBookModal() {
   return (
     openGuestBookModal && (
       <>
-      <div>
-        <BootstrapDialog
-          onClose={stateModal}
-          aria-labelledby="customized-dialog-title"
-          open={openGuestBookModal}
-        >
-          <BootstrapDialogTitle id="customized-dialog-title" onClose={stateModal}>
-            방명록
-          </BootstrapDialogTitle>
-          <DialogContent dividers>
+        <div>
+          <BootstrapDialog onClose={stateModal} aria-labelledby="customized-dialog-title" open={openGuestBookModal}>
+            <BootstrapDialogTitle id="customized-dialog-title" onClose={stateModal}>
+              방명록
+            </BootstrapDialogTitle>
+            <DialogContent dividers>
               <S.ModalWrap>
                 <S.ModalBody ref={formRef} action="" method="post">
                   <S.SelectSample>
@@ -122,17 +118,17 @@ export default function GuestBookModal() {
                   </S.SelectSample>
                 </S.ModalBody>
               </S.ModalWrap>
-          </DialogContent>
-          <DialogActions>
-            <Button autoFocus onClick={stateModal} className="close">
-              닫기
-            </Button>
-            <Button autoFocus onClick={onSubmit} className="save">
-              저장
-            </Button>
-          </DialogActions>
-        </BootstrapDialog>
-      </div>
+            </DialogContent>
+            <DialogActions>
+              <Button autoFocus onClick={stateModal} className="close">
+                닫기
+              </Button>
+              <Button autoFocus onClick={onSubmit} className="save">
+                저장
+              </Button>
+            </DialogActions>
+          </BootstrapDialog>
+        </div>
       </>
     )
   );

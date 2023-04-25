@@ -8,21 +8,22 @@ type Card = {
   password: string;
 };
 
+type DeleteCard = {
+  id: number;
+};
 type AppState = {
   cards: Card[];
   openGuestBookModal: boolean;
   openGuestBookDelectModal: boolean;
+  id: DeleteCard;
 };
-
-type DeleteCardPayload = {
-  password: string;
-}
 
 const initialState: AppState = {
   // 초기값 설정
   cards: [],
   openGuestBookModal: false,
   openGuestBookDelectModal: false,
+  id: 0,
 };
 
 const guestBookSlice = createSlice({
@@ -32,12 +33,14 @@ const guestBookSlice = createSlice({
     setCard: (state, action: PayloadAction<Card>) => {
       state.cards.push(action.payload);
     },
-    deleteCard: (state, action: PayloadAction<DeleteCardPayload>) => {
-      const cardToDelete = action.payload;
-      return {
-        ...state,
-        cards: state.cards.filter((card) => card.password !== cardToDelete),
-      };
+    setId: (state, action: PayloadAction<{ id: string }>) => {
+      const id = action.payload;
+      state.id = id;
+    },
+    deleteCard: (state, action: PayloadAction<DeleteCard>) => {
+      const id = action.payload.id;
+      const filteredCard = state.cards.filter((card) => card.id !== id);
+      state.cards = filteredCard;
     },
     setOpenGuestBookModal: (state, action: PayloadAction<boolean>) => {
       state.openGuestBookModal = action.payload;
@@ -48,6 +51,7 @@ const guestBookSlice = createSlice({
   },
 });
 
-export const { setCard, deleteCard, setOpenGuestBookModal, setOpenGuestBookDelectModal } = guestBookSlice.actions;
+export const { setCard, setId, deleteCard, setOpenGuestBookModal, setOpenGuestBookDelectModal } =
+  guestBookSlice.actions;
 
 export default guestBookSlice.reducer;

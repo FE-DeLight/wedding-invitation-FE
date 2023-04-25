@@ -2,15 +2,14 @@ import React, { useRef, useState } from 'react';
 import * as SG from './guestBookDelectStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteCard, setOpenGuestBookDelectModal } from '@/store/guestBookSlice';
-import { styled } from "@mui/material/styles";
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
-import DialogContent from "@mui/material/DialogContent";
-import * as S from "@/components/Modal/GuestBookStyle";
-import DialogActions from "@mui/material/DialogActions";
-import Button from "@mui/material/Button";
+import { styled } from '@mui/material/styles';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import IconButton from '@mui/material/IconButton';
+import CloseIcon from '@mui/icons-material/Close';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
+import Button from '@mui/material/Button';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -50,10 +49,10 @@ function BootstrapDialogTitle(props: DialogTitleProps) {
   );
 }
 
-export default function GuestBookDelectModal({ id, password }: any) {
+export default function GuestBookDelectModal() {
   const dispatch = useDispatch();
   const guestBookState = useSelector((state: any) => state.guestBook);
-  const { openGuestBookDelectModal, cards } = guestBookState;
+  const { openGuestBookDelectModal, cards, id } = guestBookState;
   const [passwordValidation, setPasswordValidation] = useState(false);
 
   const handleValidation = () => {
@@ -67,25 +66,27 @@ export default function GuestBookDelectModal({ id, password }: any) {
   const formRef = useRef<HTMLFormElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const onChangeInput = (e: any) => {
-      if (e.target.value > 0) {
-        // 0 보다 크면서 값이 입력되어있으면 '비밀번호가 틀렸습니다'를 지워준다.
-        // console.log('비밀번호가 틀렸습니다.');
-        handleValidation();
-      }
+    if (e.target.value > 0) {
+      handleValidation();
+    }
   };
 
-  const onSubmit = (event: any) => {
-    event.preventDefault();
+  const onSubmit = () => {
     const password = passwordRef.current?.value;
-    const cardPassword = cards.map(card => card.password);
+    const test = cards.filter((card) => id === card.id && card.password === password);
+    const result = test[0]?.password;
 
-    // TODO : password에 있는 저장 값들이 아닌, card로 부터 받아온 password랑 비교해서 로직 변경하기
-    if(!cardPassword.includes(password)) {
+    if (password !== result) {
       setPasswordValidation(true);
       return;
     }
-      dispatch(deleteCard(password));
-      dispatch(setOpenGuestBookDelectModal(!openGuestBookDelectModal));
+
+    const delectUpdate = {
+      id,
+      password,
+    };
+    dispatch(deleteCard(delectUpdate));
+    dispatch(setOpenGuestBookDelectModal(!openGuestBookDelectModal));
   };
 
   return (
@@ -110,7 +111,7 @@ export default function GuestBookDelectModal({ id, password }: any) {
         <Button autoFocus onClick={HandleGBDelectVisibility} className="close">
           닫기
         </Button>
-        <Button autoFocus onClick={onSubmit} className="save">
+        <Button autoFocus onClick={() => onSubmit()} className="save">
           저장
         </Button>
       </DialogActions>
