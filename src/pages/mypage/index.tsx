@@ -54,7 +54,7 @@ export default function index() {
     const token = localStorage.getItem('token');
     if (token) {
       axios
-        .get('/api/v1/nid/me', {
+        .get('/api/naverlogin/v1/nid/me', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
