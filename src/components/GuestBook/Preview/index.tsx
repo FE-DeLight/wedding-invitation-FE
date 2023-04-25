@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './style';
 import PrevewCard from '@/components/GuestBook/Preview/PrevewCard';
 import GuestBookModal from '@/components/Modal/GuestBookModal';
-import { BsFillPencilFill } from 'react-icons/bs';
+import CreateIcon from '@mui/icons-material/Create';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOpenGuestBookModal } from '@/store/guestBookSlice';
 
@@ -25,7 +25,7 @@ export default function Index() {
         <PrevewCard />
         <hr />
         <S.Button onClick={stateModal}>
-          <BsFillPencilFill size={12} /> <span>방명록 남기기</span>
+          <CreateIcon fontSize="small" /> <span>방명록 남기기</span>
         </S.Button>
       </S.PrevewCardBody>
       <GuestBookModal />

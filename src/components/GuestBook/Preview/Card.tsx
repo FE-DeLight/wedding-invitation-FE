@@ -1,5 +1,5 @@
 import * as S from './style';
-import { IoIosClose } from 'react-icons/io';
+import CloseIcon from '@mui/icons-material/Close';
 import GuestBookDelectModal from '../../Modal/GuestBookDelectModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOpenGuestBookDelectModal } from '@/store/guestBookSlice';
@@ -21,7 +21,7 @@ export default function Card({ card }: any) {
           <h4>{name}</h4>
           <span>{time}</span>
           <button onClick={onSubmit}>
-            <IoIosClose />
+            <CloseIcon fontSize="small" />
           </button>
         </S.CardHeader>
         <p>{content}</p>

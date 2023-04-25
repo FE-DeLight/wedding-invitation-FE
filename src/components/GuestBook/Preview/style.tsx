@@ -12,7 +12,7 @@ export const PrevewCardHeader = styled.div`
 
 export const Title = styled.p`
   font-size: 20px;
-`
+`;
 
 export const Content = styled.p`
   padding-top: 64px;
@@ -31,13 +31,17 @@ export const PrevewCardBody = styled.div`
 `;
 
 export const Button = styled.button`
-  background-color: #fff;
-  width: 118px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  width: 120px;
   padding: 5px 12px;
   margin-top: 16px;
   border-radius: 25px;
   border: 1px solid #525252;
-  
+  background-color: #fff;
+
   span {
     margin-left: 5px;
     font-size: 12px;
@@ -59,14 +63,14 @@ export const CardEmpty = styled.div`
 export const Cardli = styled.li`
   padding: 16px;
   border-radius: 10px;
-  margin : 0 12px 8px;
+  margin: 0 12px 8px;
   background-color: #fff;
   list-style: none;
-  
+
   p {
     text-align: start;
   }
-  
+
   &:last-child {
     margin-bottom: 0;
   }
@@ -75,8 +79,7 @@ export const Cardli = styled.li`
 export const CardHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  
-  
+
   button {
     background-color: transparent;
   }
