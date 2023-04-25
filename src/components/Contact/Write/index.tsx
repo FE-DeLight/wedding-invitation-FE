@@ -15,25 +15,19 @@ import CloseIcon from '@mui/icons-material/Close';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 export default function ContactWrite({ contacts, selectContact, setSelectContact }) {
-  console.log('1.contactLength:', selectContact);
-  const contactLength = Object.values(selectContact.contact.contact);
-  console.log('2.contactLength:', contactLength, contactLength.length);
+  const contactLength = selectContact?.contact?.contact ? Object.values(selectContact.contact.contact) : 0;
   const [select, setSelect] = useState([{ id: 1, group: '', title: '', name: '', phone: '' }]);
 
   const groupRef = useRef(null);
   const nickNameRef = useRef(null);
   const nameRef = useRef(null);
   const phoneRef = useRef(null);
-  // console.log(groupRef.current?.value);
-  // console.log(nickNameRef.current?.value);
-  // console.log(nameRef.current?.value);
-  // console.log(phoneRef.current?.value);
+
   const handleChange = (event: SelectChangeEvent) => {
     const newContacts = Object.values(contacts);
     const value = event.target.value;
 
     if (value === '신랑에게 연락하기') {
-      console.log('Object.values(...contacts)', newContacts[0]);
       setSelectContact({
         name: 'groom',
         contact: {
@@ -75,9 +69,11 @@ export default function ContactWrite({ contacts, selectContact, setSelectContact
     }
   };
 
-  const AddContact = () => {
-    const newContact = { id: select.length + 1, group: '', title: '', name: '', phone: '' };
-    setSelect([...select, newContact]);
+  const AddContact = (contactCount) => {
+    setSelect((select) => {
+      const newContact = { id: contactCount + 1, group: '', title: '', name: '', phone: '' };
+      return [...select, newContact];
+    });
   };
 
   const handleDeleteContact = (contactId: any) => {
@@ -133,16 +129,16 @@ export default function ContactWrite({ contacts, selectContact, setSelectContact
             </S.ColWrap>
           </G.Row>
         ) : (
-          Object.values(contactLength).map((contact) => (
+          Object.values(selectContact?.contact?.contact || {}).map((contact) => (
             <G.Row>
               <G.ColTitle>연락처</G.ColTitle>
               <S.ColWrap>
                 <S.ColContent>
                   <S.GroupRowItem>
-                    <TextField size="small" ref={groupRef} fullWidth placeholder={'그룹'} />
-                    <TextField size="small" ref={nickNameRef} fullWidth placeholder={'호칭'} />
-                    <TextField size="small" ref={nameRef} fullWidth placeholder={'이름'} />
-                    <TextField size="small" ref={phoneRef} fullWidth placeholder={'연락처'} />
+                    <TextField size="small" value={contact.title} ref={groupRef} fullWidth placeholder={'그룹'} />
+                    <TextField size="small" value={contact.name} ref={nickNameRef} fullWidth placeholder={'호칭'} />
+                    <TextField size="small" value={contact.phone} ref={nameRef} fullWidth placeholder={'이름'} />
+                    <TextField size="small" value={contact.email} ref={phoneRef} fullWidth placeholder={'연락처'} />
                   </S.GroupRowItem>
                 </S.ColContent>
                 <CloseIcon onClick={() => handleDeleteContact(contact.id)} />
