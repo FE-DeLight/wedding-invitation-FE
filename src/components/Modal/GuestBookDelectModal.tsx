@@ -54,6 +54,7 @@ export default function GuestBookDelectModal() {
   const guestBookState = useSelector((state: any) => state.guestBook);
   const { openGuestBookDelectModal, cards, id } = guestBookState;
   const [passwordValidation, setPasswordValidation] = useState(false);
+  const [comment, setComment] = useState('비밀번호가 틀렸습니다.');
 
   const handleValidation = () => {
     setPasswordValidation(!passwordValidation);
@@ -65,9 +66,11 @@ export default function GuestBookDelectModal() {
 
   const formRef = useRef<HTMLFormElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+
   const onChangeInput = (e: any) => {
-    if (e.target.value > 0) {
-      handleValidation();
+    const password = passwordRef.current?.value;
+    if (password === '') {
+      setComment('비밀번호를 입력해주세요.');
     }
   };
 
@@ -76,6 +79,9 @@ export default function GuestBookDelectModal() {
     const test = cards.filter((card) => id === card.id && card.password === password);
     const result = test[0]?.password;
 
+    if (password === '') {
+      setPasswordValidation(true);
+    }
     if (password !== result) {
       setPasswordValidation(true);
       return;
@@ -104,7 +110,7 @@ export default function GuestBookDelectModal() {
             <label>비밀번호</label>
             <input ref={passwordRef} type="password" placeholder="비밀번호" onChange={onChangeInput} />
           </SG.SelectSample>
-          {passwordValidation && <SG.Validation>비밀번호가 틀렸습니다.</SG.Validation>}
+          {passwordValidation && <SG.Validation>{comment}</SG.Validation>}
         </SG.ModalBody>
       </DialogContent>
       <DialogActions>
