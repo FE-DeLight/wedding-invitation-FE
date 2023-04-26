@@ -107,16 +107,16 @@ export default function BoardWrite() {
   });
 
   const handleMoreOption = (value: any) => {
-    const family = Object.keys(value).includes('famliy');
-    const size = Object.keys(value).includes('size');
+    const isFamily = Object.keys(value).includes('famliy');
+    const isSize = Object.keys(value).includes('size');
 
-    if (family) {
+    if (isFamily) {
       setOptionData((optionData) => {
         const updated = { ...optionData };
         updated.famliy = value.famliy;
         return updated;
       });
-    } else if (size) {
+    } else if (isSize) {
       // handleFontSize(value.size);
       setOptionData((optionData) => {
         const updated = { ...optionData };
