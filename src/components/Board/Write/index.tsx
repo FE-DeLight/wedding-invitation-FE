@@ -107,17 +107,16 @@ export default function BoardWrite() {
   });
 
   const handleMoreOption = (value: any) => {
-    const family = Object.keys(value).includes('famliy');
-    const size = Object.keys(value).includes('size');
-
-    if (family) {
+    const isFamily = Object.keys(value).includes('famliy');
+    const isSize = Object.keys(value).includes('size');
+    console.log(isFamily, isSize);
+    if (isFamily) {
       setOptionData((optionData) => {
         const updated = { ...optionData };
         updated.famliy = value.famliy;
         return updated;
       });
-    } else if (size) {
-      // handleFontSize(value.size);
+    } else if (isSize) {
       setOptionData((optionData) => {
         const updated = { ...optionData };
         updated.size = value.size;
