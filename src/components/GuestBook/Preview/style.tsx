@@ -80,7 +80,17 @@ export const CardHeader = styled.div`
   display: flex;
   justify-content: space-between;
 
+  > div {
+    display: flex;
+    align-items: center;
+  }
   button {
     background-color: transparent;
+  }
+
+  span {
+    color: #a3a3a3;
+    font-size: 12px;
+    margin-left: 8px;
   }
 `;

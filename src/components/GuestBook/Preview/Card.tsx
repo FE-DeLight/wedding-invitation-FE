@@ -33,18 +33,18 @@ export default function Card({ card }: any) {
   }
 
   return (
-    <>
-      <S.Cardli>
-        <S.CardHeader>
+    <S.Cardli>
+      <S.CardHeader>
+        <div>
           <h4>{name}</h4>
           <span>{timeText}</span>
-          <button onClick={onSubmit}>
-            <CloseIcon fontSize="small" onClick={() => dispatch(setId(id))} />
-          </button>
-        </S.CardHeader>
-        <p>{content}</p>
-        {openGuestBookDelectModal && <GuestBookDelectModal />}
-      </S.Cardli>
-    </>
+        </div>
+        <button onClick={onSubmit}>
+          <CloseIcon fontSize="small" onClick={() => dispatch(setId(id))} />
+        </button>
+      </S.CardHeader>
+      <p>{content}</p>
+      {openGuestBookDelectModal && <GuestBookDelectModal />}
+    </S.Cardli>
   );
 }
