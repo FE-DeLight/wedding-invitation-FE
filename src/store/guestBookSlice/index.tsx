@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 type Card = {
   id: number;
   name: string;
-  time: string;
+  time: number;
   content: string;
   password: string;
 };

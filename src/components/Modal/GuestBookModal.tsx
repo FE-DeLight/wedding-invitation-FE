@@ -1,9 +1,6 @@
 import React, { useRef } from 'react';
 import * as S from './GuestBookStyle';
-import dayjs from 'dayjs';
-import { useDispatch, useSelector } from 'react-redux';
 import { setCard, setOpenGuestBookModal } from '@/store/guestBookSlice';
-import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -11,6 +8,9 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import Button from '@mui/material/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import dayjs from 'dayjs';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -60,30 +60,18 @@ export default function GuestBookModal() {
     dispatch(setOpenGuestBookModal(!openGuestBookModal));
   };
 
-  const now = dayjs();
-  const year = now.year();
-  const month = now.month();
-  const date = now.date();
-  const minute = now.minute(); // 분
-  // const second = now.second();
-  const stringYear = year.toString();
-  const stringMonth = month.toString();
-  const stringDate = date.toString();
-  const stringMinute = minute.toString();
-
   const formRef = useRef<HTMLFormElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
-  const dateResult = [stringYear, stringMonth, stringDate, stringMinute].join('');
   const contentRef = useRef<HTMLTextAreaElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
   const onSubmit = (event: any) => {
     event.preventDefault();
-    // onSubmit 함수에서 유효성 체크 검사 해야될 것 같음!
+    const now = dayjs();
     const card = {
-      id: Date.now() + 1, // uuid
+      id: Date.now(),
       name: nameRef.current?.value || '',
-      time: dateResult, // 여기는 무조건 그 고정값을 가져와야돼!
+      time: now,
       content: contentRef.current?.value || '',
       password: passwordRef.current?.value || '',
     };
