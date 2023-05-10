@@ -36,7 +36,7 @@ const templateSlice = createSlice({
   },
 });
 
-export default templateSlice;
+export default templateSlice.reducer;
 export const { colorChange } = templateSlice.actions;
 export const { colorTextChange } = templateSlice.actions;
 export const { colorBorderChange } = templateSlice.actions;

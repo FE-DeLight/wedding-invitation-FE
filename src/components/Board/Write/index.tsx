@@ -20,6 +20,7 @@ import MoreOption from '@/components/MoreOption/MoreOption';
 import styled from '@emotion/styled';
 import SampleForm from '@/components/SampleForm';
 import DirectionsWrite from '@/components/WeddingDirections/Write';
+import WeddingDirectionsPreview from '@/components/WeddingDirections/Preview';
 
 type TemplateType = {
   id: number;
@@ -176,6 +177,9 @@ export default function BoardWrite() {
         <GlobalStyle fontSize={optionData.size} fontWeight={optionData.size} fontFamily={optionData.famliy}>
           <Card type="preview" color="#eee" backgroundImage="없음">
             <TemplatePreview />
+          </Card>
+          <Card type="preview">
+            <WeddingDirectionsPreview />
           </Card>
           <Card color="white" type="preview">
             <SenderPreview />
