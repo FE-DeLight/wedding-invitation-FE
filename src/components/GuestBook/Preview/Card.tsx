@@ -1,51 +1,50 @@
 import * as S from './style';
-import { IoIosClose } from "react-icons/io";
+import CloseIcon from '@mui/icons-material/Close';
 import GuestBookDelectModal from '../../Modal/GuestBookDelectModal';
+import { setOpenGuestBookDelectModal, setId } from '@/store/guestBookSlice';
 
-// type CardProp = {
-//   card: {
-//     name: string;
-//     time: string;
-//     content: string;
-//   };
-// };
+import { useDispatch, useSelector } from 'react-redux';
+import dayjs from 'dayjs';
 
-export default function Card({
-  card,
-  deleteCard,
-  setGuestDelectModal,
-  openGuestBookDelectModal,
-  HandleGBDelectVisibility,
-  passwordValidation,
-  handleValidation,
-}: any) {
-  const { id, password, name, time, content } = card;
+export default function Card({ card }: any) {
+  const dispatch = useDispatch();
+  const guestBookState = useSelector((state: any) => state.guestBook);
+  const { openGuestBookDelectModal } = guestBookState;
+
+  const { id, name, time, content } = card;
   const onSubmit = () => {
-    setGuestDelectModal(!openGuestBookDelectModal);
+    dispatch(setOpenGuestBookDelectModal(!openGuestBookDelectModal));
   };
 
+  const now = dayjs();
+  const diff = now.diff(time);
+  let timeText = '';
+  if (diff < 60000) {
+    timeText = '방금전';
+  } else if (diff < 3600000) {
+    const diffMinute = Math.floor(diff / 60000);
+    timeText = `${diffMinute}분전`;
+  } else if (diff < 86400000) {
+    const diffHour = Math.floor(diff / 3600000);
+    timeText = `${diffHour}시간전`;
+  } else {
+    const diffDay = Math.floor(diff / 86400000);
+    timeText = `${diffDay}일전`;
+  }
+
   return (
-    <>
-      <S.Cardli>
-        <S.CardHeader>
+    <S.Cardli>
+      <S.CardHeader>
+        <div>
           <h4>{name}</h4>
-          <span>{time}</span>
-          <button onClick={onSubmit}>
-            <IoIosClose />
-          </button>
-        </S.CardHeader>
-        <p>{content}</p>
-        {openGuestBookDelectModal && (
-          <GuestBookDelectModal
-            id={id}
-            password={password}
-            HandleGBDelectVisibility={HandleGBDelectVisibility}
-            deleteCard={deleteCard}
-            passwordValidation={passwordValidation}
-            handleValidation={handleValidation}
-          />
-        )}
-      </S.Cardli>
-    </>
+          <span>{timeText}</span>
+        </div>
+        <button onClick={onSubmit}>
+          <CloseIcon fontSize="small" onClick={() => dispatch(setId(id))} />
+        </button>
+      </S.CardHeader>
+      <p>{content}</p>
+      {openGuestBookDelectModal && <GuestBookDelectModal />}
+    </S.Cardli>
   );
 }

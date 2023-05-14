@@ -1,0 +1,33 @@
+.css-140puxv-MuiTypography-root-MuiDialogTitle-root {
+  font-size: 14px;
+  font-weight: 200;
+  background-color: #e5e5e5;
+}
+
+.css-153eyq5-MuiModal-root-MuiDialog-root .MuiDialogContent-root {
+  padding: 24px;
+  min-width: 488px;
+}
+
+.close {
+  width: 110px;
+  color: #525252;
+
+  border: 1px solid black;
+  &:hover {
+    width: 110px;
+    background-color: #e5e5e5;
+    border: 1px solid #525252;
+  }
+}
+
+.save {
+  width: 110px;
+  color: white;
+  background-color: #525252;
+  &:hover {
+    width: 110px;
+    color: black;
+    border: 1px solid #525252;
+  }
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import '@/styles/globals.scss';
 import '@/styles/datePicker.scss';
+import '@/styles/guestBook.scss';
 import '@/styles/Invitation.scss';
 import type { AppProps } from 'next/app';
 import LayoutComponent from '@/components/Layout';
