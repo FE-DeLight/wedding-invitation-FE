@@ -6,6 +6,7 @@ import DatePicker, { registerLocale } from 'react-datepicker';
 import ko from 'date-fns/locale/ko';
 import { useSelector } from 'react-redux';
 import * as S from '@/components/WeddingDay/Preview/style';
+import * as G from '@/styles/globals';
 
 export default function WeddingDayPreview({ weddingDay, showDday }: any) {
   registerLocale('ko', ko);
@@ -17,9 +18,9 @@ export default function WeddingDayPreview({ weddingDay, showDday }: any) {
   const getDateDiffFromToday = (date: Date): number => {
     const today = moment().startOf('day');
     const targetDate = moment(date).startOf('day');
-
     return targetDate.diff(today, 'days');
   };
+
   const dateDiff = getDateDiffFromToday(weddingDay);
 
   const selectedStyleOption = useSelector((state: any) => state.styleOption.selectedStyleOption);
@@ -57,7 +58,7 @@ export default function WeddingDayPreview({ weddingDay, showDday }: any) {
 
   return (
     <S.Container>
-      <S.Title>{formattedDate}</S.Title>
+      <G.Title>{formattedDate}</G.Title>
       <DatePicker
         selected={weddingDay}
         locale={ko}

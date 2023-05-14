@@ -1,26 +1,5 @@
 import styled from '@emotion/styled';
 
-export const ModalLayout = styled.div`
-  position: fixed;
-  z-index: 1;
-  top: 50%;
-  left: 50%;
-  background-color: white;
-  transform: translate(-50%, -50%);
-`;
-
-export const ModalHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  height: 61px;
-  padding: 16px 24px;
-  background-color: #e5e5e5;
-  
-  button {
-    background-color: transparent;
-  }
-`;
-
 export const SelectSample = styled.div`
   border: 1px solid #000;
   padding: 40px;
@@ -41,7 +20,4 @@ export const SelectSample = styled.div`
 export const ModalBody = styled.div`
   overflow-y: auto;
   max-height: 552px;
-  div {
-    padding: 16px 24px;
-  }
 `;

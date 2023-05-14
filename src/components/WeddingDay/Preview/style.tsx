@@ -4,20 +4,6 @@ export const Container = styled.div`
   padding: 56px 0;
 `;
 
-export const Title = styled.div`
-  text-align: center;
-  font-size: 20px;
-  color: #06080f;
-  font-family: 'Nanum Myeongjo', serif;
-  &:after {
-    content: '';
-    display: block;
-    width: 20px;
-    border-bottom: 1px solid #06080f;
-    margin: 10px auto 0;
-  }
-`;
-
 export const Wrapper = styled.div`
   margin-top: 40px;
   text-align: center;

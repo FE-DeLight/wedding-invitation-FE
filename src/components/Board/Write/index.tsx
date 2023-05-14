@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import Card from '@/components/Card';
 import * as S from '@/components/Board/Write/style';
 import { useRouter } from 'next/router';
@@ -11,11 +11,16 @@ import GuestBookWrite from '@/components/GuestBook/Write';
 import GuestBookPreview from '@/components/GuestBook/Preview';
 import WeddingDayWrite from '@/components/WeddingDay/Write';
 import WeddingDayPreview from '@/components/WeddingDay/Preview';
-import SenderWrite from '@/components/Sender/Write';
 import CalendarStyleWrite from '@/components/CalendarStyle/Write';
+import SenderWrite from '@/components/Sender/Write';
 import SenderPreview from '@/components/Sender/Preview';
+import WeddingHallWrite from '@/components/WeddingHall/Write';
+import WeddingHallPreview from '@/components/WeddingHall/Preview';
 import MoreOption from '@/components/MoreOption/MoreOption';
 import styled from '@emotion/styled';
+import SampleForm from '@/components/SampleForm';
+import DirectionsWrite from '@/components/WeddingDirections/Write';
+import WeddingDirectionsPreview from '@/components/WeddingDirections/Preview';
 
 type TemplateType = {
   id: number;
@@ -40,7 +45,6 @@ const templateColor = [
 ];
 
 // 템플릿
-
 export default function BoardWrite() {
   const router = useRouter();
   const handleSave = () => {
@@ -59,16 +63,16 @@ export default function BoardWrite() {
   });
 
   const handleMoreOption = (value: any) => {
-    const family = Object.keys(value).includes('famliy');
-    const size = Object.keys(value).includes('size');
+    const isFamily = Object.keys(value).includes('famliy');
+    const isSize = Object.keys(value).includes('size');
 
-    if (family) {
+    if (isFamily) {
       setOptionData((optionData) => {
         const updated = { ...optionData };
         updated.famliy = value.famliy;
         return updated;
       });
-    } else if (size) {
+    } else if (isSize) {
       // handleFontSize(value.size);
       setOptionData((optionData) => {
         const updated = { ...optionData };
@@ -109,10 +113,28 @@ export default function BoardWrite() {
   return (
     <S.Wrapper>
       <S.ContentLeft>
+        <Card type="preview">
+          <TemplatePreview />
+        </Card>
+        <Card title="제목2" type="preview">
+          내용2
+        </Card>
+        <Card color="white" type="preview">
+          <SenderPreview />
+        </Card>
+        <Card title="예식일" type="preview">
+          <WeddingDayPreview weddingDay={weddingDay} showDday={showDday} />
+        </Card>
+        <Card title="예식일" type="preview">
+          <WeddingHallPreview />
+        </Card>
         {/* Dongle 32px, 36px, 48px  */}
         <GlobalStyle fontSize={optionData.size} fontWeight={optionData.size} fontFamily={optionData.famliy}>
           <Card type="preview" color="#eee" backgroundImage="없음">
             <TemplatePreview />
+          </Card>
+          <Card type="preview">
+            <WeddingDirectionsPreview />
           </Card>
           <Card color="white" type="preview">
             <SenderPreview />
@@ -136,10 +158,16 @@ export default function BoardWrite() {
         <Card color="white" title="예식일" backgroundImage="없음">
           <WeddingDayWrite weddingDay={weddingDay} setWeddingDay={setWeddingDay} />
         </Card>
+        <Card title="첫 화면">
+          <SampleForm />
+        </Card>
+        <Card color="white" title="첫 화면" />
+        <Card title="청첩장 문구" />
+        <Card color="white" title="보내는 사람" />
         <Card color="white" title="첫 화면" backgroundImage="없음" />
         <Card title="청첩장 문구" backgroundImage="없음">
-          <InvitationWrite openModal={openModal} setModal={setModal} />
-          <InvitationSampleTextModal openModal={openModal} setModal={setModal} />
+          <InvitationWrite />
+          <InvitationSampleTextModal />
         </Card>
         <Card color="white" title="보내는 사람" backgroundImage="없음">
           <SenderWrite />
@@ -163,6 +191,24 @@ export default function BoardWrite() {
         <Card color="white" title="추가 옵션" backgroundImage="없음">
           <MoreOption optionData={optionData} handleMoreOption={handleMoreOption} />
         </Card>
+        <Card title="갤러리" />
+        <Card title="예식장 정보" />
+        <Card title="길 안내">
+          <DirectionsWrite />
+        </Card>
+        <Card color="white" title="예식장 정보">
+          <WeddingHallWrite />
+        </Card>
+        <Card title="길 안내" />
+        <Card title="계좌 정보" />
+        <Card title="연락처 정보" />
+        <Card title="식전 영상" />
+        <Card title="안내사항" />
+        <Card title="썸네일" />
+        <Card title="애니메이션 효과" />
+        <Card title="배경 음악" />
+        <Card title="방명록" />
+        <Card title="추가 옵션" />
       </S.ContentRight>
       <S.ContentBottom>
         <S.SubmitButton onClick={handleSave}>저장하기</S.SubmitButton>

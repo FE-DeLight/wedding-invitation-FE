@@ -15,7 +15,13 @@ export default function Document() {
       <body>
         <Main />
         <NextScript />
+        {/* Naver Login */}
         <Script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" strategy="beforeInteractive" />
+        {/* Naver Map */}
+        <Script
+          src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=b0xf776a7j&submodules=geocoder"
+          strategy="beforeInteractive"
+        />
       </body>
     </Html>
   );
