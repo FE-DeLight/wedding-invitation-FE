@@ -7,7 +7,7 @@ export const Header = styled.div`
   z-index: 10;
   transform: translateX(-50%);
   width: 100%;
-  background-color: #ddd;
+  background-color: #fff;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 `;
 export const HeaderInner = styled.div`
@@ -21,7 +21,9 @@ export const HeaderInner = styled.div`
   padding: 15px 0;
 `;
 
-export const Logo = styled.a``;
+export const Logo = styled.a`
+  font-weight: 700;
+`;
 
 export const ButtonWrap = styled.div`
   display: flex;
