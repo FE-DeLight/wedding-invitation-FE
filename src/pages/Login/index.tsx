@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import LoginNaver from '@/components/Login/LoginNaver';
+import LoginButton from '@/components/Login';
 import { useRouter } from 'next/router';
 import * as S from '@/components/Login/style';
 
@@ -21,7 +21,7 @@ export default function Login() {
         <S.Text>네이버계정으로 간편하게 가입하고</S.Text>
         <S.Text>쉽게 모바일 청첩장을 제작하세요</S.Text>
         <S.Bar />
-        <LoginNaver />
+        <LoginButton />
       </S.Wrapper>
     </S.Container>
   );
