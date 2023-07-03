@@ -7,9 +7,13 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    if (!Auth.checkToken()) {
-      router.push('/login');
+    async function authCheck() {
+      if (!Auth.checkToken()) {
+        await router.push('/Login', undefined, { shallow: true });
+      }
     }
+
+    authCheck();
   }, [router]);
 
   return <Seo title="Home" />;
