@@ -1,7 +1,7 @@
-import styled from '@emotion/styled';
+import dynamic from 'next/dynamic';
 import React from 'react';
+import styled from '@emotion/styled';
 import FooterComponent from './Footer';
-import HeaderComponent from './Header';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -14,9 +14,10 @@ const Layout = styled.div`
 `;
 
 export default function LayoutComponent({ children }: LayoutProps): JSX.Element {
+  const HederComponent = dynamic(() => import('./Header'), { ssr: false });
   return (
     <Layout>
-      <HeaderComponent />
+      <HederComponent />
       {children}
       <FooterComponent />
     </Layout>
