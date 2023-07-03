@@ -35,8 +35,8 @@ export default function MyPage() {
 
   const handleLogout = () => {
     dispatch(resetUser()); // 사용자 정보 초기화
-    localStorage.removeItem('token'); // 토큰 삭제
-    router.push('/');
+    Auth.logout(); // 토큰 삭제
+    router.push('/', undefined, { shallow: true }); // 뒤로가기 시, 캐시된 페이지로 이동
   };
 
   return (
