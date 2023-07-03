@@ -2,12 +2,12 @@ import Image from 'next/image';
 import React, { useEffect, useRef } from 'react';
 import * as S from './style';
 
-export default function LoginNaver() {
+export default function Index() {
   const naverLoginRef = useRef<HTMLDivElement>(null);
   const initializeNaverLogin = () => {
     const naverLogin = new window.naver.LoginWithNaverId({
       clientId: process.env.NEXT_PUBLIC_NAVER_CLIENT_ID,
-      callbackUrl: 'http://localhost:3000/login',
+      callbackUrl: 'http://localhost:3000/Login/Success',
       isPopup: false,
       loginButton: { color: 'green', type: 3, height: '45' },
     });
@@ -15,8 +15,10 @@ export default function LoginNaver() {
   };
 
   const handleNaverClick = () => {
-    const naverLoginButton = naverLoginRef.current?.querySelector('#naverIdLogin_loginButton');
-    if (naverLoginButton) naverLoginButton.click();
+    const naverLoginButton = naverLoginRef.current?.querySelector('#naverIdLogin_loginButton') as HTMLElement;
+    if (naverLoginButton) {
+      naverLoginButton.click();
+    }
   };
 
   useEffect(() => {
