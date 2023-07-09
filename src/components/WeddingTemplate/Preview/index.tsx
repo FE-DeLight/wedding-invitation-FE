@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { useSelector } from 'react-redux';
+import { RootState } from '@/store';
 
 const TypeWrap = styled.div`
   position: relative;
@@ -86,47 +87,32 @@ const ImgArea = styled.div`
   }
 `;
 export default function TemplatePreview() {
-  // const templateColorSelect = useSelector((state: any) => {
-  //   return state.template.color;
-  // });
-  const templateTextColorSelect = useSelector((state: any) => {
-    return state.template.textColor;
-  });
-  const templateBorderColorSelect = useSelector((state: any) => {
-    return state.template.BorderColor;
-  });
-  // const templateThemeColorSelect = useSelector((state: any) => {
-  //   return state.template.themeColor;
-  // });
-  const templateTypeSelect = useSelector((state: any) => {
-    return state.template.type;
+  const templateStyle = useSelector((state: RootState) => {
+    return state.template.templateStyle;
   });
   return (
-    <>
-      <TypeWrap>
-        <Type className={`type${templateTypeSelect}`} color={templateTextColorSelect}>
-          {templateTypeSelect !== 'Img' ? (
-            <Title className="title">
-              <Name>신랑 이름</Name>
-              <span>&</span>
-              <Name>신부 이름</Name>
-            </Title>
+    <TypeWrap>
+      <Type className={`type${templateStyle.type}`} color={templateStyle.textColor}>
+        {templateStyle.type !== 'Img' ? (
+          <Title className="title">
+            <Name>신랑 이름</Name>
+            <span>&</span>
+            <Name>신부 이름</Name>
+          </Title>
+        ) : (
+          ''
+        )}
+        <ImgArea className="imgArea" color={templateStyle.BorderColor}>
+          {templateStyle.type !== 'Img' ? (
+            '[첫화면]에서 이미지를 넣어주세요.'
           ) : (
-            ''
+            <>
+              [첫화면]에서 이미지를 넣어주세요.
+              <br /> (1:1.7 비율을 권장합니다.)
+            </>
           )}
-          <ImgArea className="imgArea" color={templateBorderColorSelect}>
-            {templateTypeSelect !== 'Img' ? (
-              '[첫화면]에서 이미지를 넣어주세요.'
-            ) : (
-              <>
-                [첫화면]에서 이미지를 넣어주세요.
-                <br /> (1:1.7 비율을 권장합니다.)
-              </>
-            )}
-          </ImgArea>
-        </Type>
-      </TypeWrap>
-      <div>dsa</div>
-    </>
+        </ImgArea>
+      </Type>
+    </TypeWrap>
   );
 }

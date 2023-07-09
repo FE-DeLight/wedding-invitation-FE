@@ -4,10 +4,18 @@ import Image from 'next/image';
 import styled from '@emotion/styled';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { useDispatch, useSelector } from 'react-redux';
-import { colorBorderChange, colorChange, colorTextChange, colorThemeChange, typeChange } from '@/store/templateSlice';
+import {
+  changeTemplate,
+  colorBorderChange,
+  colorChange,
+  colorTextChange,
+  colorThemeChange,
+  typeChange,
+} from '@/store/templateSlice';
 import TuneIcon from '@mui/icons-material/Tune';
 import { Popover } from '@mui/material';
 import { MuiColorInput } from 'mui-color-input';
+import { RootState } from '@/store';
 import 'swiper/css';
 
 type Props = {
@@ -38,6 +46,11 @@ const TypeContents = styled.div`
       span {
         display: block;
         margin-top: 15px;
+      }
+
+      &.active {
+        border: 1px solid #d4d4d4;
+        background-color: #f5f5f5;
       }
     }
   }
@@ -163,26 +176,14 @@ const Dropdown = styled.div`
 export default function TemplateWrite({ color, type }: Props) {
   const dispatch = useDispatch();
 
-  const [activeType, setActiveType] = useState(0);
-  const handleTypeActive = (index: any, value: string) => {
-    setActiveType(index);
-    dispatch(typeChange({ type: value }));
+  const templateStyle = useSelector((state: RootState) => {
+    return state.template.templateStyle;
+  });
+
+  const handleTypeActive = (value: string) => {
+    dispatch(changeTemplate({ ...templateStyle, type: value }));
   };
 
-  const [activeColor, setActiveColor] = useState(0);
-
-  const templateTextColorSelect = useSelector((state: any) => {
-    return state.template.textColor;
-  });
-  const templateBorderColorSelect = useSelector((state: any) => {
-    return state.template.BorderColor;
-  });
-  const templateThemeColorSelect = useSelector((state: any) => {
-    return state.template.themeColor;
-  });
-  const [templateColorText, setTemplateColorText] = useState(templateTextColorSelect);
-  const [templateColorBorder, setTemplateColorBorder] = useState(templateBorderColorSelect);
-  const [templateColorTheme, setTemplateColorTheme] = useState(templateThemeColorSelect);
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -197,41 +198,22 @@ export default function TemplateWrite({ color, type }: Props) {
   const id = open ? 'simple-popover' : undefined;
 
   const handleColorActive = (index: any, selectColor: string) => {
-    setActiveColor(index);
-    setTemplateColorText(selectColor);
-    setTemplateColorBorder(selectColor);
-    setTemplateColorTheme(selectColor);
+    const params = {
+      ...templateStyle,
+      color: selectColor,
+      textColor: selectColor,
+      BorderColor: selectColor,
+      themeColor: selectColor,
+    };
 
-    dispatch(
-      colorChange({
-        color: selectColor,
-        textColor: selectColor,
-        BorderColor: selectColor,
-        themeColor: selectColor,
-      }),
-    );
+    dispatch(changeTemplate({ ...params }));
   };
-  const handleColorPickerText = (colorPick: any) => {
-    setTemplateColorText(colorPick);
+
+  const handleColorPick = (colorPick: string, typeName: string) => {
     dispatch(
-      colorTextChange({
-        textColor: colorPick,
-      }),
-    );
-  };
-  const handleColorPickerBorder = (colorPick: any) => {
-    setTemplateColorBorder(colorPick);
-    dispatch(
-      colorBorderChange({
-        BorderColor: colorPick,
-      }),
-    );
-  };
-  const handleColorPickerTheme = (colorPick: any) => {
-    setTemplateColorTheme(colorPick);
-    dispatch(
-      colorThemeChange({
-        themeColor: colorPick,
+      changeTemplate({
+        ...templateStyle,
+        [typeName]: colorPick,
       }),
     );
   };
@@ -247,8 +229,8 @@ export default function TemplateWrite({ color, type }: Props) {
                 return (
                   <SwiperSlide
                     key={`templateType-${item.id}`}
-                    onClick={() => handleTypeActive(index, item.value)}
-                    className={index === activeType ? 'active' : ''}
+                    onClick={() => handleTypeActive(item.value)}
+                    className={item.value === templateStyle.type ? 'active' : ''}
                   >
                     <Image
                       src={`/img/theme_sample_0${index}.png`}
@@ -273,7 +255,7 @@ export default function TemplateWrite({ color, type }: Props) {
               {color.map((item: any, index: number) => {
                 return (
                   <SwiperSlide
-                    className={index === activeColor ? 'active' : ''}
+                    className={item.color === templateStyle.color ? 'active' : ''}
                     onClick={() => handleColorActive(index, item.color)}
                     key={item.id}
                   >
@@ -310,21 +292,27 @@ export default function TemplateWrite({ color, type }: Props) {
                       <div className="title">메인 텍스트</div>
                       <div className="desc">메인 텍스트의 색상을 변경합니다.</div>
                     </div>
-                    <MuiColorInput value={templateColorText} onChange={handleColorPickerText} />
+                    <MuiColorInput value={templateStyle.textColor} onChange={(c) => handleColorPick(c, 'textColor')} />
                   </div>
                   <div className="item">
                     <div className="text">
                       <div className="title">메인 테두리</div>
                       <div className="desc">메인 테두리의 색상을 변경합니다.</div>
                     </div>
-                    <MuiColorInput value={templateColorBorder} onChange={handleColorPickerBorder} />
+                    <MuiColorInput
+                      value={templateStyle.BorderColor}
+                      onChange={(c) => handleColorPick(c, 'BorderColor')}
+                    />
                   </div>
                   <div className="item">
                     <div className="text">
                       <div className="title">테마 색상</div>
                       <div className="desc">테마의 색상을 변경합니다.</div>
                     </div>
-                    <MuiColorInput value={templateColorTheme} onChange={handleColorPickerTheme} />
+                    <MuiColorInput
+                      value={templateStyle.themeColor}
+                      onChange={(c) => handleColorPick(c, 'themeColor')}
+                    />
                   </div>
                 </Dropdown>
               </Popover>

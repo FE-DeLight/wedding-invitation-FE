@@ -4,6 +4,7 @@ import * as S from '@/components/Board/Write/style';
 import { useRouter } from 'next/router';
 import TemplateWrite from '@/components/WeddingTemplate/Write';
 import TemplatePreview from '@/components/WeddingTemplate/Preview';
+import FirstView from '@/components/FirstView';
 import SampleModal from '@/components/Modal/SampleModal';
 import Invitation from '@/components/Invitation/Write/Invitation';
 import PrivewCard from '@/components/GuestBook/PrivewCard';
@@ -13,7 +14,6 @@ import WeddingDayPreview from '@/components/WeddingDay/Preview';
 import SenderWrite from '@/components/Sender/Write';
 import CalendarStyleWrite from '@/components/CalendarStyle/Write';
 import SenderPreview from '@/components/Sender/Preview';
-import SampleForm from '@/components/SampleForm';
 import DirectionsWrite from '@/components/WeddingDirections/Write';
 
 type TemplateType = {
@@ -102,7 +102,6 @@ export default function BoardWrite() {
   };
 
   const HandleGBDelectVisibility = () => {
-    console.log(' 왜  닫기야 안되니? ');
     handleValidation();
     setGuestDelectModal(!openGuestBookDelectModal);
   };
@@ -159,7 +158,7 @@ export default function BoardWrite() {
           <WeddingDayWrite weddingDay={weddingDay} setWeddingDay={setWeddingDay} />
         </Card>
         <Card title="첫 화면">
-          <SampleForm />
+          <FirstView />
         </Card>
         <Card color="white" title="첫 화면" />
         <Card title="청첩장 문구" />

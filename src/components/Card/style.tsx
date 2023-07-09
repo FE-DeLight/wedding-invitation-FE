@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const Card = styled.div`
   padding: 30px;
-  background-color: ${ props => props.color ? props.color : '#eee'};
+  background-color: ${ props => props.color ? props.color : '#fff'};
 `;
 
 export const Title = styled.div`

@@ -3,6 +3,13 @@ import { createSlice } from '@reduxjs/toolkit';
 const templateSlice = createSlice({
   name: ' templateSlice',
   initialState: {
+    templateStyle: {
+      type: 'A',
+      color: 'rgb(6, 8, 15)',
+      textColor: 'rgb(6, 8, 15)',
+      BorderColor: 'rgb(6, 8, 15)',
+      themeColor: 'rgb(6, 8, 15)',
+    },
     type: 'A',
     color: 'rgb(6, 8, 15)',
     textColor: 'rgb(6, 8, 15)',
@@ -10,6 +17,9 @@ const templateSlice = createSlice({
     themeColor: 'rgb(6, 8, 15)',
   },
   reducers: {
+    changeTemplate: (state, actions) => {
+      state.templateStyle = { ...actions.payload };
+    },
     colorChange: (state, action) => {
       const item = state;
       item.color = action.payload.color;
@@ -37,8 +47,5 @@ const templateSlice = createSlice({
 });
 
 export default templateSlice;
-export const { colorChange } = templateSlice.actions;
-export const { colorTextChange } = templateSlice.actions;
-export const { colorBorderChange } = templateSlice.actions;
-export const { colorThemeChange } = templateSlice.actions;
-export const { typeChange } = templateSlice.actions;
+export const { changeTemplate, colorChange, colorTextChange, colorBorderChange, colorThemeChange, typeChange } =
+  templateSlice.actions;

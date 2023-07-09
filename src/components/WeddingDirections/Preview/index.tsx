@@ -102,31 +102,28 @@ export default function TemplatePreview() {
     return state.template.type;
   });
   return (
-    <>
-      <TypeWrap>
-        <Type className={`type${templateTypeSelect}`} color={templateTextColorSelect}>
+    <TypeWrap>
+      <Type className={`type${templateTypeSelect}`} color={templateTextColorSelect}>
+        {templateTypeSelect !== 'Img' ? (
+          <Title className="title">
+            <Name>신랑 이름</Name>
+            <span>&</span>
+            <Name>신부 이름</Name>
+          </Title>
+        ) : (
+          ''
+        )}
+        <ImgArea className="imgArea" color={templateBorderColorSelect}>
           {templateTypeSelect !== 'Img' ? (
-            <Title className="title">
-              <Name>신랑 이름</Name>
-              <span>&</span>
-              <Name>신부 이름</Name>
-            </Title>
+            '[첫화면]에서 이미지를 넣어주세요.'
           ) : (
-            ''
+            <>
+              [첫화면]에서 이미지를 넣어주세요.
+              <br /> (1:1.7 비율을 권장합니다.)
+            </>
           )}
-          <ImgArea className="imgArea" color={templateBorderColorSelect}>
-            {templateTypeSelect !== 'Img' ? (
-              '[첫화면]에서 이미지를 넣어주세요.'
-            ) : (
-              <>
-                [첫화면]에서 이미지를 넣어주세요.
-                <br /> (1:1.7 비율을 권장합니다.)
-              </>
-            )}
-          </ImgArea>
-        </Type>
-      </TypeWrap>
-      <div>dsa</div>
-    </>
+        </ImgArea>
+      </Type>
+    </TypeWrap>
   );
 }
